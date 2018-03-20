@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tdo-XE-pth">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="VKo-8g-8wt">
+            <objects>
+                <viewController id="bKf-d5-hQZ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hNV-IG-DJc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="菜单" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Owe-jc-25d">
+                                <rect key="frame" x="170" y="396" width="35" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="bq"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Owe-jc-25d" firstAttribute="centerX" secondItem="hNV-IG-DJc" secondAttribute="centerX" id="8ns-gt-atN"/>
+                            <constraint firstItem="Owe-jc-25d" firstAttribute="centerY" secondItem="hNV-IG-DJc" secondAttribute="centerY" id="Mtz-EB-2rl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="udi-Ks-Dpz"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="gKP-fp-NwM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7MB-Ms-uaP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-647" y="710"/>
+        </scene>
+        <!--码表-->
+        <scene sceneID="FVq-te-ptL">
+            <objects>
+                <viewController id="lZ1-uG-0T5" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CjO-tu-hNd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="速码表" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5E-T1-MxE">
+                                <rect key="frame" x="161" y="396.33333333333331" width="52" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="bq"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="m5E-T1-MxE" firstAttribute="centerX" secondItem="CjO-tu-hNd" secondAttribute="centerX" id="7qV-ZU-48e"/>
+                            <constraint firstItem="m5E-T1-MxE" firstAttribute="centerY" secondItem="CjO-tu-hNd" secondAttribute="centerY" id="duP-6G-fgp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ebx-lH-BFu"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="码表" id="okq-vc-6P2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lWG-TW-2mq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="230" y="344"/>
+        </scene>
+        <!--导航-->
+        <scene sceneID="h8p-N0-0u9">
+            <objects>
+                <viewController id="9Ku-pr-6hG" customClass="NaviViewController" customModule="BikeDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qUn-FT-jd0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="HIa-FK-2TP"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="导航" id="Qpe-9W-GkI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LDm-Ws-bYU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="229.59999999999999" y="-358.37438423645324"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="m26-i4-490">
+            <objects>
+                <tabBarController id="tdo-XE-pth" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Jfu-3p-w2l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="9Ku-pr-6hG" kind="relationship" relationship="viewControllers" id="gSW-rt-ete"/>
+                        <segue destination="bKf-d5-hQZ" kind="relationship" relationship="viewControllers" id="MWF-2o-FmZ"/>
+                        <segue destination="lZ1-uG-0T5" kind="relationship" relationship="viewControllers" id="S0A-JC-p08"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sej-bp-oP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-646" y="-70"/>
+        </scene>
+    </scenes>
+</document>

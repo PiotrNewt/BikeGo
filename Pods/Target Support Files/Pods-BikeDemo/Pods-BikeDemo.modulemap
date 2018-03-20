@@ -1,0 +1,6 @@
+framework module Pods_BikeDemo {
+  umbrella header "Pods-BikeDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}
