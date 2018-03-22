@@ -15,7 +15,7 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
     let pointAnnotation = MAPointAnnotation()
     let r = MAUserLocationRepresentation()
     var ifTouchInfoViewLoaded = false
-    
+    var reAddress = ""
     
     @IBOutlet weak var TouchInfoView: UIView!
     @IBOutlet weak var TouchName: UILabel!
@@ -23,7 +23,9 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
     @IBOutlet weak var TouchAddress: UILabel!
     
     @IBAction func StartRoadPlan(_ sender: Any) {
-        HiddenTouchInfoView()
+        let RoadPlanVC = RoadPlanViewController()
+        RoadPlanVC.hero.modalAnimationType = HeroDefaultAnimationType.zoom
+        hero.replaceViewController(with: RoadPlanVC)
     }
     
     override func viewDidLoad() {
@@ -51,14 +53,8 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
        
         
         //搜索
-/*
         search?.delegate = self
-        let request = AMapPOIKeywordsSearchRequest()
-        request.keywords = "肯德基"
-        request.requireExtension = true
         
-        request.requireSubPOIs = true
-*/
         // Do any additional setup after loading the view.
     }
 
@@ -69,7 +65,6 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
     
     func LoadTouchInfoView(touchPoi: MATouchPoi) -> UIView {
         TouchName.text = touchPoi.name
-        TouchAddress.text = "逆地理编码测试占位符"
         TouchInfoView.addSubview(TouchName)
         TouchInfoView.addSubview(TouchAddress)
         TouchInfoView.addSubview(TouchRoadPlanBtn)
@@ -80,12 +75,20 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
     
     func RefreshTouchInfoView(touchPoi: MATouchPoi) -> Void {
         TouchName.text = touchPoi.name
-        TouchAddress.text = "逆地理编码测试占位符:refresh"
         TouchInfoView.isHidden = false
     }
     
     func HiddenTouchInfoView() -> Void {
         TouchInfoView.isHidden = true
+    }
+    
+    func ReverseGeoCoding(coordinate: CLLocationCoordinate2D) -> Void {
+        
+        let request = AMapReGeocodeSearchRequest()
+        request.location = AMapGeoPoint.location(withLatitude: CGFloat(coordinate.latitude), longitude: CGFloat(coordinate.longitude))
+        request.requireExtension = true
+
+        search?.aMapReGoecodeSearch(request)
     }
 
     /*
@@ -110,10 +113,23 @@ extension NaviViewController:AMapSearchDelegate, MAMapViewDelegate {
         //解析搜索返回值
     }
     
+    func onReGeocodeSearchDone(_ request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
+        if response.regeocode == nil {
+            return
+        }
+        //解析逆地理返回值
+        if response.regeocode != nil {
+            TouchAddress.text = response.regeocode.formattedAddress
+            reAddress = response.regeocode.formattedAddress
+        }
+    }
+    
     func mapView(_ mapView: MAMapView!, didTouchPois pois: [Any]!) {
         //显示标记
-        
         let touchPoi = pois[0] as! MATouchPoi
+        
+        //逆地理编码
+        ReverseGeoCoding(coordinate: touchPoi.coordinate)
         
         pointAnnotation.coordinate = touchPoi.coordinate
         pointAnnotation.title = touchPoi.name
