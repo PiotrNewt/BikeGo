@@ -13,6 +13,18 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
 
     let search = AMapSearchAPI()
     let pointAnnotation = MAPointAnnotation()
+    let r = MAUserLocationRepresentation()
+    var ifTouchInfoViewLoaded = false
+    
+    
+    @IBOutlet weak var TouchInfoView: UIView!
+    @IBOutlet weak var TouchName: UILabel!
+    @IBOutlet weak var TouchRoadPlanBtn: UIButton!
+    @IBOutlet weak var TouchAddress: UILabel!
+    
+    @IBAction func StartRoadPlan(_ sender: Any) {
+        HiddenTouchInfoView()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +45,10 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
         self.view.addSubview(mapView)
         
         //定位蓝点
-        let r = MAUserLocationRepresentation()
-        //朝向
         r.showsHeadingIndicator = true
         r.showsAccuracyRing = true
-        mapView.update(r)
-        
+        mapView.update(self.r)
+       
         
         //搜索
 /*
@@ -55,6 +65,27 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func LoadTouchInfoView(touchPoi: MATouchPoi) -> UIView {
+        TouchName.text = touchPoi.name
+        TouchAddress.text = "逆地理编码测试占位符"
+        TouchInfoView.addSubview(TouchName)
+        TouchInfoView.addSubview(TouchAddress)
+        TouchInfoView.addSubview(TouchRoadPlanBtn)
+        ifTouchInfoViewLoaded = true
+        
+        return TouchInfoView
+    }
+    
+    func RefreshTouchInfoView(touchPoi: MATouchPoi) -> Void {
+        TouchName.text = touchPoi.name
+        TouchAddress.text = "逆地理编码测试占位符:refresh"
+        TouchInfoView.isHidden = false
+    }
+    
+    func HiddenTouchInfoView() -> Void {
+        TouchInfoView.isHidden = true
     }
 
     /*
@@ -83,20 +114,26 @@ extension NaviViewController:AMapSearchDelegate, MAMapViewDelegate {
         //显示标记
         
         let touchPoi = pois[0] as! MATouchPoi
-        print(touchPoi.name)
-        print(touchPoi.coordinate)
-        print(touchPoi.uid)
-        
         
         pointAnnotation.coordinate = touchPoi.coordinate
         pointAnnotation.title = touchPoi.name
         mapView.addAnnotation(pointAnnotation)
         mapView.setCenter(touchPoi.coordinate, animated: true)
         
+        if ifTouchInfoViewLoaded == false {
+            self.view.addSubview(LoadTouchInfoView(touchPoi: touchPoi))
+        }else{
+            RefreshTouchInfoView(touchPoi: touchPoi)
         }
+        
+    }
     
     //标记方法
     func mapView(_ mapView: MAMapView!, viewFor annotation: MAAnnotation!) -> MAAnnotationView! {
+        //避开定位蓝点
+        if annotation.isKind(of: MAUserLocation.self){
+            return nil
+        }
         
         if annotation.isKind(of: MAPointAnnotation.self) {
             let pointReuseIndetifier = "pointReuseIndetifier"
@@ -106,13 +143,13 @@ extension NaviViewController:AMapSearchDelegate, MAMapViewDelegate {
                 annotationView = MAAnnotationView(annotation: annotation, reuseIdentifier: pointReuseIndetifier)
             }
             
-            annotationView!.canShowCallout = true
+            annotationView!.canShowCallout = false
             annotationView!.isDraggable = true
             annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
             
             annotationView!.image = #imageLiteral(resourceName: "BluePin")
             //设置中心点偏移，使得标注底部中间点成为经纬度对应点
-            annotationView!.centerOffset = CGPoint(x:2.5, y:-24);
+            annotationView!.centerOffset = CGPoint(x:1.2, y:-26);
             
             return annotationView!
         }

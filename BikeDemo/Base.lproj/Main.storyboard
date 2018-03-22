@@ -27,6 +27,11 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="bq"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Tp-4m-qpp">
+                                <rect key="frame" x="87" y="463" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -50,7 +55,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="速码表" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5E-T1-MxE">
-                                <rect key="frame" x="161" y="396.33333333333331" width="52" height="20.333333333333314"/>
+                                <rect key="frame" x="161.66666666666666" y="396" width="52" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -79,14 +84,69 @@
                     <view key="view" contentMode="scaleToFill" id="qUn-FT-jd0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWM-Uz-taK" userLabel="TouchInfoView">
+                                <rect key="frame" x="0.0" y="632" width="375" height="97"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPW-jP-tXW">
+                                        <rect key="frame" x="8" y="14" width="39" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRs-yV-Qxx">
+                                        <rect key="frame" x="8" y="60" width="359" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d54-2L-zYV">
+                                        <rect key="frame" x="288" y="-19" width="39" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <state key="normal" title="路线">
+                                            <color key="titleShadowColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="StartRoadPlan:" destination="9Ku-pr-6hG" eventType="touchUpInside" id="vdc-w3-r5B"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="97" id="5Ds-jH-Bp4"/>
+                                    <constraint firstItem="yRs-yV-Qxx" firstAttribute="top" secondItem="cPW-jP-tXW" secondAttribute="bottom" constant="23" id="CK7-ZD-TLS"/>
+                                    <constraint firstItem="yRs-yV-Qxx" firstAttribute="leading" secondItem="qWM-Uz-taK" secondAttribute="leading" constant="8" id="KM1-Uq-oJF"/>
+                                    <constraint firstAttribute="bottom" secondItem="yRs-yV-Qxx" secondAttribute="bottom" constant="16" id="Lkn-u5-xh7"/>
+                                    <constraint firstItem="cPW-jP-tXW" firstAttribute="top" secondItem="qWM-Uz-taK" secondAttribute="top" constant="14" id="NkE-xk-Tbc"/>
+                                    <constraint firstAttribute="trailing" secondItem="yRs-yV-Qxx" secondAttribute="trailing" constant="8" id="bkr-Id-uyy"/>
+                                    <constraint firstAttribute="bottom" secondItem="d54-2L-zYV" secondAttribute="bottom" constant="80" id="fde-yy-xXh"/>
+                                    <constraint firstItem="d54-2L-zYV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cPW-jP-tXW" secondAttribute="trailing" constant="8" symbolic="YES" id="gmw-HP-333"/>
+                                    <constraint firstAttribute="trailing" secondItem="d54-2L-zYV" secondAttribute="trailing" constant="48" id="nAS-r9-okT"/>
+                                    <constraint firstItem="cPW-jP-tXW" firstAttribute="leading" secondItem="qWM-Uz-taK" secondAttribute="leading" constant="8" id="wSK-Ga-tf3"/>
+                                    <constraint firstItem="d54-2L-zYV" firstAttribute="top" secondItem="qWM-Uz-taK" secondAttribute="top" constant="-19" id="z4v-ZQ-tuZ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qWM-Uz-taK" firstAttribute="leading" secondItem="HIa-FK-2TP" secondAttribute="leading" id="1BE-EI-6wW"/>
+                            <constraint firstItem="qWM-Uz-taK" firstAttribute="bottom" secondItem="HIa-FK-2TP" secondAttribute="bottom" id="7gn-5P-wzx"/>
+                            <constraint firstItem="qWM-Uz-taK" firstAttribute="trailing" secondItem="HIa-FK-2TP" secondAttribute="trailing" id="MzT-My-H8K"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="HIa-FK-2TP"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="导航" id="Qpe-9W-GkI"/>
+                    <connections>
+                        <outlet property="TouchAddress" destination="yRs-yV-Qxx" id="EwQ-GQ-ghr"/>
+                        <outlet property="TouchInfoView" destination="qWM-Uz-taK" id="DFK-Fe-Cy6"/>
+                        <outlet property="TouchName" destination="cPW-jP-tXW" id="COU-Yf-bji"/>
+                        <outlet property="TouchRoadPlanBtn" destination="d54-2L-zYV" id="tFd-94-ahk"/>
+                        <outletCollection property="TouchInfoView" destination="qWM-Uz-taK" collectionClass="NSMutableArray" id="zVT-Ug-MkB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LDm-Ws-bYU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="229.59999999999999" y="-358.37438423645324"/>
+            <point key="canvasLocation" x="228.75" y="-360.21126760563379"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="m26-i4-490">
