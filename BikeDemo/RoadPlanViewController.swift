@@ -78,6 +78,18 @@ extension RoadPlanViewController: AMapNaviRideManagerDelegate, MAMapViewDelegate
 
         let polyline: MAPolyline = MAPolyline(coordinates: &lineCoordinates, count: UInt(lineCoordinates.count))
          mapView.add(polyline)
+        //终点
+        let endPin = MAPointAnnotation()
+        endPin.coordinate = endPointCoordinate
+        mapView.addAnnotation(endPin)
+        
+        //调整显示范围
+        mapView.region.center = CLLocationCoordinate2D(latitude: Double((rideManager.naviRoute?.routeCenterPoint.latitude)!), longitude: Double((rideManager.naviRoute?.routeCenterPoint.longitude)!))
+        let spanLatitude = Double((rideManager.naviRoute?.routeBounds.northEast.latitude)!) - Double((rideManager.naviRoute?.routeBounds.southWest.latitude)!)
+        let spanLongitude = Double((rideManager.naviRoute?.routeBounds.northEast.longitude)!)-Double((rideManager.naviRoute?.routeBounds.southWest.longitude)!)
+        mapView.region.span.latitudeDelta = spanLatitude + 0.01
+        mapView.region.span.longitudeDelta = spanLongitude + 0.01
+        
     }
     
     
@@ -89,11 +101,40 @@ extension RoadPlanViewController: AMapNaviRideManagerDelegate, MAMapViewDelegate
     func mapView(_ mapView: MAMapView!, rendererFor overlay: MAOverlay!) -> MAOverlayRenderer! {
         if overlay.isKind(of: MAPolyline.self) {
             let renderer: MAPolylineRenderer = MAPolylineRenderer(overlay: overlay)
-            renderer.lineWidth = 8.0
-            renderer.strokeColor = UIColor.cyan
+            renderer.lineWidth = 6.0
+            renderer.strokeColor = UIColor.blue
             
             return renderer
         }
+        return nil
+    }
+    
+    //标记终点
+    func mapView(_ mapView: MAMapView!, viewFor annotation: MAAnnotation!) -> MAAnnotationView! {
+        //避开定位蓝点
+        if annotation.isKind(of: MAUserLocation.self){
+            return nil
+        }
+        
+        if annotation.isKind(of: MAPointAnnotation.self) {
+            let pointReuseIndetifier = "endPointReuseIndetifier"
+            var annotationView: MAAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: pointReuseIndetifier)
+            
+            if annotationView == nil {
+                annotationView = MAAnnotationView(annotation: annotation, reuseIdentifier: pointReuseIndetifier)
+            }
+            
+            annotationView!.canShowCallout = false
+            annotationView!.isDraggable = true
+            annotationView!.rightCalloutAccessoryView = UIButton(type: UIButtonType.detailDisclosure)
+            
+            annotationView!.image = #imageLiteral(resourceName: "EndPin")
+            //设置中心点偏移，使得标注底部中间点成为经纬度对应点
+            annotationView!.centerOffset = CGPoint(x:1.2, y:-26);
+            
+            return annotationView!
+        }
+        
         return nil
     }
 }
