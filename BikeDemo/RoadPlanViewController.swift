@@ -11,7 +11,10 @@ import UIKit
 class RoadPlanViewController: UIViewController {
     
     //导航终点
-    var endPoint = CLLocationCoordinate2D(latitude: 111, longitude: 122)
+    var endPointCoordinate = CLLocationCoordinate2D(latitude: 111, longitude: 122)
+    var startPoi = AMapNaviPoint()
+    //地图
+    let mapView = MAMapView(frame: UIScreen.main.bounds)
     
     let rideManager = AMapNaviRideManager()
     
@@ -22,7 +25,6 @@ class RoadPlanViewController: UIViewController {
         AMapServices.shared().enableHTTPS = true
         
         //地图
-        let mapView = MAMapView(frame: self.view.bounds)
         mapView.delegate = self
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
@@ -33,8 +35,12 @@ class RoadPlanViewController: UIViewController {
         mapView.touchPOIEnabled = true
         self.view.addSubview(mapView)
         
+        //路线规划
         rideManager.delegate = self
-        //rideManager.calculateRideRoute(withStart: <#T##AMapNaviPoint#>, end: <#T##AMapNaviPoint#>)
+        let endPoi = AMapNaviPoint.location(withLatitude: CGFloat(endPointCoordinate.latitude), longitude: CGFloat(endPointCoordinate.longitude))
+        if endPoi != nil {rideManager.calculateRideRoute(withStart: startPoi, end: endPoi!)}
+        
+        print(rideManager.calculateRideRoute(withStart: startPoi, end: endPoi!))
 
         // Do any additional setup after loading the view.
     }
@@ -59,5 +65,35 @@ class RoadPlanViewController: UIViewController {
 
 extension RoadPlanViewController: AMapNaviRideManagerDelegate, MAMapViewDelegate{
     
+    func rideManager(onCalculateRouteSuccess rideManager: AMapNaviRideManager) {
+        NSLog("CalculateRouteSuccess")
+        //绘制路线
+        let roadArray = rideManager.naviRoute?.routeCoordinates
+        var lineCoordinates: [CLLocationCoordinate2D] = []
+        if roadArray != nil{
+            for index in roadArray!{
+                lineCoordinates.append(CLLocationCoordinate2D(latitude: CLLocationDegrees(index.latitude), longitude: CLLocationDegrees(index.longitude)))
+            }
+        }
+
+        let polyline: MAPolyline = MAPolyline(coordinates: &lineCoordinates, count: UInt(lineCoordinates.count))
+         mapView.add(polyline)
+    }
     
+    
+    func rideManager(_ rideManager: AMapNaviRideManager, onCalculateRouteFailure error: Error) {
+        NSLog("error:{\(error.localizedDescription)}")
+    }
+    
+    //设置绘制折线的样式
+    func mapView(_ mapView: MAMapView!, rendererFor overlay: MAOverlay!) -> MAOverlayRenderer! {
+        if overlay.isKind(of: MAPolyline.self) {
+            let renderer: MAPolylineRenderer = MAPolylineRenderer(overlay: overlay)
+            renderer.lineWidth = 8.0
+            renderer.strokeColor = UIColor.cyan
+            
+            return renderer
+        }
+        return nil
+    }
 }

@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         //Navi Key
-        AMapServices.shared().apiKey = "87fedff43d0a35c0a9f6845e63c0474c"
+        AMapServices.shared().apiKey = APIKey
         
         return true
     }

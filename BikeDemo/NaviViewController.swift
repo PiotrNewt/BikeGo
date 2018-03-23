@@ -11,6 +11,7 @@ import Hero
 
 class NaviViewController: UIViewController, AMapLocationManagerDelegate{
 
+    let mapView = MAMapView(frame: UIScreen.main.bounds)
     let search = AMapSearchAPI()
     let pointAnnotation = MAPointAnnotation()
     let r = MAUserLocationRepresentation()
@@ -24,6 +25,8 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
     
     @IBAction func StartRoadPlan(_ sender: Any) {
         let RoadPlanVC = RoadPlanViewController()
+        RoadPlanVC.endPointCoordinate = pointAnnotation.coordinate
+        RoadPlanVC.startPoi = GetUserLocation()
         RoadPlanVC.hero.modalAnimationType = HeroDefaultAnimationType.zoom
         hero.replaceViewController(with: RoadPlanVC)
     }
@@ -35,7 +38,6 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
         AMapServices.shared().enableHTTPS = true
         
         //地图
-        let mapView = MAMapView(frame: self.view.bounds)
         mapView.delegate = self
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
@@ -50,7 +52,6 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
         r.showsHeadingIndicator = true
         r.showsAccuracyRing = true
         mapView.update(self.r)
-       
         
         //搜索
         search?.delegate = self
@@ -89,6 +90,11 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
         request.requireExtension = true
 
         search?.aMapReGoecodeSearch(request)
+    }
+    
+    func GetUserLocation() -> AMapNaviPoint{
+        //位置信息
+        return (AMapNaviPoint.location(withLatitude: CGFloat(mapView.userLocation.location.coordinate.latitude), longitude: CGFloat(mapView.userLocation.location.coordinate.longitude)))
     }
 
     /*
