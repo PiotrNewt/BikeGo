@@ -89,42 +89,49 @@
                                 <rect key="frame" x="0.0" y="632" width="375" height="97"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPW-jP-tXW">
-                                        <rect key="frame" x="8" y="14" width="39" height="23"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRs-yV-Qxx">
-                                        <rect key="frame" x="8" y="60" width="359" height="21"/>
+                                        <rect key="frame" x="17.999999999999996" y="28" width="34.666666666666657" height="23"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d54-2L-zYV">
-                                        <rect key="frame" x="288" y="-19" width="39" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <state key="normal" title="路线">
-                                            <color key="titleShadowColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRs-yV-Qxx">
+                                        <rect key="frame" x="18" y="60" width="359" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="suQ-tm-m2T"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d54-2L-zYV">
+                                        <rect key="frame" x="269" y="-25" width="56" height="56"/>
+                                        <state key="normal" image="RoadPlanBtn"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="NRB"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="arc"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="StartRoadPlan:" destination="9Ku-pr-6hG" eventType="touchUpInside" id="vdc-w3-r5B"/>
+                                            <segue destination="rgz-ob-3yM" kind="show" id="DcJ-fr-55z"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="97" id="5Ds-jH-Bp4"/>
-                                    <constraint firstItem="yRs-yV-Qxx" firstAttribute="top" secondItem="cPW-jP-tXW" secondAttribute="bottom" constant="23" id="CK7-ZD-TLS"/>
-                                    <constraint firstItem="yRs-yV-Qxx" firstAttribute="leading" secondItem="qWM-Uz-taK" secondAttribute="leading" constant="8" id="KM1-Uq-oJF"/>
+                                    <constraint firstItem="yRs-yV-Qxx" firstAttribute="top" secondItem="cPW-jP-tXW" secondAttribute="bottom" constant="9" id="CK7-ZD-TLS"/>
+                                    <constraint firstItem="yRs-yV-Qxx" firstAttribute="leading" secondItem="qWM-Uz-taK" secondAttribute="leading" constant="18" id="KM1-Uq-oJF"/>
                                     <constraint firstAttribute="bottom" secondItem="yRs-yV-Qxx" secondAttribute="bottom" constant="16" id="Lkn-u5-xh7"/>
-                                    <constraint firstItem="cPW-jP-tXW" firstAttribute="top" secondItem="qWM-Uz-taK" secondAttribute="top" constant="14" id="NkE-xk-Tbc"/>
-                                    <constraint firstAttribute="trailing" secondItem="yRs-yV-Qxx" secondAttribute="trailing" constant="8" id="bkr-Id-uyy"/>
-                                    <constraint firstAttribute="bottom" secondItem="d54-2L-zYV" secondAttribute="bottom" constant="80" id="fde-yy-xXh"/>
+                                    <constraint firstItem="cPW-jP-tXW" firstAttribute="top" secondItem="qWM-Uz-taK" secondAttribute="top" constant="28" id="NkE-xk-Tbc"/>
+                                    <constraint firstAttribute="trailing" secondItem="yRs-yV-Qxx" secondAttribute="trailing" constant="-2" id="bkr-Id-uyy"/>
+                                    <constraint firstAttribute="bottom" secondItem="d54-2L-zYV" secondAttribute="bottom" constant="66" id="fde-yy-xXh"/>
                                     <constraint firstItem="d54-2L-zYV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cPW-jP-tXW" secondAttribute="trailing" constant="8" symbolic="YES" id="gmw-HP-333"/>
-                                    <constraint firstAttribute="trailing" secondItem="d54-2L-zYV" secondAttribute="trailing" constant="48" id="nAS-r9-okT"/>
-                                    <constraint firstItem="cPW-jP-tXW" firstAttribute="leading" secondItem="qWM-Uz-taK" secondAttribute="leading" constant="8" id="wSK-Ga-tf3"/>
-                                    <constraint firstItem="d54-2L-zYV" firstAttribute="top" secondItem="qWM-Uz-taK" secondAttribute="top" constant="-19" id="z4v-ZQ-tuZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="d54-2L-zYV" secondAttribute="trailing" constant="50" id="nAS-r9-okT"/>
+                                    <constraint firstItem="cPW-jP-tXW" firstAttribute="leading" secondItem="qWM-Uz-taK" secondAttribute="leading" constant="18" id="wSK-Ga-tf3"/>
+                                    <constraint firstItem="d54-2L-zYV" firstAttribute="top" secondItem="qWM-Uz-taK" secondAttribute="top" constant="-25" id="z4v-ZQ-tuZ"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="RoadView"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -157,25 +164,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsp-WB-89F">
-                                <rect key="frame" x="291" y="62" width="68" height="68"/>
+                                <rect key="frame" x="291" y="62" width="56" height="56"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="68" id="cNk-vt-oUg"/>
-                                    <constraint firstAttribute="height" constant="68" id="vGL-DW-75y"/>
+                                    <constraint firstAttribute="width" constant="56" id="cNk-vt-oUg"/>
+                                    <constraint firstAttribute="height" constant="56" id="vGL-DW-75y"/>
                                 </constraints>
-                                <state key="normal" title="Navi Btn" image="NaviBtn"/>
+                                <state key="normal" image="NaviBtn"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="NRB"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="arc"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="StartNavi:" destination="rgz-ob-3yM" eventType="touchUpInside" id="3Fl-xZ-FOT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJN-uK-X5s">
+                                <rect key="frame" x="4" y="52" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="09R-TY-F1w"/>
+                                    <constraint firstAttribute="width" constant="48" id="8Pj-h8-BvD"/>
+                                </constraints>
+                                <state key="normal" image="back_down"/>
+                                <connections>
+                                    <action selector="hero_dismissViewController" destination="Bjg-Iy-x7V" eventType="touchUpInside" id="lG0-43-5n7"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="zJN-uK-X5s" firstAttribute="top" secondItem="lhO-nv-3wP" secondAttribute="top" constant="8" id="JCW-KA-nmG"/>
                             <constraint firstItem="bsp-WB-89F" firstAttribute="top" secondItem="lhO-nv-3wP" secondAttribute="top" constant="18" id="mxc-YW-UFz"/>
-                            <constraint firstItem="lhO-nv-3wP" firstAttribute="trailing" secondItem="bsp-WB-89F" secondAttribute="trailing" constant="16" id="oX0-wU-F4w"/>
+                            <constraint firstItem="lhO-nv-3wP" firstAttribute="trailing" secondItem="bsp-WB-89F" secondAttribute="trailing" constant="28" id="oX0-wU-F4w"/>
+                            <constraint firstItem="zJN-uK-X5s" firstAttribute="leading" secondItem="lhO-nv-3wP" secondAttribute="leading" constant="4" id="wmx-pu-pno"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lhO-nv-3wP"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="RoadView"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="BackBtn" destination="zJN-uK-X5s" id="Tgi-p2-BmD"/>
                         <outlet property="NaviBtn" destination="bsp-WB-89F" id="fnb-tG-T4y"/>
                     </connections>
                 </viewController>
@@ -205,5 +233,7 @@
     </scenes>
     <resources>
         <image name="NaviBtn" width="66" height="68"/>
+        <image name="RoadPlanBtn" width="56" height="59"/>
+        <image name="back_down" width="24" height="24"/>
     </resources>
 </document>

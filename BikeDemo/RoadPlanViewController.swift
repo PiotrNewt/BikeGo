@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Hero
 
 class RoadPlanViewController: UIViewController {
     
@@ -16,10 +17,11 @@ class RoadPlanViewController: UIViewController {
     //地图
     let mapView = MAMapView(frame: UIScreen.main.bounds)
     //导航视图
-    let driveView = AMapNaviRideView(frame: UIScreen.main.bounds)
+    let rideView = AMapNaviRideView(frame: UIScreen.main.bounds)
     //路线管理
     let rideManager = AMapNaviRideManager()
-    
+
+    @IBOutlet weak var BackBtn: UIButton!
     @IBOutlet weak var NaviBtn: UIButton!
     
     @IBAction func StartNavi(_ sender: Any) {
@@ -46,6 +48,7 @@ class RoadPlanViewController: UIViewController {
         self.view.addSubview(mapView)
         
         mapView.addSubview(NaviBtn)
+        mapView.addSubview(BackBtn)
         
         //路线规划
         rideManager.delegate = self
@@ -62,20 +65,27 @@ class RoadPlanViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //视图消失后销毁
+    override func viewWillDisappear(_ animated: Bool) {
+        rideManager.delegate = nil
+        rideManager.removeDataRepresentative(rideView)
+    }
+    
     func initRideView() {
-        driveView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        driveView.delegate = self
+        rideView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        rideView.showSensorHeading = true
+        rideView.delegate = self
         
-        self.view.addSubview(driveView)
+        self.view.addSubview(rideView)
     }
     
     func addRepresent() {
         
         rideManager.allowsBackgroundLocationUpdates = true
         rideManager.pausesLocationUpdatesAutomatically = false
-        
+        rideManager.isUseInternalTTS = true
         //将driveView添加为导航数据的Representative，使其可以接收到导航诱导数据
-        rideManager.addDataRepresentative(driveView)
+        rideManager.addDataRepresentative(rideView)
     }
     
     /*
@@ -121,7 +131,7 @@ extension RoadPlanViewController: AMapNaviRideManagerDelegate, MAMapViewDelegate
         
     }
     
-    
+    //路线规划失败
     func rideManager(_ rideManager: AMapNaviRideManager, onCalculateRouteFailure error: Error) {
         NSLog("error:{\(error.localizedDescription)}")
     }
@@ -165,6 +175,19 @@ extension RoadPlanViewController: AMapNaviRideManagerDelegate, MAMapViewDelegate
         }
         
         return nil
+    }
+    
+    //点击导航界面关闭btn
+    func rideViewCloseButtonClicked(_ rideView: AMapNaviRideView) {
+        rideManager.stopNavi()
+        rideView.removeFromSuperview()
+    }
+    
+    //to - do
+    
+    //到达目的地
+    func rideManager(onArrivedDestination rideManager: AMapNaviRideManager) {
+        //code
     }
     
 }

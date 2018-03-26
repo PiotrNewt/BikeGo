@@ -23,14 +23,15 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
     @IBOutlet weak var TouchRoadPlanBtn: UIButton!
     @IBOutlet weak var TouchAddress: UILabel!
     
+    /*
     @IBAction func StartRoadPlan(_ sender: Any) {
         let RoadPlanVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RoadPlanSelect") as? RoadPlanViewController)!
-        //let RoadPlanVC = RoadPlanViewController()
         RoadPlanVC.endPointCoordinate = pointAnnotation.coordinate
         RoadPlanVC.startPoi = GetUserLocation()
         RoadPlanVC.hero.modalAnimationType = HeroDefaultAnimationType.zoom
         hero.replaceViewController(with: RoadPlanVC)
     }
+    */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +64,14 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let RoadPlanVC = segue.destination as? RoadPlanViewController{
+        RoadPlanVC.endPointCoordinate = pointAnnotation.coordinate
+        RoadPlanVC.startPoi = GetUserLocation()
+        }
     }
     
     func LoadTouchInfoView(touchPoi: MATouchPoi) -> UIView {
