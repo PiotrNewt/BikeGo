@@ -24,7 +24,8 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
     @IBOutlet weak var TouchAddress: UILabel!
     
     @IBAction func StartRoadPlan(_ sender: Any) {
-        let RoadPlanVC = RoadPlanViewController()
+        let RoadPlanVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RoadPlanSelect") as? RoadPlanViewController)!
+        //let RoadPlanVC = RoadPlanViewController()
         RoadPlanVC.endPointCoordinate = pointAnnotation.coordinate
         RoadPlanVC.startPoi = GetUserLocation()
         RoadPlanVC.hero.modalAnimationType = HeroDefaultAnimationType.zoom

@@ -282,6 +282,11 @@
 					43126139205F9A4100DCA265 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					4312614D205F9A4100DCA265 = {
 						CreatedOnToolsVersion = 9.2;

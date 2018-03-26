@@ -15,8 +15,18 @@ class RoadPlanViewController: UIViewController {
     var startPoi = AMapNaviPoint()
     //地图
     let mapView = MAMapView(frame: UIScreen.main.bounds)
-    
+    //导航视图
+    let driveView = AMapNaviRideView(frame: UIScreen.main.bounds)
+    //路线管理
     let rideManager = AMapNaviRideManager()
+    
+    @IBOutlet weak var NaviBtn: UIButton!
+    
+    @IBAction func StartNavi(_ sender: Any) {
+        initRideView()
+        addRepresent()
+        rideManager.startGPSNavi()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +45,15 @@ class RoadPlanViewController: UIViewController {
         mapView.touchPOIEnabled = true
         self.view.addSubview(mapView)
         
+        mapView.addSubview(NaviBtn)
+        
         //路线规划
         rideManager.delegate = self
         let endPoi = AMapNaviPoint.location(withLatitude: CGFloat(endPointCoordinate.latitude), longitude: CGFloat(endPointCoordinate.longitude))
         if endPoi != nil {rideManager.calculateRideRoute(withStart: startPoi, end: endPoi!)}
         
         print(rideManager.calculateRideRoute(withStart: startPoi, end: endPoi!))
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -50,7 +62,22 @@ class RoadPlanViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func initRideView() {
+        driveView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        driveView.delegate = self
+        
+        self.view.addSubview(driveView)
+    }
+    
+    func addRepresent() {
+        
+        rideManager.allowsBackgroundLocationUpdates = true
+        rideManager.pausesLocationUpdatesAutomatically = false
+        
+        //将driveView添加为导航数据的Representative，使其可以接收到导航诱导数据
+        rideManager.addDataRepresentative(driveView)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -63,7 +90,7 @@ class RoadPlanViewController: UIViewController {
 
 }
 
-extension RoadPlanViewController: AMapNaviRideManagerDelegate, MAMapViewDelegate{
+extension RoadPlanViewController: AMapNaviRideManagerDelegate, MAMapViewDelegate, AMapNaviRideViewDelegate {
     
     func rideManager(onCalculateRouteSuccess rideManager: AMapNaviRideManager) {
         NSLog("CalculateRouteSuccess")
@@ -87,8 +114,10 @@ extension RoadPlanViewController: AMapNaviRideManagerDelegate, MAMapViewDelegate
         mapView.region.center = CLLocationCoordinate2D(latitude: Double((rideManager.naviRoute?.routeCenterPoint.latitude)!), longitude: Double((rideManager.naviRoute?.routeCenterPoint.longitude)!))
         let spanLatitude = Double((rideManager.naviRoute?.routeBounds.northEast.latitude)!) - Double((rideManager.naviRoute?.routeBounds.southWest.latitude)!)
         let spanLongitude = Double((rideManager.naviRoute?.routeBounds.northEast.longitude)!)-Double((rideManager.naviRoute?.routeBounds.southWest.longitude)!)
-        mapView.region.span.latitudeDelta = spanLatitude + 0.01
-        mapView.region.span.longitudeDelta = spanLongitude + 0.01
+        mapView.region.span.latitudeDelta = spanLatitude
+        mapView.region.span.longitudeDelta = spanLongitude
+        
+        mapView.zoomLevel = mapView.zoomLevel - 1
         
     }
     
@@ -137,4 +166,5 @@ extension RoadPlanViewController: AMapNaviRideManagerDelegate, MAMapViewDelegate
         
         return nil
     }
+    
 }

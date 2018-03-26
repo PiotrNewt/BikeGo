@@ -151,17 +151,37 @@
         <!--路线-->
         <scene sceneID="s6U-jc-hE1">
             <objects>
-                <viewController storyboardIdentifier="RoadPlamSelect" title="路线" id="rgz-ob-3yM" customClass="RoadPlanViewController" customModule="BikeDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RoadPlanSelect" title="路线" id="rgz-ob-3yM" customClass="RoadPlanViewController" customModule="BikeDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0cO-Lv-GaC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsp-WB-89F">
+                                <rect key="frame" x="291" y="62" width="68" height="68"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="68" id="cNk-vt-oUg"/>
+                                    <constraint firstAttribute="height" constant="68" id="vGL-DW-75y"/>
+                                </constraints>
+                                <state key="normal" title="Navi Btn" image="NaviBtn"/>
+                                <connections>
+                                    <action selector="StartNavi:" destination="rgz-ob-3yM" eventType="touchUpInside" id="3Fl-xZ-FOT"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bsp-WB-89F" firstAttribute="top" secondItem="lhO-nv-3wP" secondAttribute="top" constant="18" id="mxc-YW-UFz"/>
+                            <constraint firstItem="lhO-nv-3wP" firstAttribute="trailing" secondItem="bsp-WB-89F" secondAttribute="trailing" constant="16" id="oX0-wU-F4w"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="lhO-nv-3wP"/>
                     </view>
+                    <connections>
+                        <outlet property="NaviBtn" destination="bsp-WB-89F" id="fnb-tG-T4y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bjg-Iy-x7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1079" y="-361"/>
+            <point key="canvasLocation" x="1077.5999999999999" y="-361.33004926108379"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="m26-i4-490">
@@ -183,4 +203,7 @@
             <point key="canvasLocation" x="-646" y="-70"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NaviBtn" width="66" height="68"/>
+    </resources>
 </document>
