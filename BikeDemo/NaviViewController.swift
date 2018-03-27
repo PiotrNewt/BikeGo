@@ -23,6 +23,31 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
     @IBOutlet weak var TouchRoadPlanBtn: UIButton!
     @IBOutlet weak var TouchAddress: UILabel!
     
+    @IBOutlet weak var MapModeBtn: UIButton!
+    @IBOutlet weak var TrafficBtn: UIButton!
+    @IBOutlet weak var MyLocationBtn: UIButton!
+    
+    
+    @IBAction func changeTrafficInfo(_ sender: Any) {
+        guard mapView.isShowTraffic == true else {
+            mapView.isShowTraffic = true
+            TrafficBtn.setBackgroundImage(#imageLiteral(resourceName: "TrafficOn"), for: UIControlState.normal)
+            return
+        }
+        guard mapView.isShowTraffic == false else {
+            mapView.isShowTraffic = false
+            TrafficBtn.setBackgroundImage(#imageLiteral(resourceName: "TrafficOff"), for: UIControlState.normal)
+            return
+        }
+    }
+    
+    @IBAction func setMapCenterINMyLocation(_ sender: Any) {
+        mapView.setCenter(mapView.userLocation.coordinate, animated: true)
+        mapView.zoomLevel = 17
+        TouchInfoView.isHidden = true
+    }
+    
+    
     /*
     @IBAction func StartRoadPlan(_ sender: Any) {
         let RoadPlanVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RoadPlanSelect") as? RoadPlanViewController)!
@@ -49,6 +74,16 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
         mapView.zoomLevel = 17
         mapView.touchPOIEnabled = true
         self.view.addSubview(mapView)
+        
+        //添加按钮
+        mapView.addSubview(MapModeBtn)
+        mapView.isShowTraffic = true
+        TrafficBtn.setBackgroundImage(#imageLiteral(resourceName: "TrafficOn"), for: UIControlState.normal)
+        mapView.addSubview(TrafficBtn)
+        
+        mapView.addSubview(MyLocationBtn)
+        
+        //mapView.userLocation.location.speed
         
         //定位蓝点
         r.showsHeadingIndicator = true
@@ -80,6 +115,7 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
         TouchInfoView.addSubview(TouchAddress)
         TouchInfoView.addSubview(TouchRoadPlanBtn)
         ifTouchInfoViewLoaded = true
+        TouchInfoView.isHidden = false
         
         return TouchInfoView
     }
