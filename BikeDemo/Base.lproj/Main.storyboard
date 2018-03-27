@@ -142,6 +142,9 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d54-2L-zYV">
                                         <rect key="frame" x="303" y="-25" width="56" height="58"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="qGR-uA-yXu"/>
+                                        </constraints>
                                         <state key="normal" image="RoadPlanBtn"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="NRB"/>
@@ -158,10 +161,10 @@
                                     <constraint firstItem="yRs-yV-Qxx" firstAttribute="top" secondItem="cPW-jP-tXW" secondAttribute="bottom" constant="9" id="CK7-ZD-TLS"/>
                                     <constraint firstItem="yRs-yV-Qxx" firstAttribute="leading" secondItem="qWM-Uz-taK" secondAttribute="leading" constant="18" id="KM1-Uq-oJF"/>
                                     <constraint firstAttribute="bottom" secondItem="yRs-yV-Qxx" secondAttribute="bottom" constant="16" id="Lkn-u5-xh7"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cPW-jP-tXW" secondAttribute="trailing" constant="20" symbolic="YES" id="MKg-0c-17I"/>
                                     <constraint firstItem="cPW-jP-tXW" firstAttribute="top" secondItem="qWM-Uz-taK" secondAttribute="top" constant="28" id="NkE-xk-Tbc"/>
                                     <constraint firstAttribute="trailing" secondItem="yRs-yV-Qxx" secondAttribute="trailing" constant="-2" id="bkr-Id-uyy"/>
                                     <constraint firstAttribute="bottom" secondItem="d54-2L-zYV" secondAttribute="bottom" constant="64" id="fde-yy-xXh"/>
-                                    <constraint firstItem="d54-2L-zYV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cPW-jP-tXW" secondAttribute="trailing" constant="8" symbolic="YES" id="gmw-HP-333"/>
                                     <constraint firstAttribute="trailing" secondItem="d54-2L-zYV" secondAttribute="trailing" constant="16" id="nAS-r9-okT"/>
                                     <constraint firstItem="cPW-jP-tXW" firstAttribute="leading" secondItem="qWM-Uz-taK" secondAttribute="leading" constant="18" id="wSK-Ga-tf3"/>
                                     <constraint firstItem="d54-2L-zYV" firstAttribute="top" secondItem="qWM-Uz-taK" secondAttribute="top" constant="-25" id="z4v-ZQ-tuZ"/>
@@ -170,12 +173,6 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="RoadView"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qv5-WQ-l0e">
-                                <rect key="frame" x="16" y="44" width="343" height="56"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="5LP-EH-qAv"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0B-i5-000">
                                 <rect key="frame" x="303" y="131" width="56" height="58"/>
                                 <state key="normal" image="MapMode"/>
@@ -190,7 +187,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xdb-sw-Kzw">
-                                <rect key="frame" x="16" y="555" width="56" height="58"/>
+                                <rect key="frame" x="16" y="655" width="56" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="hpm-os-cRv"/>
                                 </constraints>
@@ -199,22 +196,32 @@
                                     <action selector="setMapCenterINMyLocation:" destination="9Ku-pr-6hG" eventType="touchUpInside" id="vnv-9B-9RQ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqu-aQ-2Z9">
+                                <rect key="frame" x="16" y="44" width="343" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="MNZ-1T-lmq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title=" 查询地点" image="SearchBtn" backgroundImage="SearchBar">
+                                    <color key="titleColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="qWM-Uz-taK" firstAttribute="leading" secondItem="HIa-FK-2TP" secondAttribute="leading" id="1BE-EI-6wW"/>
+                            <constraint firstItem="jqu-aQ-2Z9" firstAttribute="leading" secondItem="HIa-FK-2TP" secondAttribute="leading" constant="16" id="3sR-M8-03y"/>
                             <constraint firstItem="9LH-an-Hfi" firstAttribute="leading" relation="lessThanOrEqual" secondItem="HIa-FK-2TP" secondAttribute="leading" constant="303" id="3tI-Yu-BRX"/>
                             <constraint firstItem="qWM-Uz-taK" firstAttribute="bottom" secondItem="HIa-FK-2TP" secondAttribute="bottom" id="7gn-5P-wzx"/>
-                            <constraint firstItem="qv5-WQ-l0e" firstAttribute="leading" secondItem="HIa-FK-2TP" secondAttribute="leading" constant="16" id="7nJ-mX-DQr"/>
                             <constraint firstItem="HIa-FK-2TP" firstAttribute="trailing" secondItem="D0B-i5-000" secondAttribute="trailing" constant="16" id="FwB-D1-g6T"/>
                             <constraint firstItem="qWM-Uz-taK" firstAttribute="trailing" secondItem="HIa-FK-2TP" secondAttribute="trailing" id="MzT-My-H8K"/>
-                            <constraint firstItem="qWM-Uz-taK" firstAttribute="top" secondItem="Xdb-sw-Kzw" secondAttribute="bottom" constant="19" id="Ouk-0U-v6A"/>
+                            <constraint firstItem="qWM-Uz-taK" firstAttribute="top" secondItem="Xdb-sw-Kzw" secondAttribute="bottom" constant="-81" id="Ouk-0U-v6A"/>
                             <constraint firstItem="Xdb-sw-Kzw" firstAttribute="leading" secondItem="HIa-FK-2TP" secondAttribute="leading" constant="16" id="QFD-Dc-jvh"/>
-                            <constraint firstItem="D0B-i5-000" firstAttribute="top" secondItem="qv5-WQ-l0e" secondAttribute="bottom" constant="31" id="Rdv-au-Cnb"/>
-                            <constraint firstItem="HIa-FK-2TP" firstAttribute="trailing" secondItem="qv5-WQ-l0e" secondAttribute="trailing" constant="16" id="T3c-O6-a15"/>
+                            <constraint firstItem="D0B-i5-000" firstAttribute="top" secondItem="jqu-aQ-2Z9" secondAttribute="bottom" constant="47" id="S7J-2B-d5j"/>
                             <constraint firstItem="HIa-FK-2TP" firstAttribute="trailing" secondItem="9LH-an-Hfi" secondAttribute="trailing" constant="16" id="UQS-PJ-2NM"/>
+                            <constraint firstItem="HIa-FK-2TP" firstAttribute="trailing" secondItem="jqu-aQ-2Z9" secondAttribute="trailing" constant="16" id="Wtd-yK-LET"/>
+                            <constraint firstItem="jqu-aQ-2Z9" firstAttribute="top" secondItem="HIa-FK-2TP" secondAttribute="top" id="ctM-Zx-FuL"/>
                             <constraint firstItem="HIa-FK-2TP" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Xdb-sw-Kzw" secondAttribute="trailing" constant="303" id="oA9-s6-Oes"/>
-                            <constraint firstItem="qv5-WQ-l0e" firstAttribute="top" secondItem="HIa-FK-2TP" secondAttribute="top" id="p0z-lf-GJI"/>
                             <constraint firstItem="D0B-i5-000" firstAttribute="leading" relation="lessThanOrEqual" secondItem="HIa-FK-2TP" secondAttribute="leading" constant="303" id="tY8-Ux-P1H"/>
                             <constraint firstItem="9LH-an-Hfi" firstAttribute="top" secondItem="D0B-i5-000" secondAttribute="bottom" constant="8" id="vDT-JR-Qhv"/>
                             <constraint firstItem="9LH-an-Hfi" firstAttribute="top" secondItem="D0B-i5-000" secondAttribute="bottom" constant="8" id="zob-Vs-pv1"/>
@@ -225,6 +232,7 @@
                     <connections>
                         <outlet property="MapModeBtn" destination="D0B-i5-000" id="AvA-H0-MRi"/>
                         <outlet property="MyLocationBtn" destination="Xdb-sw-Kzw" id="RE8-7d-uwz"/>
+                        <outlet property="SearchPOIBtn" destination="jqu-aQ-2Z9" id="eev-Xa-1JE"/>
                         <outlet property="TouchAddress" destination="yRs-yV-Qxx" id="EwQ-GQ-ghr"/>
                         <outlet property="TouchInfoView" destination="qWM-Uz-taK" id="DFK-Fe-Cy6"/>
                         <outlet property="TouchName" destination="cPW-jP-tXW" id="COU-Yf-bji"/>
@@ -318,6 +326,8 @@
         <image name="MyLocation" width="56" height="58"/>
         <image name="NaviBtn" width="66" height="68"/>
         <image name="RoadPlanBtn" width="56" height="59"/>
+        <image name="SearchBar" width="351" height="44"/>
+        <image name="SearchBtn" width="30" height="30"/>
         <image name="back_down" width="24" height="24"/>
     </resources>
 </document>

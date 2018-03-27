@@ -32,6 +32,7 @@ class RoadPlanViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hero.isEnabled = true
         
         //Http
         AMapServices.shared().enableHTTPS = true

@@ -26,6 +26,7 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
     @IBOutlet weak var MapModeBtn: UIButton!
     @IBOutlet weak var TrafficBtn: UIButton!
     @IBOutlet weak var MyLocationBtn: UIButton!
+    @IBOutlet weak var SearchPOIBtn: UIButton!
     
     
     @IBAction func changeTrafficInfo(_ sender: Any) {
@@ -44,7 +45,11 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
     @IBAction func setMapCenterINMyLocation(_ sender: Any) {
         mapView.setCenter(mapView.userLocation.coordinate, animated: true)
         mapView.zoomLevel = 17
-        TouchInfoView.isHidden = true
+        if TouchInfoView.isHidden == false {
+            MyLocationBtn.frame.origin.y = MyLocationBtn.frame.origin.y + 100
+            TouchInfoView.isHidden = true
+            mapView.removeAnnotation(pointAnnotation)
+        }
     }
     
     
@@ -61,6 +66,8 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hero.isEnabled = true
+        
         //Http
         AMapServices.shared().enableHTTPS = true
         
@@ -75,13 +82,16 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
         mapView.touchPOIEnabled = true
         self.view.addSubview(mapView)
         
-        //添加按钮
+        //添加控件
+        mapView.addSubview(SearchPOIBtn)
         mapView.addSubview(MapModeBtn)
         mapView.isShowTraffic = true
         TrafficBtn.setBackgroundImage(#imageLiteral(resourceName: "TrafficOn"), for: UIControlState.normal)
         mapView.addSubview(TrafficBtn)
-        
+        ///位置按钮
         mapView.addSubview(MyLocationBtn)
+        TouchInfoView.isHidden = true
+        
         
         //mapView.userLocation.location.speed
         
@@ -116,17 +126,18 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
         TouchInfoView.addSubview(TouchRoadPlanBtn)
         ifTouchInfoViewLoaded = true
         TouchInfoView.isHidden = false
+        //定位按钮空位
+        MyLocationBtn.frame.origin.y = MyLocationBtn.frame.origin.y - 100
         
         return TouchInfoView
     }
     
     func RefreshTouchInfoView(touchPoi: MATouchPoi) -> Void {
         TouchName.text = touchPoi.name
-        TouchInfoView.isHidden = false
-    }
-    
-    func HiddenTouchInfoView() -> Void {
-        TouchInfoView.isHidden = true
+        if TouchInfoView.isHidden == true {
+            MyLocationBtn.frame.origin.y = MyLocationBtn.frame.origin.y - 100
+            TouchInfoView.isHidden = false
+        }
     }
     
     func ReverseGeoCoding(coordinate: CLLocationCoordinate2D) -> Void {
