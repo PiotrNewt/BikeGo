@@ -22,6 +22,7 @@
 		43126143205F9A4100DCA265 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43126141205F9A4100DCA265 /* Main.storyboard */; };
 		43126153205F9A4100DCA265 /* BikeDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43126152205F9A4100DCA265 /* BikeDemoTests.swift */; };
 		4312615E205F9A4100DCA265 /* BikeDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4312615D205F9A4100DCA265 /* BikeDemoUITests.swift */; };
+		43208CEE206B2A7A00364148 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43208CED206B2A7A00364148 /* SearchViewController.swift */; };
 		432446AA20638CD500030F9B /* RoadPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432446A920638CD500030F9B /* RoadPlanViewController.swift */; };
 		50992076A835C00488AEA143 /* Pods_BikeDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BDB56F07FA1E7D0BDDFA84B /* Pods_BikeDemoTests.framework */; };
 		63F3657D47FE0905F1F6E4EB /* Pods_BikeDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98AEE4823C284C21E39777B3 /* Pods_BikeDemo.framework */; };
@@ -70,6 +71,7 @@
 		43126159205F9A4100DCA265 /* BikeDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BikeDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4312615D205F9A4100DCA265 /* BikeDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeDemoUITests.swift; sourceTree = "<group>"; };
 		4312615F205F9A4100DCA265 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43208CED206B2A7A00364148 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		432446A920638CD500030F9B /* RoadPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadPlanViewController.swift; sourceTree = "<group>"; };
 		7BDB56F07FA1E7D0BDDFA84B /* Pods_BikeDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BikeDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98AEE4823C284C21E39777B3 /* Pods_BikeDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BikeDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +166,7 @@
 				4312613D205F9A4100DCA265 /* AppDelegate.swift */,
 				430EBE19205FB74C00B92835 /* NaviViewController.swift */,
 				432446A920638CD500030F9B /* RoadPlanViewController.swift */,
+				43208CED206B2A7A00364148 /* SearchViewController.swift */,
 				43126141205F9A4100DCA265 /* Main.storyboard */,
 				4311CE682060C32700D3D14F /* Assets.xcassets */,
 				4311CE6A2060C35700D3D14F /* LaunchScreen.storyboard */,
@@ -511,6 +514,7 @@
 			files = (
 				430EBE1A205FB74C00B92835 /* NaviViewController.swift in Sources */,
 				4312613E205F9A4100DCA265 /* AppDelegate.swift in Sources */,
+				43208CEE206B2A7A00364148 /* SearchViewController.swift in Sources */,
 				432446AA20638CD500030F9B /* RoadPlanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Navi Key
         AMapServices.shared().apiKey = APIKey
+        AMapServices.shared().enableHTTPS = true
         
         return true
     }

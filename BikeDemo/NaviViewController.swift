@@ -9,7 +9,7 @@
 import UIKit
 import Hero
 
-class NaviViewController: UIViewController, AMapLocationManagerDelegate{
+class NaviViewController: UIViewController {
 
     let mapView = MAMapView(frame: UIScreen.main.bounds)
     let search = AMapSearchAPI()
@@ -68,9 +68,6 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
         
         self.hero.isEnabled = true
         
-        //Http
-        AMapServices.shared().enableHTTPS = true
-        
         //地图
         mapView.delegate = self
         mapView.showsUserLocation = true
@@ -92,15 +89,14 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
         mapView.addSubview(MyLocationBtn)
         TouchInfoView.isHidden = true
         
-        
         //mapView.userLocation.location.speed
+        //let lo = CLLocation()
         
         //定位蓝点
         r.showsHeadingIndicator = true
         r.showsAccuracyRing = true
         mapView.update(self.r)
         
-        //搜索
         search?.delegate = self
         
         // Do any additional setup after loading the view.
@@ -112,10 +108,9 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if let RoadPlanVC = segue.destination as? RoadPlanViewController{
-        RoadPlanVC.endPointCoordinate = pointAnnotation.coordinate
-        RoadPlanVC.startPoi = GetUserLocation()
+            RoadPlanVC.endPointCoordinate = pointAnnotation.coordinate
+            RoadPlanVC.startPoi = GetUserLocation()
         }
     }
     
@@ -167,14 +162,7 @@ class NaviViewController: UIViewController, AMapLocationManagerDelegate{
 }
 
 
-extension NaviViewController:AMapSearchDelegate, MAMapViewDelegate {
-    
-    func onPOISearchDone(_ request: AMapPOISearchBaseRequest!, response: AMapPOISearchResponse!) {
-        if response.count == 0 {
-            return
-        }
-        //解析搜索返回值
-    }
+extension NaviViewController: AMapSearchDelegate, MAMapViewDelegate, AMapLocationManagerDelegate {
     
     func onReGeocodeSearchDone(_ request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
         if response.regeocode == nil {

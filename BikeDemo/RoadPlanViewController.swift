@@ -34,9 +34,6 @@ class RoadPlanViewController: UIViewController {
         super.viewDidLoad()
         self.hero.isEnabled = true
         
-        //Http
-        AMapServices.shared().enableHTTPS = true
-        
         //地图
         mapView.delegate = self
         mapView.showsUserLocation = true
@@ -135,6 +132,7 @@ extension RoadPlanViewController: AMapNaviRideManagerDelegate, MAMapViewDelegate
     //路线规划失败
     func rideManager(_ rideManager: AMapNaviRideManager, onCalculateRouteFailure error: Error) {
         NSLog("error:{\(error.localizedDescription)}")
+        //弹警告窗
     }
     
     //设置绘制折线的样式
@@ -184,11 +182,11 @@ extension RoadPlanViewController: AMapNaviRideManagerDelegate, MAMapViewDelegate
         rideView.removeFromSuperview()
     }
     
-    //to - do
+    //--- to - do ---//
     
     //到达目的地
     func rideManager(onArrivedDestination rideManager: AMapNaviRideManager) {
         //code
     }
-    
+    //到达目的地并暂停
 }
