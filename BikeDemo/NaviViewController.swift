@@ -108,9 +108,14 @@ class NaviViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if let RoadPlanVC = segue.destination as? RoadPlanViewController{
             RoadPlanVC.endPointCoordinate = pointAnnotation.coordinate
             RoadPlanVC.startPoi = GetUserLocation()
+        }
+        
+        if let searchVC = segue.destination as? SearchViewController {
+            searchVC.delegate = self
         }
     }
     
@@ -162,7 +167,35 @@ class NaviViewController: UIViewController {
 }
 
 
-extension NaviViewController: AMapSearchDelegate, MAMapViewDelegate, AMapLocationManagerDelegate {
+extension NaviViewController: AMapSearchDelegate, MAMapViewDelegate, AMapLocationManagerDelegate, SearchVCDelegate {
+   
+    func didSelectLocationTipInTableView(selectedTip: AMapTip) {
+        pointAnnotation.title = selectedTip.name
+        pointAnnotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(selectedTip.location.latitude) ,longitude: CLLocationDegrees(selectedTip.location.longitude))
+        mapView.addAnnotation(pointAnnotation)
+        mapView.setCenter(pointAnnotation.coordinate, animated: true)
+        
+        if ifTouchInfoViewLoaded == false {
+            TouchName.text = selectedTip.name
+            TouchAddress.text = selectedTip.address
+            TouchInfoView.addSubview(TouchName)
+            TouchInfoView.addSubview(TouchAddress)
+            TouchInfoView.addSubview(TouchRoadPlanBtn)
+            ifTouchInfoViewLoaded = true
+            TouchInfoView.isHidden = false
+            //定位按钮空位
+            MyLocationBtn.frame.origin.y = MyLocationBtn.frame.origin.y - 100
+            self.view.addSubview(TouchInfoView)
+        }else{
+            TouchName.text = selectedTip.name
+            TouchAddress.text = selectedTip.address
+            if TouchInfoView.isHidden == true {
+                MyLocationBtn.frame.origin.y = MyLocationBtn.frame.origin.y - 100
+                TouchInfoView.isHidden = false
+            }
+        }
+        
+    }
     
     func onReGeocodeSearchDone(_ request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
         if response.regeocode == nil {

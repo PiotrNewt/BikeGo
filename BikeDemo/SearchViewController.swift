@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol SearchVCDelegate {
+    func didSelectLocationTipInTableView(selectedTip: AMapTip)
+}
+
 class SearchViewController: UIViewController {
+    
+    var delegate:SearchVCDelegate?
     
     let search = AMapSearchAPI()
     let request = AMapInputTipsSearchRequest()
@@ -24,9 +30,12 @@ class SearchViewController: UIViewController {
 
         search?.delegate = self
         request.cityLimit = true
+        SearchBar.placeholder = "请输入关键字"
         SearchBar.delegate = self
         ResultTableView.delegate = self
         ResultTableView.dataSource = self
+        
+        self.navigationController?.navigationBar.isHidden = true
         
         // Do any additional setup after loading the view.
     }
@@ -68,11 +77,11 @@ extension SearchViewController: AMapSearchDelegate, UISearchBarDelegate, UITable
         
         SearchBar.resignFirstResponder()
         
-        let NaviMainVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NaviMain") as? NaviViewController)!
-        //传值
-        //跳转 //视图堆栈
-        //hero.replaceViewController(with: NaviMainVC) //消耗约130M内存 且会叠加
-        
+        if self.delegate != nil {
+            //传值
+            self.delegate?.didSelectLocationTipInTableView(selectedTip: resultArray[indexPath.row])
+        }
+        hero.dismissViewController()
     }
     
     //查询
