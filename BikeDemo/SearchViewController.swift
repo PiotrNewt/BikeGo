@@ -35,7 +35,7 @@ class SearchViewController: UIViewController {
         ResultTableView.delegate = self
         ResultTableView.dataSource = self
         
-        self.navigationController?.navigationBar.isHidden = true
+        SearchBar.becomeFirstResponder()
         
         // Do any additional setup after loading the view.
     }

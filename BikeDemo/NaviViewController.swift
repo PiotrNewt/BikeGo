@@ -27,6 +27,9 @@ class NaviViewController: UIViewController {
     @IBOutlet weak var TrafficBtn: UIButton!
     @IBOutlet weak var MyLocationBtn: UIButton!
     @IBOutlet weak var SearchPOIBtn: UIButton!
+    @IBOutlet weak var MapCommonStyleBtn: UIButton!
+    @IBOutlet weak var MapSateStyleBtn: UIButton!
+    @IBOutlet weak var MapNightStyleBtn: UIButton!
     
     
     @IBAction func changeTrafficInfo(_ sender: Any) {
@@ -52,16 +55,29 @@ class NaviViewController: UIViewController {
         }
     }
     
-    
-    /*
-    @IBAction func StartRoadPlan(_ sender: Any) {
-        let RoadPlanVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RoadPlanSelect") as? RoadPlanViewController)!
-        RoadPlanVC.endPointCoordinate = pointAnnotation.coordinate
-        RoadPlanVC.startPoi = GetUserLocation()
-        RoadPlanVC.hero.modalAnimationType = HeroDefaultAnimationType.zoom
-        hero.replaceViewController(with: RoadPlanVC)
+    @IBAction func commonBtnClick(_ sender: Any) {
+        mapView.mapType = .standard
+        mapModeBtnsGoback()
     }
-    */
+    @IBAction func sateBtnClick(_ sender: Any) {
+        mapView.mapType = .satellite
+        mapModeBtnsGoback()
+    }
+    @IBAction func nightBtnClick(_ sender: Any) {
+        mapView.mapType = .standardNight
+        mapModeBtnsGoback()
+    }
+    @IBAction func mapModeBtnClick(_ sender: Any) {
+        if MapCommonStyleBtn.frame.origin.x == MapModeBtn.frame.origin.x {
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {() -> Void in
+                self.MapCommonStyleBtn.frame.origin.x -= 221
+                self.MapSateStyleBtn.frame.origin.x -= 157
+                self.MapNightStyleBtn.frame.origin.x -= 93
+            }, completion: nil)
+        } else {
+            mapModeBtnsGoback()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,11 +96,16 @@ class NaviViewController: UIViewController {
         self.view.addSubview(mapView)
         
         //添加控件
-        mapView.addSubview(SearchPOIBtn)
+        mapView.addSubview(MapCommonStyleBtn)
+        mapView.addSubview(MapSateStyleBtn)
+        mapView.addSubview(MapNightStyleBtn)
         mapView.addSubview(MapModeBtn)
+        mapView.addSubview(SearchPOIBtn)
+        
         mapView.isShowTraffic = true
         TrafficBtn.setBackgroundImage(#imageLiteral(resourceName: "TrafficOn"), for: UIControlState.normal)
         mapView.addSubview(TrafficBtn)
+        
         ///位置按钮
         mapView.addSubview(MyLocationBtn)
         TouchInfoView.isHidden = true
@@ -112,6 +133,7 @@ class NaviViewController: UIViewController {
         if let RoadPlanVC = segue.destination as? RoadPlanViewController{
             RoadPlanVC.endPointCoordinate = pointAnnotation.coordinate
             RoadPlanVC.startPoi = GetUserLocation()
+            RoadPlanVC.mapView.mapType = mapView.mapType
         }
         
         if let searchVC = segue.destination as? SearchViewController {
@@ -154,6 +176,14 @@ class NaviViewController: UIViewController {
         return (AMapNaviPoint.location(withLatitude: CGFloat(mapView.userLocation.location.coordinate.latitude), longitude: CGFloat(mapView.userLocation.location.coordinate.longitude)))
     }
 
+    func mapModeBtnsGoback() -> Void {
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {() -> Void in
+            self.MapCommonStyleBtn.frame.origin.x += 221
+            self.MapSateStyleBtn.frame.origin.x += 157
+            self.MapNightStyleBtn.frame.origin.x += 93
+        }, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -165,7 +195,6 @@ class NaviViewController: UIViewController {
     */
 
 }
-
 
 extension NaviViewController: AMapSearchDelegate, MAMapViewDelegate, AMapLocationManagerDelegate, SearchVCDelegate {
    

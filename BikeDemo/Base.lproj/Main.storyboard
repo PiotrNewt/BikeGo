@@ -140,7 +140,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rFb-yE-7nY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168.8" y="-1097.2906403940888"/>
+            <point key="canvasLocation" x="1169" y="-912"/>
         </scene>
         <!--导航-->
         <scene sceneID="h8p-N0-0u9">
@@ -201,10 +201,6 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="RoadView"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0B-i5-000">
-                                <rect key="frame" x="303" y="131" width="56" height="58"/>
-                                <state key="normal" image="MapMode"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9LH-an-Hfi">
                                 <rect key="frame" x="303" y="197" width="56" height="58"/>
                                 <constraints>
@@ -237,14 +233,57 @@
                                     <segue destination="hYb-La-oYT" kind="show" identifier="searchSegue" id="5dT-LY-oZM"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68d-nx-bvh">
+                                <rect key="frame" x="303" y="131" width="56" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="BOS-SZ-RAz"/>
+                                    <constraint firstAttribute="width" constant="56" id="bXW-CF-w9d"/>
+                                </constraints>
+                                <state key="normal" image="MapNightStyle"/>
+                                <connections>
+                                    <action selector="nightBtnClick:" destination="9Ku-pr-6hG" eventType="touchUpInside" id="fZf-rO-UBX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhK-AB-TMO">
+                                <rect key="frame" x="303" y="131" width="56" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="Igd-8d-pbZ"/>
+                                    <constraint firstAttribute="width" constant="56" id="Kba-fy-bMq"/>
+                                </constraints>
+                                <state key="normal" image="MapSateStyle"/>
+                                <connections>
+                                    <action selector="sateBtnClick:" destination="9Ku-pr-6hG" eventType="touchUpInside" id="np9-gD-kBH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LwX-ag-i2s">
+                                <rect key="frame" x="303" y="131" width="56" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="HIg-EI-rA4"/>
+                                    <constraint firstAttribute="height" constant="58" id="yCt-5f-OB5"/>
+                                </constraints>
+                                <state key="normal" image="MapCommonStyle"/>
+                                <connections>
+                                    <action selector="commonBtnClick:" destination="9Ku-pr-6hG" eventType="touchUpInside" id="MXt-Ob-9jz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0B-i5-000">
+                                <rect key="frame" x="303" y="131" width="56" height="58"/>
+                                <state key="normal" image="MapMode"/>
+                                <connections>
+                                    <action selector="mapModeBtnClick:" destination="9Ku-pr-6hG" eventType="touchUpInside" id="HMk-bt-7ht"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="qWM-Uz-taK" firstAttribute="leading" secondItem="HIa-FK-2TP" secondAttribute="leading" id="1BE-EI-6wW"/>
                             <constraint firstItem="jqu-aQ-2Z9" firstAttribute="leading" secondItem="HIa-FK-2TP" secondAttribute="leading" constant="16" id="3sR-M8-03y"/>
                             <constraint firstItem="9LH-an-Hfi" firstAttribute="leading" relation="lessThanOrEqual" secondItem="HIa-FK-2TP" secondAttribute="leading" constant="303" id="3tI-Yu-BRX"/>
+                            <constraint firstItem="HIa-FK-2TP" firstAttribute="trailing" secondItem="LwX-ag-i2s" secondAttribute="trailing" constant="16" id="6lL-XZ-0wj"/>
                             <constraint firstItem="qWM-Uz-taK" firstAttribute="bottom" secondItem="HIa-FK-2TP" secondAttribute="bottom" id="7gn-5P-wzx"/>
                             <constraint firstItem="HIa-FK-2TP" firstAttribute="trailing" secondItem="D0B-i5-000" secondAttribute="trailing" constant="16" id="FwB-D1-g6T"/>
+                            <constraint firstItem="HIa-FK-2TP" firstAttribute="trailing" secondItem="68d-nx-bvh" secondAttribute="trailing" constant="16" id="IJd-oi-prn"/>
+                            <constraint firstItem="LwX-ag-i2s" firstAttribute="top" secondItem="jqu-aQ-2Z9" secondAttribute="bottom" constant="39" id="MZu-r3-KdA"/>
                             <constraint firstItem="qWM-Uz-taK" firstAttribute="trailing" secondItem="HIa-FK-2TP" secondAttribute="trailing" id="MzT-My-H8K"/>
                             <constraint firstItem="qWM-Uz-taK" firstAttribute="top" secondItem="Xdb-sw-Kzw" secondAttribute="bottom" constant="-81" id="Ouk-0U-v6A"/>
                             <constraint firstItem="Xdb-sw-Kzw" firstAttribute="leading" secondItem="HIa-FK-2TP" secondAttribute="leading" constant="16" id="QFD-Dc-jvh"/>
@@ -252,16 +291,21 @@
                             <constraint firstItem="HIa-FK-2TP" firstAttribute="trailing" secondItem="9LH-an-Hfi" secondAttribute="trailing" constant="16" id="UQS-PJ-2NM"/>
                             <constraint firstItem="HIa-FK-2TP" firstAttribute="trailing" secondItem="jqu-aQ-2Z9" secondAttribute="trailing" constant="16" id="Wtd-yK-LET"/>
                             <constraint firstItem="jqu-aQ-2Z9" firstAttribute="top" secondItem="HIa-FK-2TP" secondAttribute="top" constant="8" id="ctM-Zx-FuL"/>
+                            <constraint firstItem="68d-nx-bvh" firstAttribute="top" secondItem="jqu-aQ-2Z9" secondAttribute="bottom" constant="39" id="dIc-fQ-2XY"/>
                             <constraint firstItem="HIa-FK-2TP" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Xdb-sw-Kzw" secondAttribute="trailing" constant="303" id="oA9-s6-Oes"/>
-                            <constraint firstItem="D0B-i5-000" firstAttribute="leading" relation="lessThanOrEqual" secondItem="HIa-FK-2TP" secondAttribute="leading" constant="303" id="tY8-Ux-P1H"/>
                             <constraint firstItem="9LH-an-Hfi" firstAttribute="top" secondItem="D0B-i5-000" secondAttribute="bottom" constant="8" id="vDT-JR-Qhv"/>
+                            <constraint firstItem="mhK-AB-TMO" firstAttribute="top" secondItem="jqu-aQ-2Z9" secondAttribute="bottom" constant="39" id="x9L-b2-3GN"/>
+                            <constraint firstItem="HIa-FK-2TP" firstAttribute="trailing" secondItem="mhK-AB-TMO" secondAttribute="trailing" constant="16" id="z7n-pR-QgC"/>
                             <constraint firstItem="9LH-an-Hfi" firstAttribute="top" secondItem="D0B-i5-000" secondAttribute="bottom" constant="8" id="zob-Vs-pv1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HIa-FK-2TP"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="导航" id="Qpe-9W-GkI"/>
                     <connections>
+                        <outlet property="MapCommonStyleBtn" destination="LwX-ag-i2s" id="hjh-ll-LV6"/>
                         <outlet property="MapModeBtn" destination="D0B-i5-000" id="AvA-H0-MRi"/>
+                        <outlet property="MapNightStyleBtn" destination="68d-nx-bvh" id="mYs-UJ-2PK"/>
+                        <outlet property="MapSateStyleBtn" destination="mhK-AB-TMO" id="Q7k-uX-fR3"/>
                         <outlet property="MyLocationBtn" destination="Xdb-sw-Kzw" id="RE8-7d-uwz"/>
                         <outlet property="SearchPOIBtn" destination="jqu-aQ-2Z9" id="eev-Xa-1JE"/>
                         <outlet property="TouchAddress" destination="yRs-yV-Qxx" id="EwQ-GQ-ghr"/>
@@ -354,7 +398,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="MapCommonStyle" width="56" height="56"/>
         <image name="MapMode" width="56" height="58"/>
+        <image name="MapNightStyle" width="56" height="56"/>
+        <image name="MapSateStyle" width="56" height="56"/>
         <image name="MyLocation" width="56" height="58"/>
         <image name="NaviBtn" width="66" height="68"/>
         <image name="RoadPlanBtn" width="56" height="59"/>
