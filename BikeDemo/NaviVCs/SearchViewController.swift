@@ -27,6 +27,8 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.hero.isEnabled = true
 
         search?.delegate = self
         request.cityLimit = true

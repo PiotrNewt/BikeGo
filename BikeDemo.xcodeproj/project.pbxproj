@@ -24,6 +24,8 @@
 		4312615E205F9A4100DCA265 /* BikeDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4312615D205F9A4100DCA265 /* BikeDemoUITests.swift */; };
 		43208CEE206B2A7A00364148 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43208CED206B2A7A00364148 /* SearchViewController.swift */; };
 		432446AA20638CD500030F9B /* RoadPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432446A920638CD500030F9B /* RoadPlanViewController.swift */; };
+		43B1163E206E1E3200177E5F /* DashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B1163D206E1E3200177E5F /* DashBoardViewController.swift */; };
+		43ED358A206DDA5F004BBED6 /* SpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ED3589206DDA5F004BBED6 /* SpeedView.swift */; };
 		50992076A835C00488AEA143 /* Pods_BikeDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BDB56F07FA1E7D0BDDFA84B /* Pods_BikeDemoTests.framework */; };
 		63F3657D47FE0905F1F6E4EB /* Pods_BikeDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98AEE4823C284C21E39777B3 /* Pods_BikeDemo.framework */; };
 /* End PBXBuildFile section */
@@ -73,6 +75,8 @@
 		4312615F205F9A4100DCA265 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43208CED206B2A7A00364148 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		432446A920638CD500030F9B /* RoadPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadPlanViewController.swift; sourceTree = "<group>"; };
+		43B1163D206E1E3200177E5F /* DashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewController.swift; sourceTree = "<group>"; };
+		43ED3589206DDA5F004BBED6 /* SpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedView.swift; sourceTree = "<group>"; };
 		7BDB56F07FA1E7D0BDDFA84B /* Pods_BikeDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BikeDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98AEE4823C284C21E39777B3 /* Pods_BikeDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BikeDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D965F8F6DFB68678581D6B /* Pods_BikeDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BikeDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +140,14 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		4306341B206E1DAB002F99A5 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				43B1163D206E1E3200177E5F /* DashBoardViewController.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
 		43126131205F9A4100DCA265 = {
 			isa = PBXGroup;
 			children = (
@@ -163,10 +175,10 @@
 		4312613C205F9A4100DCA265 /* BikeDemo */ = {
 			isa = PBXGroup;
 			children = (
+				43ED3587206DD976004BBED6 /* NaviVCs */,
+				4306341B206E1DAB002F99A5 /* Dashboard */,
+				43ED3588206DD9F9004BBED6 /* Views */,
 				4312613D205F9A4100DCA265 /* AppDelegate.swift */,
-				430EBE19205FB74C00B92835 /* NaviViewController.swift */,
-				432446A920638CD500030F9B /* RoadPlanViewController.swift */,
-				43208CED206B2A7A00364148 /* SearchViewController.swift */,
 				43126141205F9A4100DCA265 /* Main.storyboard */,
 				4311CE682060C32700D3D14F /* Assets.xcassets */,
 				4311CE6A2060C35700D3D14F /* LaunchScreen.storyboard */,
@@ -192,6 +204,24 @@
 				4312615F205F9A4100DCA265 /* Info.plist */,
 			);
 			path = BikeDemoUITests;
+			sourceTree = "<group>";
+		};
+		43ED3587206DD976004BBED6 /* NaviVCs */ = {
+			isa = PBXGroup;
+			children = (
+				430EBE19205FB74C00B92835 /* NaviViewController.swift */,
+				432446A920638CD500030F9B /* RoadPlanViewController.swift */,
+				43208CED206B2A7A00364148 /* SearchViewController.swift */,
+			);
+			path = NaviVCs;
+			sourceTree = "<group>";
+		};
+		43ED3588206DD9F9004BBED6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				43ED3589206DDA5F004BBED6 /* SpeedView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		DA48BBB512BD5EC3131AF2E7 /* Pods */ = {
@@ -515,7 +545,9 @@
 				430EBE1A205FB74C00B92835 /* NaviViewController.swift in Sources */,
 				4312613E205F9A4100DCA265 /* AppDelegate.swift in Sources */,
 				43208CEE206B2A7A00364148 /* SearchViewController.swift in Sources */,
+				43B1163E206E1E3200177E5F /* DashBoardViewController.swift in Sources */,
 				432446AA20638CD500030F9B /* RoadPlanViewController.swift in Sources */,
+				43ED358A206DDA5F004BBED6 /* SpeedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
