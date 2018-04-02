@@ -126,7 +126,7 @@ class SpeedView: UIView {
         let speed = speedValue
         
         let startFromValue = pointerLayer.strokeStart
-        let startToValue = speed
+        let startToValue = speed / 50
         let endFromValue = pointerLayer.strokeEnd
         let endTolValue = startToValue + 0.005
         

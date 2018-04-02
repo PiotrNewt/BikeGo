@@ -14,8 +14,10 @@ class DashBoardViewController: UIViewController {
     @IBOutlet weak var speedView: SpeedView!
     var timer = Timer()
     
+    @IBOutlet weak var testLabel: UILabel!
     
-    let location = CLLocation()
+    let locationManager = AMapLocationManager()
+    //let location = CLLocation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,34 +30,37 @@ class DashBoardViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //speedView.speedValue = CGFloat(12)
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(getSystemLocationInfo), userInfo: nil, repeats: true)
+        locationManager.startUpdatingLocation()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        //locationManager.distanceFilter = 1
+        testLabel.text = "已经打开持续定位"
+    
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(getSystemLocationInfo), userInfo: nil, repeats: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        locationManager.stopUpdatingLocation()
         timer.invalidate()
     }
     
     @objc func getSystemLocationInfo() -> Void {
-        var speed = location.speed
-        print("当前速度：\(0)")
-        speed = speed == -1 ? 0 : speed
+        let speed = Int(arc4random_uniform(50))+1
+        NSLog("当前速度：\(speed)")
+        let nowspeed = speed == -1 ? 0 : speed
         guard speed != 0 else {
             return
         }
-        speedView.speedValue = CGFloat(location.speed)
-        speedLabel.text = String(Int(speed))
+        speedView.speedValue = CGFloat(nowspeed)
+        speedLabel.text = String(Int(nowspeed))
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+
+extension DashBoardViewController: AMapLocationManagerDelegate {
+    func amapLocationManager(_ manager: AMapLocationManager!, didUpdate location: CLLocation!) {
+        NSLog("speed：\(location.speed)")
+        //getSystemLocationInfo(speed: location.speed)
+        testLabel.text = String(location.speed)
+    }
+}
+

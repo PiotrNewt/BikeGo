@@ -56,10 +56,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7SB-Ji-eIc" customClass="SpeedView" customModule="BikeDemo" customModuleProvider="target">
-                                <rect key="frame" x="-1" y="22" width="322" height="322.5"/>
+                                <rect key="frame" x="-1" y="22" width="322" height="322"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3jD-Yg-z0D">
-                                        <rect key="frame" x="138" y="105" width="47.5" height="114"/>
+                                        <rect key="frame" x="138" y="104.5" width="47.5" height="114"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3IR-5F-dsL">
                                                 <rect key="frame" x="0.0" y="0.0" width="47.5" height="93.5"/>
@@ -83,11 +83,21 @@
                                     <constraint firstAttribute="width" constant="322" id="fWF-Hf-163"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElM-kr-Qte">
+                                <rect key="frame" x="94" y="412.5" width="133" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7SB-Ji-eIc" firstAttribute="centerX" secondItem="CjO-tu-hNd" secondAttribute="centerX" id="Mrl-Vp-Ftx"/>
+                            <constraint firstItem="Ebx-lH-BFu" firstAttribute="trailing" secondItem="ElM-kr-Qte" secondAttribute="trailing" constant="93" id="Nxn-ay-nbO"/>
+                            <constraint firstItem="ElM-kr-Qte" firstAttribute="leading" secondItem="Ebx-lH-BFu" secondAttribute="leading" constant="94" id="UUe-VI-PBt"/>
                             <constraint firstItem="7SB-Ji-eIc" firstAttribute="top" secondItem="Ebx-lH-BFu" secondAttribute="top" constant="2" id="Vwl-N9-PK0"/>
+                            <constraint firstItem="ElM-kr-Qte" firstAttribute="centerX" secondItem="CjO-tu-hNd" secondAttribute="centerX" id="gkV-Pu-7qo"/>
+                            <constraint firstItem="Ebx-lH-BFu" firstAttribute="bottom" secondItem="ElM-kr-Qte" secondAttribute="bottom" constant="86" id="lSH-Lc-2l8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ebx-lH-BFu"/>
                     </view>
@@ -95,6 +105,7 @@
                     <connections>
                         <outlet property="speedLabel" destination="3IR-5F-dsL" id="kZY-jU-gce"/>
                         <outlet property="speedView" destination="7SB-Ji-eIc" id="2UP-M2-pO7"/>
+                        <outlet property="testLabel" destination="ElM-kr-Qte" id="UyD-WB-Imm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lWG-TW-2mq" userLabel="First Responder" sceneMemberID="firstResponder"/>
