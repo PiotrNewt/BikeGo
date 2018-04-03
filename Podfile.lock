@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.7.1)
   - AMap3DMap (6.0.0):
     - AMapFoundation (~> 1.4)
   - AMapFoundation (1.4.3)
@@ -10,21 +11,34 @@ PODS:
   - AMapSearch (5.7.0):
     - AMapFoundation (~> 1.4)
   - Hero (1.1.0)
+  - Realm (3.3.1):
+    - Realm/Headers (= 3.3.1)
+  - Realm/Headers (3.3.1)
+  - RealmSwift (3.3.1):
+    - Realm (= 3.3.1)
+  - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.7)
   - AMapLocation
   - AMapNavi
   - AMapSearch
-  - Hero
+  - Hero (~> 1.1.0)
+  - RealmSwift (~> 3.3.0)
+  - SwiftyJSON (~> 4.0.0)
 
 SPEC CHECKSUMS:
+  Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
   AMap3DMap: ee8172d81560e9f6548d6e6010444df7e3d00fc7
   AMapFoundation: 973682cfe60b92efd73a8ef8f1144fa0fa8e1296
   AMapLocation: 55116a2c8956eab7550cbb56e989aa5cdcc424e3
   AMapNavi: 4d75c4ff83abd50959530e95c6da439e5b9fc06a
   AMapSearch: 314f75e9ce282b53dbf66455efa416c39f12b5b1
   Hero: ce59e81c79390613d97b43da7179e2c5e1017e04
+  Realm: 63ebf4903b446b0bdf2131244eb1e1549925c724
+  RealmSwift: f28fe8507bdfb8f1c924962401b83e7b9d7abb5c
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 8857d1b18f91a9afb649f20158c02fad112e4a7d
+PODFILE CHECKSUM: 43a25d9568f5368609e4a492f150f8a8b2fe6938
 
 COCOAPODS: 1.4.0

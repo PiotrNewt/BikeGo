@@ -14,7 +14,7 @@
         <!--菜单-->
         <scene sceneID="VKo-8g-8wt">
             <objects>
-                <viewController title="菜单" id="bKf-d5-hQZ" sceneMemberID="viewController">
+                <viewController title="菜单" id="bKf-d5-hQZ" customClass="MenuViewController" customModule="BikeDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hNV-IG-DJc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -26,44 +26,43 @@
                                     <constraint firstAttribute="height" constant="90" id="b0Q-fl-2vF"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="789-5C-yY6">
-                                <rect key="frame" x="50" y="305" width="309" height="30"/>
-                                <state key="normal" title="骑友圈">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="789-5C-yY6">
+                                <rect key="frame" x="50" y="305" width="309" height="32"/>
+                                <state key="normal" title="         骑友圈" image="FriendsBtn">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c51-LB-DhH">
-                                <rect key="frame" x="50" y="375" width="309" height="30"/>
-                                <state key="normal" title="应急短息">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c51-LB-DhH">
+                                <rect key="frame" x="50" y="377" width="309" height="30"/>
+                                <state key="normal" title="        应急短息" image="MessageBtn">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W8l-GT-v4w">
-                                <rect key="frame" x="50" y="445" width="309" height="30"/>
-                                <state key="normal" title="数据">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W8l-GT-v4w">
+                                <rect key="frame" x="50" y="447" width="309" height="32"/>
+                                <state key="normal" title="     数据" image="RideDateBtn">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MxH-Ot-7fZ">
-                                <rect key="frame" x="50" y="515" width="309" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="关于">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MxH-Ot-7fZ">
+                                <rect key="frame" x="50" y="519" width="309" height="30"/>
+                                <state key="normal" title="           关于" image="AboutBtn">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sign in / sign up?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBu-az-rAk">
-                                <rect key="frame" x="148" y="180" width="193" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sign in / sign up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBu-az-rAk">
+                                <rect key="frame" x="148" y="151" width="193" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="W8l-GT-v4w" firstAttribute="leading" secondItem="udi-Ks-Dpz" secondAttribute="leading" constant="50" id="53d-L6-Qlp"/>
                             <constraint firstItem="udi-Ks-Dpz" firstAttribute="trailing" secondItem="MxH-Ot-7fZ" secondAttribute="trailing" constant="16" id="8BC-RY-LJd"/>
                             <constraint firstItem="c51-LB-DhH" firstAttribute="top" secondItem="789-5C-yY6" secondAttribute="bottom" constant="40" id="F5z-pg-cEM"/>
-                            <constraint firstItem="SBu-az-rAk" firstAttribute="top" secondItem="udi-Ks-Dpz" secondAttribute="top" constant="136" id="FmQ-z6-dJM"/>
+                            <constraint firstItem="SBu-az-rAk" firstAttribute="top" secondItem="udi-Ks-Dpz" secondAttribute="top" constant="107" id="FmQ-z6-dJM"/>
                             <constraint firstItem="jBc-oB-3Yk" firstAttribute="leading" secondItem="udi-Ks-Dpz" secondAttribute="leading" constant="50" id="IhZ-gf-mDu"/>
                             <constraint firstItem="SBu-az-rAk" firstAttribute="leading" secondItem="jBc-oB-3Yk" secondAttribute="trailing" constant="8" id="Iu6-3J-cgP"/>
                             <constraint firstItem="789-5C-yY6" firstAttribute="leading" secondItem="udi-Ks-Dpz" secondAttribute="leading" constant="50" id="Jog-CN-kmU"/>
@@ -81,25 +80,18 @@
                         <viewLayoutGuide key="safeArea" id="udi-Ks-Dpz"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="gKP-fp-NwM"/>
+                    <connections>
+                        <outlet property="AboutBtn" destination="MxH-Ot-7fZ" id="3Yr-is-j45"/>
+                        <outlet property="FriendsBtn" destination="789-5C-yY6" id="7zT-qn-QJT"/>
+                        <outlet property="HeadPortraitIamgeView" destination="jBc-oB-3Yk" id="vs7-tw-O4J"/>
+                        <outlet property="HelloLabel" destination="SBu-az-rAk" id="niQ-ID-yRU"/>
+                        <outlet property="MessageBtn" destination="c51-LB-DhH" id="IxI-ly-2Nc"/>
+                        <outlet property="RideDataBtn" destination="W8l-GT-v4w" id="rvx-DG-keq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7MB-Ms-uaP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-647.20000000000005" y="709.35960591133005"/>
-        </scene>
-        <!--登陆注册-->
-        <scene sceneID="FjA-QB-IKh">
-            <objects>
-                <viewController title="登陆注册" id="Qrt-KL-b2B" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vak-5h-BSi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="EF9-2H-Keu"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FCb-aT-bjU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1569" y="709"/>
         </scene>
         <!--码表-->
         <scene sceneID="FVq-te-ptL">
@@ -138,7 +130,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElM-kr-Qte">
-                                <rect key="frame" x="94" y="622.66666666666663" width="188" height="20.333333333333371"/>
+                                <rect key="frame" x="167.33333333333334" y="622.66666666666663" width="41.666666666666657" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -147,8 +139,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7SB-Ji-eIc" firstAttribute="centerX" secondItem="CjO-tu-hNd" secondAttribute="centerX" id="Mrl-Vp-Ftx"/>
-                            <constraint firstItem="Ebx-lH-BFu" firstAttribute="trailing" secondItem="ElM-kr-Qte" secondAttribute="trailing" constant="93" id="Nxn-ay-nbO"/>
-                            <constraint firstItem="ElM-kr-Qte" firstAttribute="leading" secondItem="Ebx-lH-BFu" secondAttribute="leading" constant="94" id="UUe-VI-PBt"/>
                             <constraint firstItem="7SB-Ji-eIc" firstAttribute="top" secondItem="Ebx-lH-BFu" secondAttribute="top" constant="2" id="Vwl-N9-PK0"/>
                             <constraint firstItem="ElM-kr-Qte" firstAttribute="centerX" secondItem="CjO-tu-hNd" secondAttribute="centerX" id="gkV-Pu-7qo"/>
                             <constraint firstItem="Ebx-lH-BFu" firstAttribute="bottom" secondItem="ElM-kr-Qte" secondAttribute="bottom" constant="86" id="lSH-Lc-2l8"/>
@@ -199,7 +189,7 @@
                                 <rect key="frame" x="0.0" y="108" width="375" height="704"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="item" rowHeight="36" id="yWt-iw-S8p">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="item" rowHeight="36" id="yWt-iw-S8p">
                                         <rect key="frame" x="0.0" y="28" width="375" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yWt-iw-S8p" id="AGa-p1-5Ng">
@@ -492,12 +482,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AboutBtn" width="23" height="30"/>
+        <image name="FriendsBtn" width="33" height="32"/>
         <image name="MapCommonStyle" width="56" height="56"/>
         <image name="MapMode" width="56" height="58"/>
         <image name="MapNightStyle" width="56" height="56"/>
         <image name="MapSateStyle" width="56" height="56"/>
+        <image name="MessageBtn" width="38" height="30"/>
         <image name="MyLocation" width="56" height="58"/>
         <image name="NaviBtn" width="66" height="68"/>
+        <image name="RideDateBtn" width="52" height="32"/>
         <image name="RoadPlanBtn" width="56" height="59"/>
         <image name="SearchBar" width="351" height="44"/>
         <image name="SearchBtn" width="30" height="30"/>

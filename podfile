@@ -5,11 +5,14 @@ target 'BikeDemo' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'Hero'
+  pod 'Hero', '~> 1.1.0'
   #pod 'AMap2DMap'
   pod 'AMapSearch'
   pod 'AMapNavi'
   pod 'AMapLocation'
+  pod 'RealmSwift', '~> 3.3.0'
+  pod 'Alamofire', '~> 4.7'
+  pod 'SwiftyJSON', '~> 4.0.0'
 
 
   # Pods for BikeDemo
