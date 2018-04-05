@@ -23,12 +23,15 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hero.isEnabled = true
+        
         HeadPortraitIamgeView.layer.masksToBounds = true
         HeadPortraitIamgeView.layer.cornerRadius = 45
         HeadPortraitIamgeView.isUserInteractionEnabled = true
-        let headImageGeesture = UITapGestureRecognizer(target: self, action: #selector(selectHeadImageOrHelloLabel))
-        HeadPortraitIamgeView.addGestureRecognizer(headImageGeesture)
-        HelloLabel.addGestureRecognizer(headImageGeesture)
+        let headImageGesture = UITapGestureRecognizer(target: self, action: #selector(selectHeadImageOrHelloLabel))
+        HeadPortraitIamgeView.addGestureRecognizer(headImageGesture)
+        HelloLabel.isUserInteractionEnabled = true
+        HelloLabel.addGestureRecognizer(headImageGesture)
         
         // Do any additional setup after loading the view.
     }
@@ -63,6 +66,9 @@ class MenuViewController: UIViewController {
     @objc func selectHeadImageOrHelloLabel(){
         if HelloLabel.text == "sign in / sign up" {
             // 跳转到登录页面
+            let signInVC = (UIStoryboard(name: "LogIn", bundle: nil).instantiateViewController(withIdentifier: "SignIn") as? SignInViewController)!
+            self.navigationController?.pushViewController(signInVC, animated: true)
+            
         } else {
             // 跳转到个人主页
         }

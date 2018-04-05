@@ -13,12 +13,21 @@ import SwiftyJSON
 
 class SignInViewController: UIViewController {
 
+    
+    @IBOutlet weak var SignUpLabel: UILabel!
+    @IBOutlet weak var NameTF: UITextField!
+    @IBOutlet weak var PasswordTF: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //用户登录参数 ：[userName, userPassword]
+        SignUpLabel.isUserInteractionEnabled = true
+        let SignUpGesture = UITapGestureRecognizer(target: self , action: #selector(selectSignUpLable))
+        SignUpLabel.addGestureRecognizer(SignUpGesture)
         
-        // Do any additional setup after loading the view.
+        
+        //用户登录参数 ：[userName, userPassword]
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,15 +35,10 @@ class SignInViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @objc func selectSignUpLable() -> Void {
+        let signUpVC = (UIStoryboard(name: "LogIn", bundle: nil).instantiateViewController(withIdentifier: "SignUp") as? SignUpViewController)!
+        self.navigationController?.pushViewController(signUpVC, animated: false)
     }
-    */
 
 }

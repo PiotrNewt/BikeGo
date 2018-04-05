@@ -13,32 +13,222 @@
         <!--登陆-->
         <scene sceneID="ugb-Sp-z17">
             <objects>
-                <viewController title="登陆" id="WqQ-cl-Grg" customClass="SignInViewController" customModule="BikeDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignIn" title="登陆" id="WqQ-cl-Grg" customClass="SignInViewController" customModule="BikeDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="scO-Zz-Jnj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN IN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZ0-h3-B50">
+                                <rect key="frame" x="39" y="109" width="110" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="ZtE-RQ-rdl"/>
+                                    <constraint firstAttribute="height" constant="28" id="yjo-yW-5tm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="signin"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN UP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xqo-bH-rrO">
+                                <rect key="frame" x="157" y="109" width="111" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="U4j-Rb-hcl"/>
+                                    <constraint firstAttribute="width" constant="111" id="fTf-AM-G0o"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SelectLine" translatesAutoresizingMaskIntoConstraints="NO" id="iv7-UQ-hHt">
+                                <rect key="frame" x="46" y="137" width="81" height="4"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="4" id="cg1-84-2Dm"/>
+                                    <constraint firstAttribute="width" constant="81" id="y7G-Fh-AWh"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="blueLine"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="arc"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="h2p-ce-sVq">
+                                <rect key="frame" x="45" y="296" width="285" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Ne8-n0-xMc"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tqs-uO-GCj">
+                                <rect key="frame" x="46" y="391" width="284" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNY-Fm-G8x">
+                                <rect key="frame" x="46" y="270" width="45" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="0O5-fp-H1g"/>
+                                    <constraint firstAttribute="width" constant="45" id="7iS-Xn-I5R"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xyU-pi-q8O">
+                                <rect key="frame" x="46" y="368" width="74" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="HP6-9k-2p0"/>
+                                    <constraint firstAttribute="width" constant="74" id="VRb-Ji-u7v"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeE-ej-Ppa">
+                                <rect key="frame" x="45" y="491" width="285" height="35"/>
+                                <state key="normal" image="SignInBtn"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="SignBtn"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="arc"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LrC-Xw-gsx" firstAttribute="trailing" secondItem="Tqs-uO-GCj" secondAttribute="trailing" constant="45" id="0YV-m4-8VF"/>
+                            <constraint firstItem="yeE-ej-Ppa" firstAttribute="leading" secondItem="LrC-Xw-gsx" secondAttribute="leading" constant="45" id="9RN-g6-1dn"/>
+                            <constraint firstItem="ZNY-Fm-G8x" firstAttribute="leading" secondItem="LrC-Xw-gsx" secondAttribute="leading" constant="46" id="FjN-xG-f15"/>
+                            <constraint firstItem="Xqo-bH-rrO" firstAttribute="leading" secondItem="qZ0-h3-B50" secondAttribute="trailing" constant="8" id="I3P-Hf-bbs"/>
+                            <constraint firstItem="h2p-ce-sVq" firstAttribute="top" secondItem="ZNY-Fm-G8x" secondAttribute="bottom" constant="5" id="MJy-st-f2E"/>
+                            <constraint firstItem="yeE-ej-Ppa" firstAttribute="top" secondItem="Tqs-uO-GCj" secondAttribute="bottom" constant="70" id="NbP-gK-Klm"/>
+                            <constraint firstItem="ZNY-Fm-G8x" firstAttribute="top" secondItem="iv7-UQ-hHt" secondAttribute="bottom" constant="129" id="Q5S-M3-UUH"/>
+                            <constraint firstItem="h2p-ce-sVq" firstAttribute="centerX" secondItem="scO-Zz-Jnj" secondAttribute="centerX" id="Vll-pW-jZV"/>
+                            <constraint firstItem="Tqs-uO-GCj" firstAttribute="centerX" secondItem="scO-Zz-Jnj" secondAttribute="centerX" id="Yma-1u-3JL"/>
+                            <constraint firstItem="xyU-pi-q8O" firstAttribute="leading" secondItem="LrC-Xw-gsx" secondAttribute="leading" constant="46" id="ZlG-jc-Ayc"/>
+                            <constraint firstItem="h2p-ce-sVq" firstAttribute="leading" secondItem="LrC-Xw-gsx" secondAttribute="leading" constant="45" id="azx-lm-g0G"/>
+                            <constraint firstItem="LrC-Xw-gsx" firstAttribute="trailing" secondItem="yeE-ej-Ppa" secondAttribute="trailing" constant="45" id="h6g-xw-JPM"/>
+                            <constraint firstItem="LrC-Xw-gsx" firstAttribute="trailing" secondItem="h2p-ce-sVq" secondAttribute="trailing" constant="45" id="hki-pF-UPs"/>
+                            <constraint firstItem="qZ0-h3-B50" firstAttribute="top" secondItem="LrC-Xw-gsx" secondAttribute="top" constant="65" id="iAL-E5-fI2"/>
+                            <constraint firstItem="qZ0-h3-B50" firstAttribute="leading" secondItem="LrC-Xw-gsx" secondAttribute="leading" constant="39" id="jmq-NE-3Jc"/>
+                            <constraint firstItem="iv7-UQ-hHt" firstAttribute="leading" secondItem="LrC-Xw-gsx" secondAttribute="leading" constant="46" id="kz3-EH-pAc"/>
+                            <constraint firstItem="xyU-pi-q8O" firstAttribute="top" secondItem="h2p-ce-sVq" secondAttribute="bottom" constant="42" id="nD1-4j-A33"/>
+                            <constraint firstItem="Xqo-bH-rrO" firstAttribute="top" secondItem="LrC-Xw-gsx" secondAttribute="top" constant="65" id="oF0-q9-jwH"/>
+                            <constraint firstItem="iv7-UQ-hHt" firstAttribute="top" secondItem="qZ0-h3-B50" secondAttribute="bottom" id="oUV-oH-r1R"/>
+                            <constraint firstItem="Tqs-uO-GCj" firstAttribute="top" secondItem="xyU-pi-q8O" secondAttribute="bottom" constant="2" id="omF-lp-M3L"/>
+                            <constraint firstItem="Tqs-uO-GCj" firstAttribute="leading" secondItem="LrC-Xw-gsx" secondAttribute="leading" constant="46" id="uuT-pS-WWj"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LrC-Xw-gsx"/>
                     </view>
+                    <connections>
+                        <outlet property="NameTF" destination="h2p-ce-sVq" id="x8N-Ly-yzO"/>
+                        <outlet property="PasswordTF" destination="Tqs-uO-GCj" id="ff8-R3-cWM"/>
+                        <outlet property="SignUpLabel" destination="Xqo-bH-rrO" id="a8u-pr-dJg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDb-06-neW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-41" y="137"/>
+            <point key="canvasLocation" x="-42.399999999999999" y="136.69950738916256"/>
         </scene>
         <!--注册-->
         <scene sceneID="V2y-Jh-cW9">
             <objects>
-                <viewController title="注册" id="vkl-oh-k6n" customClass="SignUpViewController" customModule="BikeDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUp" title="注册" id="vkl-oh-k6n" customClass="SignUpViewController" customModule="BikeDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cxi-Th-LCO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SIGN IN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7a2-qj-uCq">
+                                <rect key="frame" x="39" y="109" width="110" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="signin"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SIGN UP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yol-U3-Rcp">
+                                <rect key="frame" x="157" y="109" width="111" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SelectLine" translatesAutoresizingMaskIntoConstraints="NO" id="eci-uI-X5Y">
+                                <rect key="frame" x="160" y="137" width="81" height="4"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="blueLine"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="arc"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="HsV-Qg-cQ7">
+                                <rect key="frame" x="45" y="296" width="285" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ont-lb-JO8">
+                                <rect key="frame" x="46" y="391" width="284" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Znl-wv-lYz">
+                                <rect key="frame" x="46" y="270" width="45" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bg2-hz-6SL">
+                                <rect key="frame" x="46" y="368" width="74" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A4o-Zs-ZHn">
+                                <rect key="frame" x="46" y="588" width="285" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="SignUpBtn"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="SignBtn"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="arc"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Fn-c3-tOH">
+                                <rect key="frame" x="47" y="478" width="284" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PhoneNumber" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bxa-mJ-hol">
+                                <rect key="frame" x="47" y="455" width="111" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="MGY-BJ-Dna"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fC-TR-KJ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="895" y="137"/>
+            <point key="canvasLocation" x="737" y="137"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="SelectLine" width="83" height="5"/>
+        <image name="SignInBtn" width="285" height="35"/>
+        <image name="SignUpBtn" width="285" height="35"/>
+    </resources>
 </document>
