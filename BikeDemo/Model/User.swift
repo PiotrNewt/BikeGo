@@ -9,4 +9,16 @@
 import Foundation
 import RealmSwift
 
-
+class User: Object {
+    
+    @objc dynamic var userID: Int = 0
+    @objc dynamic var userName: String = ""
+    @objc dynamic var userPassword: String = ""
+    @objc dynamic var userImg: NSData = NSData()
+    @objc dynamic var userEmergencyPhone: String = ""
+    
+    //主键
+    override static func primaryKey() -> String? {
+        return "userID"
+    }
+}

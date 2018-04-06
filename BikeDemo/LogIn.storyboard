@@ -65,7 +65,7 @@
                                 <rect key="frame" x="46" y="391" width="284" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="namePhonePad" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNY-Fm-G8x">
                                 <rect key="frame" x="46" y="270" width="45" height="21"/>
@@ -94,6 +94,23 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="SignBtn"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="arc"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="SignInClick:" destination="WqQ-cl-Grg" eventType="touchUpInside" id="pAt-Np-i2s"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rD-U8-CP5">
+                                <rect key="frame" x="3" y="52" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="dCU-6c-eAj"/>
+                                    <constraint firstAttribute="height" constant="48" id="jlP-cm-pGl"/>
+                                </constraints>
+                                <state key="normal" image="back_down"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="loginBackBtn"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="BackBtnClick:" destination="WqQ-cl-Grg" eventType="touchUpInside" id="Ghf-WR-u3n"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -113,11 +130,13 @@
                             <constraint firstItem="LrC-Xw-gsx" firstAttribute="trailing" secondItem="h2p-ce-sVq" secondAttribute="trailing" constant="45" id="hki-pF-UPs"/>
                             <constraint firstItem="qZ0-h3-B50" firstAttribute="top" secondItem="LrC-Xw-gsx" secondAttribute="top" constant="65" id="iAL-E5-fI2"/>
                             <constraint firstItem="qZ0-h3-B50" firstAttribute="leading" secondItem="LrC-Xw-gsx" secondAttribute="leading" constant="39" id="jmq-NE-3Jc"/>
+                            <constraint firstItem="5rD-U8-CP5" firstAttribute="leading" secondItem="LrC-Xw-gsx" secondAttribute="leading" constant="3" id="k20-vd-GpY"/>
                             <constraint firstItem="iv7-UQ-hHt" firstAttribute="leading" secondItem="LrC-Xw-gsx" secondAttribute="leading" constant="46" id="kz3-EH-pAc"/>
                             <constraint firstItem="xyU-pi-q8O" firstAttribute="top" secondItem="h2p-ce-sVq" secondAttribute="bottom" constant="42" id="nD1-4j-A33"/>
                             <constraint firstItem="Xqo-bH-rrO" firstAttribute="top" secondItem="LrC-Xw-gsx" secondAttribute="top" constant="65" id="oF0-q9-jwH"/>
                             <constraint firstItem="iv7-UQ-hHt" firstAttribute="top" secondItem="qZ0-h3-B50" secondAttribute="bottom" id="oUV-oH-r1R"/>
                             <constraint firstItem="Tqs-uO-GCj" firstAttribute="top" secondItem="xyU-pi-q8O" secondAttribute="bottom" constant="2" id="omF-lp-M3L"/>
+                            <constraint firstItem="5rD-U8-CP5" firstAttribute="top" secondItem="LrC-Xw-gsx" secondAttribute="top" constant="8" id="tpt-xo-Rqf"/>
                             <constraint firstItem="Tqs-uO-GCj" firstAttribute="leading" secondItem="LrC-Xw-gsx" secondAttribute="leading" constant="46" id="uuT-pS-WWj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LrC-Xw-gsx"/>
@@ -216,10 +235,32 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvP-0s-ju9">
+                                <rect key="frame" x="3" y="52" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="FF7-NX-TjE"/>
+                                    <constraint firstAttribute="width" constant="48" id="e2o-Z3-c0z"/>
+                                </constraints>
+                                <state key="normal" image="back_down"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="loginBackBtn"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="BackBtnClick:" destination="WqQ-cl-Grg" eventType="touchUpInside" id="QKN-ZF-5eQ"/>
+                                    <action selector="BackBtnClick:" destination="vkl-oh-k6n" eventType="touchUpInside" id="ffW-5y-3Fa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fvP-0s-ju9" firstAttribute="leading" secondItem="MGY-BJ-Dna" secondAttribute="leading" constant="3" id="Lq6-aL-KrU"/>
+                            <constraint firstItem="fvP-0s-ju9" firstAttribute="top" secondItem="MGY-BJ-Dna" secondAttribute="top" constant="8" id="tsz-xL-RA7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="MGY-BJ-Dna"/>
                     </view>
+                    <connections>
+                        <outlet property="SignInLabel" destination="7a2-qj-uCq" id="WmL-pC-0PQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3fC-TR-KJ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -230,5 +271,6 @@
         <image name="SelectLine" width="83" height="5"/>
         <image name="SignInBtn" width="285" height="35"/>
         <image name="SignUpBtn" width="285" height="35"/>
+        <image name="back_down" width="24" height="24"/>
     </resources>
 </document>

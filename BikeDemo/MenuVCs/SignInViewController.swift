@@ -19,15 +19,27 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var PasswordTF: UITextField!
     
     
+    @IBAction func BackBtnClick(_ sender: Any) {
+        hero.modalAnimationType = .zoomOut
+        hero.dismissViewController()
+    }
+    
+    
+    @IBAction func SignInClick(_ sender: Any) {
+        if NameTF.text != "" && PasswordTF.text != "" {
+            netLogin()
+        }else{
+            NSLog("输入为空")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         SignUpLabel.isUserInteractionEnabled = true
-        let SignUpGesture = UITapGestureRecognizer(target: self , action: #selector(selectSignUpLable))
+        let SignUpGesture = UITapGestureRecognizer(target: self , action: #selector(selectSignUpLabel))
         SignUpLabel.addGestureRecognizer(SignUpGesture)
-        
-        
-        //用户登录参数 ：[userName, userPassword]
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,10 +47,72 @@ class SignInViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func netLogin() {
+       
+        let parameters: Parameters = [
+            "userName": NameTF.text!,
+            "userPassword": PasswordTF.text!
+        ]
+        //网络请求
+        let url = MenuViewController.APIURLHead + "user/login"
+        Alamofire.request(url, method: .post, parameters: parameters).responseJSON{
+            request in
+            if let value = request.result.value{
+                let json = JSON(value)
+                let code = json[]["code"]
+                if code == 200{
+                    NSLog("登陆成功")
+                    let defaults = UserDefaults.standard
+                    defaults.set(String(describing: json[]["uid"]), forKey: "UserID")
+                    defaults.set("yes", forKey: "LogInStatus")
+                    //刷新用户信息
+                    self.netGetUserInfo(userID: Int(String(describing: json[]["uid"]))!)
+                }else{
+                    NSLog("登陆失败")
+                }
+            }
+        }
+    }
     
-    @objc func selectSignUpLable() -> Void {
+    func netGetUserInfo(userID: Int) {
+    
+        let parameters: Parameters = [
+            "uid": userID,
+        ]
+        //网络请求
+        let url = MenuViewController.APIURLHead + "user/getUser"
+        Alamofire.request(url, method: .post, parameters: parameters).responseJSON{
+            request in
+            if let value = request.result.value{
+                let json = JSON(value)
+                let code = json[]["code"]
+                if code == 200{
+                    NSLog("获取成功")
+                    let user = User()
+                    user.userID = Int(String(describing:json[]["user"]["userId"]))!
+                    user.userName = String(describing: json[]["user"]["userName"])
+                    user.userEmergencyPhone = String(describing: json[]["user"]["userEmergencyPhone"])
+                    //头像
+                    let imageURL = NSURL(string: "\(json[]["user"]["userImg"])")
+                    let data = try? Data(contentsOf: imageURL! as URL)
+                    user.userImg = data! as NSData
+                    
+                    let realm = try! Realm()
+                    try! realm.write {
+                        realm.add(user, update: true)
+                    }
+                    print("数据库地址：\(realm.configuration.fileURL!)")
+                    self.hero.dismissViewController()
+                }else{
+                    NSLog("获取失败")
+                }
+            }
+        }
+    }
+    
+    @objc func selectSignUpLabel() -> Void {
         let signUpVC = (UIStoryboard(name: "LogIn", bundle: nil).instantiateViewController(withIdentifier: "SignUp") as? SignUpViewController)!
-        self.navigationController?.pushViewController(signUpVC, animated: false)
+        hero.replaceViewController(with: signUpVC)
     }
 
 }

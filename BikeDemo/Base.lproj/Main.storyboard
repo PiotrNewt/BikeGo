@@ -100,7 +100,7 @@
         <!--Item-->
         <scene sceneID="Lrc-pT-h9h">
             <objects>
-                <navigationController navigationBarHidden="YES" id="Lkr-u3-cuJ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationVC" navigationBarHidden="YES" id="Lkr-u3-cuJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="6ci-a2-vgw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C1N-Os-a0P">
                         <autoresizingMask key="autoresizingMask"/>
@@ -216,7 +216,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yWt-iw-S8p" id="AGa-p1-5Ng">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="35.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="35.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

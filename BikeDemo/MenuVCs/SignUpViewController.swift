@@ -13,19 +13,32 @@ import SwiftyJSON
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var SignInLabel: UILabel!
+    
+    
+    @IBAction func BackBtnClick(_ sender: Any) {
+        hero.dismissViewController()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        SignInLabel.isUserInteractionEnabled = true
+        let SignInGesture = UITapGestureRecognizer(target: self , action: #selector(selectSignInLabel))
+        SignInLabel.addGestureRecognizer(SignInGesture)
 
         //用户注册参数：[userName,userPassword,userEmergencyPhone(正则)]
-        //设置登录代理注册接收注册的参数，回调直接执行登录按钮的fanc
-        //登陆到注册的动画直接用hero -> storyboard
         
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func selectSignInLabel() -> Void {
+        let signInVC = (UIStoryboard(name: "LogIn", bundle: nil).instantiateViewController(withIdentifier: "SignIn") as? SignInViewController)!
+        hero.replaceViewController(with: signInVC)
     }
 
 }
