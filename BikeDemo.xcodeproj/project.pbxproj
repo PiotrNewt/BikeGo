@@ -29,6 +29,8 @@
 		4379D47D20735D65009A102B /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4379D47C20735D65009A102B /* LogIn.storyboard */; };
 		43B1163E206E1E3200177E5F /* DashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B1163D206E1E3200177E5F /* DashBoardViewController.swift */; };
 		43C339FD20735F5A0007366D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C339FC20735F5A0007366D /* MenuViewController.swift */; };
+		43DF1DFB2078A598001DF01C /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF1DFA2078A598001DF01C /* PersonalViewController.swift */; };
+		43DF1DFD2078B2D1001DF01C /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF1DFC2078B2D1001DF01C /* ArticleCell.swift */; };
 		43ED358A206DDA5F004BBED6 /* SpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ED3589206DDA5F004BBED6 /* SpeedView.swift */; };
 		43F6EA33207358DE00A56C7A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F6EA32207358DE00A56C7A /* SignInViewController.swift */; };
 		50992076A835C00488AEA143 /* Pods_BikeDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BDB56F07FA1E7D0BDDFA84B /* Pods_BikeDemoTests.framework */; };
@@ -85,6 +87,8 @@
 		4379D47C20735D65009A102B /* LogIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogIn.storyboard; sourceTree = "<group>"; };
 		43B1163D206E1E3200177E5F /* DashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewController.swift; sourceTree = "<group>"; };
 		43C339FC20735F5A0007366D /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		43DF1DFA2078A598001DF01C /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
+		43DF1DFC2078B2D1001DF01C /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		43ED3589206DDA5F004BBED6 /* SpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedView.swift; sourceTree = "<group>"; };
 		43F6EA32207358DE00A56C7A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		7BDB56F07FA1E7D0BDDFA84B /* Pods_BikeDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BikeDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,6 +237,7 @@
 				43C339FC20735F5A0007366D /* MenuViewController.swift */,
 				43F6EA32207358DE00A56C7A /* SignInViewController.swift */,
 				4379D47A20735BA6009A102B /* SignUpViewController.swift */,
+				43DF1DFA2078A598001DF01C /* PersonalViewController.swift */,
 			);
 			path = MenuVCs;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				43ED3589206DDA5F004BBED6 /* SpeedView.swift */,
+				43DF1DFC2078B2D1001DF01C /* ArticleCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -590,8 +596,10 @@
 				43208CEE206B2A7A00364148 /* SearchViewController.swift in Sources */,
 				43B1163E206E1E3200177E5F /* DashBoardViewController.swift in Sources */,
 				432446AA20638CD500030F9B /* RoadPlanViewController.swift in Sources */,
+				43DF1DFD2078B2D1001DF01C /* ArticleCell.swift in Sources */,
 				431F3302207467D2000267BC /* User.swift in Sources */,
 				43ED358A206DDA5F004BBED6 /* SpeedView.swift in Sources */,
+				43DF1DFB2078A598001DF01C /* PersonalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

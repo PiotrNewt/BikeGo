@@ -220,13 +220,16 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="SignBtn"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="arc"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="SignUpBtnClick:" destination="vkl-oh-k6n" eventType="touchUpInside" id="b5w-9P-lh7"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Fn-c3-tOH">
                                 <rect key="frame" x="47" y="478" width="284" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PhoneNumber" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bxa-mJ-hol">
                                 <rect key="frame" x="47" y="455" width="111" height="21"/>
@@ -259,6 +262,9 @@
                         <viewLayoutGuide key="safeArea" id="MGY-BJ-Dna"/>
                     </view>
                     <connections>
+                        <outlet property="NameTF" destination="HsV-Qg-cQ7" id="ah8-4k-O96"/>
+                        <outlet property="PasswordTF" destination="Ont-lb-JO8" id="kYV-zd-Bqz"/>
+                        <outlet property="PhoneNumberTF" destination="3Fn-c3-tOH" id="jmE-TY-kNm"/>
                         <outlet property="SignInLabel" destination="7a2-qj-uCq" id="WmL-pC-0PQ"/>
                     </connections>
                 </viewController>

@@ -20,14 +20,12 @@ class SignInViewController: UIViewController {
     
     
     @IBAction func BackBtnClick(_ sender: Any) {
-        hero.modalAnimationType = .zoomOut
         hero.dismissViewController()
     }
     
-    
     @IBAction func SignInClick(_ sender: Any) {
         if NameTF.text != "" && PasswordTF.text != "" {
-            netLogin()
+            netSignin()
         }else{
             NSLog("输入为空")
         }
@@ -36,6 +34,8 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        self.hero.isEnabled = true
+        
         SignUpLabel.isUserInteractionEnabled = true
         let SignUpGesture = UITapGestureRecognizer(target: self , action: #selector(selectSignUpLabel))
         SignUpLabel.addGestureRecognizer(SignUpGesture)
@@ -47,7 +47,7 @@ class SignInViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func netLogin() {
+    func netSignin() {
        
         let parameters: Parameters = [
             "userName": NameTF.text!,
@@ -62,9 +62,6 @@ class SignInViewController: UIViewController {
                 let code = json[]["code"]
                 if code == 200{
                     NSLog("登陆成功")
-                    let defaults = UserDefaults.standard
-                    defaults.set(String(describing: json[]["uid"]), forKey: "UserID")
-                    defaults.set("yes", forKey: "LogInStatus")
                     //刷新用户信息
                     self.netGetUserInfo(userID: Int(String(describing: json[]["uid"]))!)
                 }else{
@@ -74,8 +71,8 @@ class SignInViewController: UIViewController {
         }
     }
     
-    func netGetUserInfo(userID: Int) {
-    
+     func netGetUserInfo(userID: Int) {
+        
         let parameters: Parameters = [
             "uid": userID,
         ]
@@ -102,7 +99,14 @@ class SignInViewController: UIViewController {
                         realm.add(user, update: true)
                     }
                     print("数据库地址：\(realm.configuration.fileURL!)")
+                    
+                    //存储ID
+                    let defaults = UserDefaults.standard
+                    defaults.set(String(describing: userID), forKey: "UserID")
+                    defaults.set("yes", forKey: "LogInStatus")
+                    
                     self.hero.dismissViewController()
+                    
                 }else{
                     NSLog("获取失败")
                 }
