@@ -34,7 +34,7 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        self.hero.isEnabled = true
+        //self.hero.isEnabled = true
         
         SignUpLabel.isUserInteractionEnabled = true
         let SignUpGesture = UITapGestureRecognizer(target: self , action: #selector(selectSignUpLabel))

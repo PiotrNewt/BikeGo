@@ -12,15 +12,11 @@ import RealmSwift
 class MenuViewController: UIViewController {
     
     static let APIURLHead = "http://120.77.87.78:8080/cycle/api/"
+    var isComeToPersonal = false
     
     //storyboard
     @IBOutlet weak var HeadPortraitIamgeView: UIImageView!
     @IBOutlet weak var HelloLabel: UILabel!
-    @IBOutlet weak var FriendsBtn: UIButton!
-    @IBOutlet weak var MessageBtn: UIButton!
-    @IBOutlet weak var RideDataBtn: UIButton!
-    @IBOutlet weak var AboutBtn: UIButton!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,22 +52,20 @@ class MenuViewController: UIViewController {
             
             HeadPortraitIamgeView.image = UIImage(data: user.userImg as Data)
             HelloLabel.text = "Hi,\(user.userName)"
-            FriendsBtn.isEnabled = true
-            MessageBtn.isEnabled = true
-            RideDataBtn.isEnabled = true
-            
             print("数据库地址：\(realm.configuration.fileURL!)")
+            
+            guard isComeToPersonal == true else {
+                let time: TimeInterval = 0.25
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
+                    self.selectHeadImageOrHelloLabel()
+                }
+                return
+            }
             
         } else {
             //如果用户还没有登录 -> 按钮失效
             HeadPortraitIamgeView.image = #imageLiteral(resourceName: "HeadPortraitIamge")
             HelloLabel.text = "sign in / sign up"
-            FriendsBtn.isEnabled = false
-            MessageBtn.isEnabled = false
-            RideDataBtn.isEnabled = false
-            FriendsBtn.setImage(#imageLiteral(resourceName: "FriendsBtn"), for: UIControlState.normal)
-            MessageBtn.setImage(#imageLiteral(resourceName: "MessageBtn"), for: UIControlState.normal)
-            RideDataBtn.setImage(#imageLiteral(resourceName: "RideDateBtn"), for: UIControlState.normal)
         }
         
     }
@@ -85,6 +79,7 @@ class MenuViewController: UIViewController {
         } else {
             // 跳转到个人主页
             let personalVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Personal") as? PersonalViewController)!
+            self.isComeToPersonal = true
             self.show(personalVC, sender: nil)
         }
     }

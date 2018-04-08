@@ -8,18 +8,35 @@
 
 import UIKit
 import RealmSwift
-
+import Alamofire
+import SwiftyJSON
 
 class PersonalViewController: UIViewController {
+    
+    var articles: [Article] = [Article]() {
+        didSet {CollectionView.reloadData()}
+    }
 
     @IBOutlet weak var HeadPortraitIamgeView: UIImageView!
     @IBOutlet weak var HelloLabel: UILabel!
     @IBOutlet weak var DateLabel: UILabel!
+    @IBOutlet weak var CollectionView: UICollectionView!
+    
+    
+    
+    @IBAction func BackBtnClick(_ sender: Any) {
+        hero.dismissViewController()
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hero.isEnabled = true
+        
+        CollectionView.delegate = self
+        CollectionView.dataSource = self
+        netLoadAriticle()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,7 +45,7 @@ class PersonalViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-      updateLeaveView()
+        updateLeaveView()
     }
     
     func updateLeaveView() {
@@ -46,16 +63,70 @@ class PersonalViewController: UIViewController {
         let dformatter = DateFormatter()
         dformatter.dateFormat = "MM月dd日 E"
         DateLabel.text = "今天是\(dformatter.string(from: now))"
+        
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func netLoadAriticle(){
+        let defaults = UserDefaults.standard
+        let UserID = String(describing: defaults.value(forKey: "UserID")!)
+        
+        let parameters: Parameters = [
+            "userId": UserID,
+            "writerId": UserID
+            ]
+        
+        //网络请求
+        let url = MenuViewController.APIURLHead + "article/getHis"
+        Alamofire.request(url, method: .post, parameters: parameters).responseJSON{
+            request in
+            if let value = request.result.value{
+                let json = JSON(value)
+                let code = json[]["code"]
+                if code == 200 {
+                    let arts = json[]["articles"]
+                    for (_ , art):(String, JSON) in arts{
+                        let user = User()
+                        user.userID = art[]["user"]["userId"].int!
+                        user.userName = art[]["user"]["userName"].string!
+                        
+                        let imageURL = NSURL(string: art[]["user"]["userImg"].string!)
+                        user.userImg = try! Data(contentsOf: imageURL! as URL) as NSData
+                        
+                        let article = Article()
+                        article.articleID = art[]["articleId"].int!
+                        article.user = user
+                        article.articleContent = art[]["articleContent"].string!
+                        for (_ , img):(String, JSON) in art[]["articleImgs"]{
+                            article.articleImgs.append(img[].string!)
+                        }
+                        article.date = art[]["date"].string!
+                        article.time = art[]["time"].string!
+                        article.likeNum = art[]["likeNum"].int!
+                        article.commentNum = art[]["commentNum"].int!
+                        article.likeArticle = art[]["likeArticle"].bool!
+                        
+                        self.articles.append(article)
+                    }
+                }
+            }
+        }
     }
-    */
-
 }
+
+
+extension PersonalViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return articles.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: "collItem", for: indexPath) as? ArticleCell)!
+        cell.article = articles[indexPath.item]
+        cell.backgroundColor = UIColor.gray
+        return cell
+    }
+    
+    
+}
+

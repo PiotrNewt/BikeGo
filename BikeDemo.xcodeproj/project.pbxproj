@@ -25,6 +25,7 @@
 		431F3302207467D2000267BC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F3301207467D2000267BC /* User.swift */; };
 		43208CEE206B2A7A00364148 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43208CED206B2A7A00364148 /* SearchViewController.swift */; };
 		432446AA20638CD500030F9B /* RoadPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432446A920638CD500030F9B /* RoadPlanViewController.swift */; };
+		43641C412079B40700A536EB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43641C402079B40700A536EB /* Article.swift */; };
 		4379D47B20735BA6009A102B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4379D47A20735BA6009A102B /* SignUpViewController.swift */; };
 		4379D47D20735D65009A102B /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4379D47C20735D65009A102B /* LogIn.storyboard */; };
 		43B1163E206E1E3200177E5F /* DashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B1163D206E1E3200177E5F /* DashBoardViewController.swift */; };
@@ -83,6 +84,7 @@
 		431F3301207467D2000267BC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		43208CED206B2A7A00364148 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		432446A920638CD500030F9B /* RoadPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadPlanViewController.swift; sourceTree = "<group>"; };
+		43641C402079B40700A536EB /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		4379D47A20735BA6009A102B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4379D47C20735D65009A102B /* LogIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogIn.storyboard; sourceTree = "<group>"; };
 		43B1163D206E1E3200177E5F /* DashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				431F3301207467D2000267BC /* User.swift */,
+				43641C402079B40700A536EB /* Article.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43641C412079B40700A536EB /* Article.swift in Sources */,
 				43F6EA33207358DE00A56C7A /* SignInViewController.swift in Sources */,
 				430EBE1A205FB74C00B92835 /* NaviViewController.swift in Sources */,
 				4379D47B20735BA6009A102B /* SignUpViewController.swift in Sources */,

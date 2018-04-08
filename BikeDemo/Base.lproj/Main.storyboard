@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jBc-oB-3Yk">
-                                <rect key="frame" x="50" y="118" width="90" height="90"/>
+                                <rect key="frame" x="50" y="291" width="90" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="8Pn-ue-erj"/>
                                     <constraint firstAttribute="height" constant="90" id="b0Q-fl-2vF"/>
@@ -29,32 +29,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="HeadImg"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="789-5C-yY6">
-                                <rect key="frame" x="50" y="305" width="309" height="32"/>
-                                <state key="normal" title="         骑友圈" image="FriendsBtn">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c51-LB-DhH">
-                                <rect key="frame" x="50" y="377" width="309" height="30"/>
-                                <state key="normal" title="        应急短息" image="MessageBtn">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W8l-GT-v4w">
-                                <rect key="frame" x="50" y="447" width="309" height="32"/>
-                                <state key="normal" title="     数据" image="RideDateBtn">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MxH-Ot-7fZ">
-                                <rect key="frame" x="50" y="519" width="309" height="30"/>
-                                <state key="normal" title="           关于" image="AboutBtn">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sign in / sign up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBu-az-rAk">
-                                <rect key="frame" x="148" y="151" width="193" height="24"/>
+                                <rect key="frame" x="148" y="324" width="193" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -65,35 +41,19 @@
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="W8l-GT-v4w" firstAttribute="leading" secondItem="udi-Ks-Dpz" secondAttribute="leading" constant="50" id="53d-L6-Qlp"/>
-                            <constraint firstItem="udi-Ks-Dpz" firstAttribute="trailing" secondItem="MxH-Ot-7fZ" secondAttribute="trailing" constant="16" id="8BC-RY-LJd"/>
-                            <constraint firstItem="c51-LB-DhH" firstAttribute="top" secondItem="789-5C-yY6" secondAttribute="bottom" constant="40" id="F5z-pg-cEM"/>
-                            <constraint firstItem="SBu-az-rAk" firstAttribute="top" secondItem="udi-Ks-Dpz" secondAttribute="top" constant="107" id="FmQ-z6-dJM"/>
+                            <constraint firstItem="jBc-oB-3Yk" firstAttribute="centerY" secondItem="hNV-IG-DJc" secondAttribute="centerY" constant="-70" id="41b-RT-uQw"/>
                             <constraint firstItem="jBc-oB-3Yk" firstAttribute="leading" secondItem="udi-Ks-Dpz" secondAttribute="leading" constant="50" id="IhZ-gf-mDu"/>
                             <constraint firstItem="SBu-az-rAk" firstAttribute="leading" secondItem="jBc-oB-3Yk" secondAttribute="trailing" constant="8" id="Iu6-3J-cgP"/>
-                            <constraint firstItem="789-5C-yY6" firstAttribute="leading" secondItem="udi-Ks-Dpz" secondAttribute="leading" constant="50" id="Jog-CN-kmU"/>
-                            <constraint firstItem="MxH-Ot-7fZ" firstAttribute="top" secondItem="W8l-GT-v4w" secondAttribute="bottom" constant="40" id="Oaz-77-6dn"/>
-                            <constraint firstItem="W8l-GT-v4w" firstAttribute="top" secondItem="c51-LB-DhH" secondAttribute="bottom" constant="40" id="Oqh-kj-Efn"/>
-                            <constraint firstItem="jBc-oB-3Yk" firstAttribute="top" secondItem="udi-Ks-Dpz" secondAttribute="top" constant="74" id="Usm-vj-bol"/>
-                            <constraint firstItem="c51-LB-DhH" firstAttribute="leading" secondItem="udi-Ks-Dpz" secondAttribute="leading" constant="50" id="VLE-OM-V1u"/>
-                            <constraint firstItem="789-5C-yY6" firstAttribute="top" secondItem="jBc-oB-3Yk" secondAttribute="bottom" constant="97" id="aMC-Ug-47l"/>
+                            <constraint firstItem="SBu-az-rAk" firstAttribute="centerY" secondItem="hNV-IG-DJc" secondAttribute="centerY" constant="-70" id="fGw-Mo-7XU"/>
                             <constraint firstItem="udi-Ks-Dpz" firstAttribute="trailing" secondItem="SBu-az-rAk" secondAttribute="trailing" constant="34" id="fXO-cq-zst"/>
-                            <constraint firstItem="MxH-Ot-7fZ" firstAttribute="leading" secondItem="udi-Ks-Dpz" secondAttribute="leading" constant="50" id="ijR-Yi-JCp"/>
-                            <constraint firstItem="udi-Ks-Dpz" firstAttribute="trailing" secondItem="789-5C-yY6" secondAttribute="trailing" constant="16" id="pp8-8b-9fK"/>
-                            <constraint firstItem="udi-Ks-Dpz" firstAttribute="trailing" secondItem="W8l-GT-v4w" secondAttribute="trailing" constant="16" id="rXT-R7-fuw"/>
-                            <constraint firstItem="udi-Ks-Dpz" firstAttribute="trailing" secondItem="c51-LB-DhH" secondAttribute="trailing" constant="16" id="xst-yk-qPV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="udi-Ks-Dpz"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="菜单" id="gKP-fp-NwM"/>
                     <navigationItem key="navigationItem" id="hhh-Ta-buB"/>
                     <connections>
-                        <outlet property="AboutBtn" destination="MxH-Ot-7fZ" id="3Yr-is-j45"/>
-                        <outlet property="FriendsBtn" destination="789-5C-yY6" id="7zT-qn-QJT"/>
                         <outlet property="HeadPortraitIamgeView" destination="jBc-oB-3Yk" id="vs7-tw-O4J"/>
                         <outlet property="HelloLabel" destination="SBu-az-rAk" id="niQ-ID-yRU"/>
-                        <outlet property="MessageBtn" destination="c51-LB-DhH" id="IxI-ly-2Nc"/>
-                        <outlet property="RideDataBtn" destination="W8l-GT-v4w" id="rvx-DG-keq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7MB-Ms-uaP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -128,7 +88,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4We-Lm-A8b">
                                 <rect key="frame" x="0.0" y="430" width="375" height="348"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nhh-ou-OBP">
                                     <size key="itemSize" width="200" height="298"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -136,7 +96,7 @@
                                     <inset key="sectionInset" minX="24" minY="24" maxX="24" maxY="24"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collItem" id="gf3-r2-Wkp">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collItem" id="gf3-r2-Wkp" customClass="ArticleCell" customModule="BikeDemo" customModuleProvider="target">
                                         <rect key="frame" x="24" y="25" width="200" height="298"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -158,14 +118,34 @@
                                                     <rect key="frame" x="13" y="244" width="22" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="LikeBtn"/>
+                                                    <connections>
+                                                        <action selector="LikeBtnClick:" destination="gf3-r2-Wkp" eventType="touchUpInside" id="0zj-xa-hOh"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SqB-QP-Ndk">
                                                     <rect key="frame" x="43" y="244" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="CommentBtn"/>
+                                                    <connections>
+                                                        <action selector="CommentBtnClick:" destination="gf3-r2-Wkp" eventType="touchUpInside" id="RyH-B3-yeG"/>
+                                                    </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="balabala、" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcb-3J-zWA">
+                                                    <rect key="frame" x="9" y="20" width="96" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
+                                        <connections>
+                                            <outlet property="CommentBtn" destination="SqB-QP-Ndk" id="DTE-QZ-www"/>
+                                            <outlet property="ContentLabel" destination="bcb-3J-zWA" id="cft-w4-YYB"/>
+                                            <outlet property="DateLabel" destination="rcG-wL-bjU" id="a7D-xI-MEy"/>
+                                            <outlet property="LikeBtn" destination="9q8-fH-NX2" id="IeM-am-1ct"/>
+                                            <outlet property="TopImageView" destination="fln-q0-brF" id="oyC-ez-3kv"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -176,18 +156,71 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="今天是4月7日 星期六" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3En-aW-Gp6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="今天是4月7日 Sat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3En-aW-Gp6">
                                 <rect key="frame" x="50" y="255" width="309" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8m8-Ee-okN">
+                                <rect key="frame" x="3" y="52" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="NO3-Kk-GOI"/>
+                                    <constraint firstAttribute="height" constant="48" id="xky-x2-msF"/>
+                                </constraints>
+                                <state key="normal" image="back_down"/>
+                                <connections>
+                                    <action selector="BackBtnClick:" destination="mZM-bK-QvR" eventType="touchUpInside" id="TCW-aM-JwQ"/>
+                                    <action selector="hero_dismissViewController" destination="xAn-61-iWf" eventType="touchUpInside" id="5Gy-4d-RJg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dST-7G-tum">
+                                <rect key="frame" x="48" y="295" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="FriendsBtn"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FxR-pH-2Zk">
+                                <rect key="frame" x="105" y="295" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="MessageBtn"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fn0-0Q-q0w">
+                                <rect key="frame" x="162" y="295" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="RideDateBtn"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="应急" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ju-Z0-B8Y">
+                                <rect key="frame" x="114" y="334" width="23" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="数据" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBu-6S-tOa">
+                                <rect key="frame" x="171" y="334" width="23" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="朋友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8p-jt-rLQ">
+                                <rect key="frame" x="57" y="334" width="23" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="8m8-Ee-okN" firstAttribute="leading" secondItem="sFx-JS-mAq" secondAttribute="leading" constant="3" id="Hrw-12-NBN"/>
+                            <constraint firstItem="8m8-Ee-okN" firstAttribute="top" secondItem="sFx-JS-mAq" secondAttribute="top" constant="8" id="faq-iH-Bn6"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="sFx-JS-mAq"/>
                     </view>
                     <connections>
+                        <outlet property="CollectionView" destination="4We-Lm-A8b" id="bHa-GR-rkc"/>
                         <outlet property="DateLabel" destination="3En-aW-Gp6" id="DJb-U9-diW"/>
                         <outlet property="HeadPortraitIamgeView" destination="NiJ-fh-Vqw" id="SWL-88-2HO"/>
                         <outlet property="HelloLabel" destination="89g-Hs-VqF" id="tdK-yB-ziM"/>
@@ -586,18 +619,17 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AboutBtn" width="23" height="30"/>
         <image name="CommentBtn" width="28" height="27"/>
-        <image name="FriendsBtn" width="33" height="32"/>
+        <image name="FriendsBtn" width="37" height="37"/>
         <image name="LikeBtn" width="30" height="26"/>
         <image name="MapCommonStyle" width="56" height="56"/>
         <image name="MapMode" width="56" height="58"/>
         <image name="MapNightStyle" width="56" height="56"/>
         <image name="MapSateStyle" width="56" height="56"/>
-        <image name="MessageBtn" width="38" height="30"/>
+        <image name="MessageBtn" width="37" height="37"/>
         <image name="MyLocation" width="56" height="58"/>
         <image name="NaviBtn" width="66" height="68"/>
-        <image name="RideDateBtn" width="52" height="32"/>
+        <image name="RideDateBtn" width="37" height="37"/>
         <image name="RoadPlanBtn" width="56" height="59"/>
         <image name="SearchBar" width="351" height="44"/>
         <image name="SearchBtn" width="30" height="30"/>
