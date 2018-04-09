@@ -45,7 +45,7 @@ class DashBoardViewController: UIViewController {
     
     @objc func getSystemLocationInfo() -> Void {
         let speed = Int(arc4random_uniform(50))+1
-        NSLog("当前速度：\(speed)")
+        //NSLog("当前速度：\(speed)")
         let nowspeed = speed == -1 ? 0 : speed
         guard speed != 0 else {
             return
@@ -53,7 +53,6 @@ class DashBoardViewController: UIViewController {
         speedView.speedValue = CGFloat(nowspeed)
         speedLabel.text = String(Int(nowspeed))
     }
-
 }
 
 extension DashBoardViewController: AMapLocationManagerDelegate {

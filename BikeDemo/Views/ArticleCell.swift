@@ -45,6 +45,5 @@ class ArticleCell: UICollectionViewCell {
             hero.id = "myArticle\(String(describing: article.articleID))"
         }
     }
-
     
 }

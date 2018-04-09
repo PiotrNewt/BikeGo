@@ -33,6 +33,9 @@ class PersonalViewController: UIViewController {
         super.viewDidLoad()
         self.hero.isEnabled = true
         
+        HeadPortraitIamgeView.layer.masksToBounds = true
+        HeadPortraitIamgeView.layer.cornerRadius = 45
+        
         CollectionView.delegate = self
         CollectionView.dataSource = self
         netLoadAriticle()
@@ -64,6 +67,18 @@ class PersonalViewController: UIViewController {
         dformatter.dateFormat = "MM月dd日 E"
         DateLabel.text = "今天是\(dformatter.string(from: now))"
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowArticleDetail",
+            let currentCell = sender as? ArticleCell,
+            let currentCellIndex = CollectionView.indexPath(for: currentCell),
+            let articleDVC = segue.destination as? ArticleDetailViewController{
+                //动画基本值
+                articleDVC.view.hero.id = currentCell.hero.id
+                //传整个articel
+                articleDVC.article = self.articles[currentCellIndex.item]
+        }
     }
     
     func netLoadAriticle(){
@@ -104,6 +119,7 @@ class PersonalViewController: UIViewController {
                         article.likeNum = art[]["likeNum"].int!
                         article.commentNum = art[]["commentNum"].int!
                         article.likeArticle = art[]["likeArticle"].bool!
+                        article.articleID = art[]["articleId"].int!
                         
                         self.articles.append(article)
                     }

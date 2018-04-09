@@ -122,7 +122,7 @@ class SpeedView: UIView {
     }
     
     func speedAnimation() -> Void {
-        NSLog("执行速度动画")
+        //NSLog("执行速度动画")
         let speed = speedValue
         
         let startFromValue = pointerLayer.strokeStart
