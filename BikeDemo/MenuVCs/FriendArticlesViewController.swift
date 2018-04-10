@@ -1,44 +1,33 @@
 //
-//  PersonalViewController.swift
+//  FriendArticlesViewController.swift
 //  BikeDemo
 //
-//  Created by 杨键 on 2018/4/7.
+//  Created by 杨键 on 2018/4/10.
 //  Copyright © 2018年 mclarenYang. All rights reserved.
 //
 
 import UIKit
-import RealmSwift
 import Alamofire
 import SwiftyJSON
 
-class PersonalViewController: UIViewController {
+class FriendArticlesViewController: UIViewController {
     
-    var articles: [Article] = [Article]() {
-        didSet {CollectionView.reloadData()}
-    }
-
-    @IBOutlet weak var HeadPortraitIamgeView: UIImageView!
-    @IBOutlet weak var HelloLabel: UILabel!
-    @IBOutlet weak var DateLabel: UILabel!
-    @IBOutlet weak var CollectionView: UICollectionView!
+    var articles: [(Article,CGFloat)] = [(Article,CGFloat)]()
     
-    
+    @IBOutlet weak var ArticlesTableView: UITableView!
     
     @IBAction func BackBtnClick(_ sender: Any) {
         hero.dismissViewController()
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hero.isEnabled = true
         
-        HeadPortraitIamgeView.layer.masksToBounds = true
-        HeadPortraitIamgeView.layer.cornerRadius = 45
-        
-        CollectionView.delegate = self
-        CollectionView.dataSource = self
-        
+        ArticlesTableView.delegate = self
+        ArticlesTableView.dataSource = self
+
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,53 +36,32 @@ class PersonalViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateLeaveView()
-        netLoadAriticle()
+        netGetArticleWithFresh()
     }
     
-    func updateLeaveView() {
-        
-        let defaults = UserDefaults.standard
-        let UserID = String(describing: defaults.value(forKey: "UserID")!)
-        let realm = try! Realm()
-        let user = realm.objects(User.self).filter("userID = \(UserID)")[0]
-        
-        HeadPortraitIamgeView.image = UIImage(data: user.userImg as Data)
-        HelloLabel.text = "Hello,\(user.userName)"
-        
-        // 日期
-        let now = Date()
-        let dformatter = DateFormatter()
-        dformatter.dateFormat = "MM月dd日 E"
-        DateLabel.text = "今天是\(dformatter.string(from: now))"
-        
-    }
-    
-    //跳转
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowArticleDetail",
-            let currentCell = sender as? ArticleCell,
-            let currentCellIndex = CollectionView.indexPath(for: currentCell),
+        if segue.identifier == "FriendShowArticleDetail",
+            let currentCell = sender as? ArticleDetialCell,
+            let currentCellIndex = ArticlesTableView.indexPath(for: currentCell),
             let articleDVC = segue.destination as? ArticleDetailViewController{
-                //动画基本值
-                articleDVC.view.hero.id = currentCell.hero.id
-                //传整个articel
-                articleDVC.article = self.articles[currentCellIndex.item]
+            //动画基本值
+            //articleDVC.view.hero.id = currentCell.hero.id
+            //传整个articel
+            articleDVC.article = self.articles[currentCellIndex.row].0
         }
     }
     
-    func netLoadAriticle(){
+    func netGetArticleWithFresh(){
         let defaults = UserDefaults.standard
         let UserID = String(describing: defaults.value(forKey: "UserID")!)
         
         let parameters: Parameters = [
-            "userId": UserID,
-            "writerId": UserID
-            ]
+            "userId": UserID
+        ]
         //清空
         self.articles.removeAll()
         //网络请求
-        let url = MenuViewController.APIURLHead + "article/getHis"
+        let url = MenuViewController.APIURLHead + "article/fresh"
         Alamofire.request(url, method: .post, parameters: parameters).responseJSON{
             request in
             if let value = request.result.value{
@@ -107,7 +75,9 @@ class PersonalViewController: UIViewController {
                         user.userName = art[]["user"]["userName"].string!
                         
                         let imageURL = NSURL(string: art[]["user"]["userImg"].string!)
-                        user.userImg = try! Data(contentsOf: imageURL! as URL) as NSData
+                        if let data = try? Data(contentsOf: imageURL! as URL){
+                            user.userImg = data as NSData
+                        }
                         
                         let article = Article()
                         article.articleID = art[]["articleId"].int!
@@ -123,28 +93,36 @@ class PersonalViewController: UIViewController {
                         article.likeArticle = art[]["likeArticle"].bool!
                         article.articleID = art[]["articleId"].int!
                         
-                        self.articles.append(article)
+                        self.articles.append((article,0.0))
                     }
+                    self.ArticlesTableView.reloadData()
                 }
             }
         }
     }
+
 }
 
-
-extension PersonalViewController: UICollectionViewDataSource, UICollectionViewDelegate{
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return articles.count
+extension FriendArticlesViewController: UITableViewDelegate, UITableViewDataSource, ArticleDetialCellDelegate{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("count:\(self.articles.count)")
+        return self.articles.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: "collItem", for: indexPath) as? ArticleCell)!
-        cell.article = articles[indexPath.item]
-        cell.backgroundColor = UIColor.gray
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = (tableView.dequeueReusableCell(withIdentifier: "FriendArticleDetialItem", for: indexPath) as! ArticleDetialCell)
+        cell.article = self.articles[indexPath.row].0
+        cell.delegate = self
+        self.articles[indexPath.row].1 = cell.cellHeight
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.articles[indexPath.row].1
+    }
+
+    func willComment(sender: Any) {
+        //to do 跳转到评论列表吧 应该
+    }
     
 }
-

@@ -10,7 +10,13 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+protocol ArticleDetialCellDelegate {
+    func willComment(sender: Any)
+}
+
 class ArticleDetialCell: UITableViewCell {
+    
+    var delegate: ArticleDetialCellDelegate?
 
     @IBOutlet weak var UserImgView: UIImageView!
     @IBOutlet weak var UserNameLabel: UILabel!
@@ -23,9 +29,13 @@ class ArticleDetialCell: UITableViewCell {
     @IBOutlet weak var CommentNumLabel: UILabel!
     
     @IBAction func likedBtnClick(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        let UserID = String(describing: defaults.value(forKey: "UserID")!)
+        netChangeLiekArticle(userID: Int(UserID)!, articleID: self.article.articleID)
     }
     
     @IBAction func CommentBtnClick(_ sender: Any) {
+        self.delegate?.willComment(sender: self)
     }
     
     
@@ -43,6 +53,8 @@ class ArticleDetialCell: UITableViewCell {
             if article.likeArticle == true
             {
                 LikeBtn.setImage(#imageLiteral(resourceName: "LikedBtn"), for: .normal)
+            }else{
+                LikeBtn.setImage(#imageLiteral(resourceName: "LikeBtn"), for: .normal)
             }
             if images.count == 0{
                 IamgeCollView.isHidden = true
@@ -81,20 +93,31 @@ class ArticleDetialCell: UITableViewCell {
         }
     }
     
-    static func netChangeLiekArticle(userID: Int, articleID: Int) {
+    //点赞和取消赞的静态方法
+    func netChangeLiekArticle(userID: Int, articleID: Int){
         let parameters: Parameters = [
             "userId": userID,
             "articleId": articleID
         ]
         //网络请求
-        let url = MenuViewController.APIURLHead + "article/getComments"
+        let url = MenuViewController.APIURLHead + "article/like"
         Alamofire.request(url, method: .post, parameters: parameters).responseJSON{
             request in
             if let value = request.result.value{
                 let json = JSON(value)
                 let code = json[]["code"]
                 if code == 200{
-                    /////////////////////////////////////////////////////
+                   let likeStatus = json[]["likeArticle"].bool!
+                    if self.article.likeArticle != likeStatus{
+                        let nowArt = self.article
+                        if likeStatus == true{
+                            nowArt.likeNum += 1
+                        }else{
+                            nowArt.likeNum -= 1
+                        }
+                        nowArt.likeArticle = likeStatus
+                        self.article = nowArt
+                    }
                 }
             }
         }
