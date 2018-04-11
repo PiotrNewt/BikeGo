@@ -27,6 +27,7 @@
 		432446AA20638CD500030F9B /* RoadPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432446A920638CD500030F9B /* RoadPlanViewController.swift */; };
 		4326774B207CA63A004B8325 /* FriendArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4326774A207CA63A004B8325 /* FriendArticlesViewController.swift */; };
 		4340EA0B207DA2E1000DC504 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4340EA0A207DA2E1000DC504 /* MessageViewController.swift */; };
+		4340EA11207E00F6000DC504 /* RideRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4340EA10207E00F6000DC504 /* RideRecord.swift */; };
 		43641C412079B40700A536EB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43641C402079B40700A536EB /* Article.swift */; };
 		436C6297207AFE4B00374514 /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C6296207AFE4B00374514 /* ArticleDetailViewController.swift */; };
 		436C6299207B0CB400374514 /* ArticleDetialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C6298207B0CB400374514 /* ArticleDetialCell.swift */; };
@@ -92,6 +93,7 @@
 		432446A920638CD500030F9B /* RoadPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadPlanViewController.swift; sourceTree = "<group>"; };
 		4326774A207CA63A004B8325 /* FriendArticlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendArticlesViewController.swift; sourceTree = "<group>"; };
 		4340EA0A207DA2E1000DC504 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		4340EA10207E00F6000DC504 /* RideRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRecord.swift; sourceTree = "<group>"; };
 		43641C402079B40700A536EB /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		436C6296207AFE4B00374514 /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
 		436C6298207B0CB400374514 /* ArticleDetialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetialCell.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				431F3301207467D2000267BC /* User.swift */,
+				4340EA10207E00F6000DC504 /* RideRecord.swift */,
 				43641C402079B40700A536EB /* Article.swift */,
 				436C629E207B5CB800374514 /* Comment.swift */,
 			);
@@ -635,6 +638,7 @@
 			files = (
 				43641C412079B40700A536EB /* Article.swift in Sources */,
 				43F6EA33207358DE00A56C7A /* SignInViewController.swift in Sources */,
+				4340EA11207E00F6000DC504 /* RideRecord.swift in Sources */,
 				430EBE1A205FB74C00B92835 /* NaviViewController.swift in Sources */,
 				4326774B207CA63A004B8325 /* FriendArticlesViewController.swift in Sources */,
 				4379D47B20735BA6009A102B /* SignUpViewController.swift in Sources */,

@@ -19,8 +19,18 @@ class MessageViewController: UIViewController {
     }
     
     @IBAction func SendBtnClick(_ sender: Any) {
+        if saveUserEmegecyInfo() == true {
+            DashBoardViewController.sendMessageWithDeviceLocation()
+        }else{
+            //发送失败，错误处理
+        }
     }
+    
     @IBAction func SaveBtnClick(_ sender: Any) {
+        guard saveUserEmegecyInfo() == true else {
+            //保存失败，错误处理
+            return
+        }
     }
     
     override func viewDidLoad() {
@@ -43,5 +53,25 @@ class MessageViewController: UIViewController {
         self.MessageContentTV.text = user.userEmergencyMessage
     }
     
+    func saveUserEmegecyInfo() -> Bool{
+        
+        if PhoneNumTF.text == "" || MessageContentTV.text == "" {
+            return false
+        }
+        
+        let defaults = UserDefaults.standard
+        let UserID = String(describing: defaults.value(forKey: "UserID")!)
+        
+        let realm = try! Realm()
+        let user = realm.objects(User.self).filter("userID = \(UserID)")[0]
+        
+        user.userEmergencyPhone = PhoneNumTF.text!
+        user.userEmergencyMessage = MessageContentTV.text!
+        
+        try! realm.write {
+            realm.add(user, update: true)
+        }
+        return true
+    }
 
 }

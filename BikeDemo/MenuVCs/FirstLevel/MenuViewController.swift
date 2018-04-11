@@ -50,7 +50,7 @@ class MenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         //判断用户是否登陆 -> 调整UI
         let defaults = UserDefaults.standard
         let LogInStatus = String(describing: defaults.value(forKey: "LogInStatus")!)
@@ -65,20 +65,23 @@ class MenuViewController: UIViewController {
             HelloLabel.text = "Hi,\(user.userName)"
             print("数据库地址：\(realm.configuration.fileURL!)")
             
-            //延时进入personalVC
-            guard isComeToPersonal == true else {
-                let time: TimeInterval = 0.25
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
-                    self.selectHeadImageOrHelloLabel()
-                }
-                return
-            }
-            
         } else {
             //如果用户还没有登录 -> 按钮失效
             HeadPortraitIamgeView.image = #imageLiteral(resourceName: "HeadPortraitIamge")
             HelloLabel.text = "sign in / sign up"
             SignOutBtn.isHidden = true
+            isComeToPersonal = false
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //延时进入personalVC
+        guard isComeToPersonal == true else {
+            let time: TimeInterval = 0.25
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
+                self.selectHeadImageOrHelloLabel()
+            }
+            return
         }
     }
     

@@ -29,8 +29,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="HeadImg"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sign in / sign up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBu-az-rAk">
-                                <rect key="frame" x="148" y="324" width="193" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sign in / sign up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBu-az-rAk">
+                                <rect key="frame" x="158" y="324" width="183" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -51,7 +51,7 @@
                         <constraints>
                             <constraint firstItem="jBc-oB-3Yk" firstAttribute="centerY" secondItem="hNV-IG-DJc" secondAttribute="centerY" constant="-70" id="41b-RT-uQw"/>
                             <constraint firstItem="jBc-oB-3Yk" firstAttribute="leading" secondItem="udi-Ks-Dpz" secondAttribute="leading" constant="50" id="IhZ-gf-mDu"/>
-                            <constraint firstItem="SBu-az-rAk" firstAttribute="leading" secondItem="jBc-oB-3Yk" secondAttribute="trailing" constant="8" id="Iu6-3J-cgP"/>
+                            <constraint firstItem="SBu-az-rAk" firstAttribute="leading" secondItem="jBc-oB-3Yk" secondAttribute="trailing" constant="18" id="Iu6-3J-cgP"/>
                             <constraint firstItem="SBu-az-rAk" firstAttribute="centerY" secondItem="hNV-IG-DJc" secondAttribute="centerY" constant="-70" id="fGw-Mo-7XU"/>
                             <constraint firstItem="udi-Ks-Dpz" firstAttribute="trailing" secondItem="SBu-az-rAk" secondAttribute="trailing" constant="34" id="fXO-cq-zst"/>
                         </constraints>
