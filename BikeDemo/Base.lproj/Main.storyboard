@@ -38,6 +38,14 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="signin"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZK-ck-wT0">
+                                <rect key="frame" x="158" y="419" width="59" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="sign out"/>
+                                <connections>
+                                    <action selector="SignOutBtnClick:" destination="bKf-d5-hQZ" eventType="touchUpInside" id="Ao6-qr-kfl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -54,11 +62,82 @@
                     <connections>
                         <outlet property="HeadPortraitIamgeView" destination="jBc-oB-3Yk" id="vs7-tw-O4J"/>
                         <outlet property="HelloLabel" destination="SBu-az-rAk" id="niQ-ID-yRU"/>
+                        <outlet property="SignOutBtn" destination="kZK-ck-wT0" id="pyv-u7-9yt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7MB-Ms-uaP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-647" y="727"/>
+            <point key="canvasLocation" x="-647.20000000000005" y="726.35467980295573"/>
+        </scene>
+        <!--Message View Controller-->
+        <scene sceneID="sb1-13-RyF">
+            <objects>
+                <viewController storyboardIdentifier="MessageVC" id="RMz-6n-fnr" customClass="MessageViewController" customModule="BikeDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bPl-41-UYK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bpx-rF-jmw">
+                                <rect key="frame" x="3" y="52" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="5gJ-c8-p3l"/>
+                                    <constraint firstAttribute="width" constant="48" id="QKP-gq-Mys"/>
+                                </constraints>
+                                <state key="normal" image="back_down"/>
+                                <connections>
+                                    <action selector="BackBtnClick:" destination="cjW-7O-r6o" eventType="touchUpInside" id="ShJ-vA-fDr"/>
+                                    <action selector="BackBtnClick:" destination="m8b-Cl-95A" eventType="touchUpInside" id="fLe-Wg-0kr"/>
+                                    <action selector="BackBtnClick:" destination="mZM-bK-QvR" eventType="touchUpInside" id="fP6-dN-Pna"/>
+                                    <action selector="BackBtnClick:" destination="RMz-6n-fnr" eventType="touchUpInside" id="i0S-yN-jCz"/>
+                                    <action selector="hero_dismissViewController" destination="IDT-3l-idj" eventType="touchUpInside" id="dfr-t1-gPZ"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XZY-8g-fDR">
+                                <rect key="frame" x="16" y="132" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="你好，我遇到了危险，请你尽快来帮助我!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RAt-Si-Un2">
+                                <rect key="frame" x="16" y="194" width="343" height="211"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vg5-Se-QoS">
+                                <rect key="frame" x="283" y="514" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="保存"/>
+                                <connections>
+                                    <action selector="SaveBtnClick:" destination="RMz-6n-fnr" eventType="touchUpInside" id="OVI-co-G9e"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCr-hn-04s">
+                                <rect key="frame" x="46" y="514" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="发送"/>
+                                <connections>
+                                    <action selector="SendBtnClick:" destination="RMz-6n-fnr" eventType="touchUpInside" id="nS8-uh-lha"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Bpx-rF-jmw" firstAttribute="leading" secondItem="tzA-dC-bHe" secondAttribute="leading" constant="3" id="QnB-Xh-HlO"/>
+                            <constraint firstItem="Bpx-rF-jmw" firstAttribute="top" secondItem="tzA-dC-bHe" secondAttribute="top" constant="8" id="Rcq-Xq-VUZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tzA-dC-bHe"/>
+                    </view>
+                    <connections>
+                        <outlet property="MessageContentTV" destination="RAt-Si-Un2" id="VHB-TR-fUf"/>
+                        <outlet property="PhoneNumTF" destination="XZY-8g-fDR" id="7wZ-iO-xJ0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IDT-3l-idj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="228" y="2211.576354679803"/>
         </scene>
         <!--个人主页-->
         <scene sceneID="FBY-g9-PFn">
@@ -189,6 +268,9 @@
                                 <rect key="frame" x="105" y="295" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="MessageBtn"/>
+                                <connections>
+                                    <segue destination="RMz-6n-fnr" kind="show" id="PZ3-IB-vpM"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fn0-0Q-q0w">
                                 <rect key="frame" x="162" y="295" width="40" height="40"/>
@@ -233,7 +315,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xAn-61-iWf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1532" y="724.8768472906404"/>
+            <point key="canvasLocation" x="-647" y="1430"/>
         </scene>
         <!--文章-->
         <scene sceneID="VJh-ue-a3K">
@@ -421,7 +503,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ewp-Ee-Do1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2548" y="1490"/>
+            <point key="canvasLocation" x="-1474" y="2212"/>
         </scene>
         <!--朋友-->
         <scene sceneID="IhZ-GL-u4i">
@@ -570,7 +652,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yBo-hx-JNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1532" y="1490"/>
+            <point key="canvasLocation" x="-647" y="2212"/>
         </scene>
         <!--码表-->
         <scene sceneID="FVq-te-ptL">

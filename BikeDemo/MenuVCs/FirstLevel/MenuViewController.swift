@@ -17,6 +17,18 @@ class MenuViewController: UIViewController {
     //storyboard
     @IBOutlet weak var HeadPortraitIamgeView: UIImageView!
     @IBOutlet weak var HelloLabel: UILabel!
+    @IBOutlet weak var SignOutBtn: UIButton!
+    
+    @IBAction func SignOutBtnClick(_ sender: Any) {
+        
+        let defaults = UserDefaults.standard
+        defaults.set("no", forKey: "LogInStatus")
+        //恢复默认状态
+        HeadPortraitIamgeView.image = #imageLiteral(resourceName: "HeadPortraitIamge")
+        HelloLabel.text = "sign in / sign up"
+        SignOutBtn.isHidden = true
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +43,6 @@ class MenuViewController: UIViewController {
         HelloLabel.isUserInteractionEnabled = true
         HelloLabel.addGestureRecognizer(headImageGesture)
         
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,13 +50,13 @@ class MenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         //判断用户是否登陆 -> 调整UI
         let defaults = UserDefaults.standard
         let LogInStatus = String(describing: defaults.value(forKey: "LogInStatus")!)
         if LogInStatus == "yes" {
             //如果用户登录过 -> 彩色UI / 从Realm获取用户的头像 ／获取用户的昵称
+            SignOutBtn.isHidden = false
             let UserID = String(describing: defaults.value(forKey: "UserID")!)
             let realm = try! Realm()
             let user = realm.objects(User.self).filter("userID = \(UserID)")[0]
@@ -54,6 +65,7 @@ class MenuViewController: UIViewController {
             HelloLabel.text = "Hi,\(user.userName)"
             print("数据库地址：\(realm.configuration.fileURL!)")
             
+            //延时进入personalVC
             guard isComeToPersonal == true else {
                 let time: TimeInterval = 0.25
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
@@ -66,9 +78,10 @@ class MenuViewController: UIViewController {
             //如果用户还没有登录 -> 按钮失效
             HeadPortraitIamgeView.image = #imageLiteral(resourceName: "HeadPortraitIamge")
             HelloLabel.text = "sign in / sign up"
+            SignOutBtn.isHidden = true
         }
-        
     }
+    
  
     //点击事件
     @objc func selectHeadImageOrHelloLabel(){

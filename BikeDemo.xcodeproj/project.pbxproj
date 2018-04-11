@@ -26,6 +26,7 @@
 		43208CEE206B2A7A00364148 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43208CED206B2A7A00364148 /* SearchViewController.swift */; };
 		432446AA20638CD500030F9B /* RoadPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432446A920638CD500030F9B /* RoadPlanViewController.swift */; };
 		4326774B207CA63A004B8325 /* FriendArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4326774A207CA63A004B8325 /* FriendArticlesViewController.swift */; };
+		4340EA0B207DA2E1000DC504 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4340EA0A207DA2E1000DC504 /* MessageViewController.swift */; };
 		43641C412079B40700A536EB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43641C402079B40700A536EB /* Article.swift */; };
 		436C6297207AFE4B00374514 /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C6296207AFE4B00374514 /* ArticleDetailViewController.swift */; };
 		436C6299207B0CB400374514 /* ArticleDetialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C6298207B0CB400374514 /* ArticleDetialCell.swift */; };
@@ -90,6 +91,7 @@
 		43208CED206B2A7A00364148 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		432446A920638CD500030F9B /* RoadPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadPlanViewController.swift; sourceTree = "<group>"; };
 		4326774A207CA63A004B8325 /* FriendArticlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendArticlesViewController.swift; sourceTree = "<group>"; };
+		4340EA0A207DA2E1000DC504 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		43641C402079B40700A536EB /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		436C6296207AFE4B00374514 /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
 		436C6298207B0CB400374514 /* ArticleDetialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetialCell.swift; sourceTree = "<group>"; };
@@ -245,15 +247,40 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		438FD7E52073588900CB5B2F /* MenuVCs */ = {
+		4340EA07207DA143000DC504 /* FirstLevel */ = {
 			isa = PBXGroup;
 			children = (
 				43C339FC20735F5A0007366D /* MenuViewController.swift */,
 				43F6EA32207358DE00A56C7A /* SignInViewController.swift */,
 				4379D47A20735BA6009A102B /* SignUpViewController.swift */,
+			);
+			path = FirstLevel;
+			sourceTree = "<group>";
+		};
+		4340EA08207DA1A7000DC504 /* SecondLevel */ = {
+			isa = PBXGroup;
+			children = (
 				43DF1DFA2078A598001DF01C /* PersonalViewController.swift */,
+			);
+			path = SecondLevel;
+			sourceTree = "<group>";
+		};
+		4340EA09207DA238000DC504 /* ThirdLevel */ = {
+			isa = PBXGroup;
+			children = (
 				436C6296207AFE4B00374514 /* ArticleDetailViewController.swift */,
 				4326774A207CA63A004B8325 /* FriendArticlesViewController.swift */,
+				4340EA0A207DA2E1000DC504 /* MessageViewController.swift */,
+			);
+			path = ThirdLevel;
+			sourceTree = "<group>";
+		};
+		438FD7E52073588900CB5B2F /* MenuVCs */ = {
+			isa = PBXGroup;
+			children = (
+				4340EA07207DA143000DC504 /* FirstLevel */,
+				4340EA08207DA1A7000DC504 /* SecondLevel */,
+				4340EA09207DA238000DC504 /* ThirdLevel */,
 			);
 			path = MenuVCs;
 			sourceTree = "<group>";
@@ -620,6 +647,7 @@
 				436C6299207B0CB400374514 /* ArticleDetialCell.swift in Sources */,
 				43DF1DFD2078B2D1001DF01C /* ArticleCell.swift in Sources */,
 				436C6297207AFE4B00374514 /* ArticleDetailViewController.swift in Sources */,
+				4340EA0B207DA2E1000DC504 /* MessageViewController.swift in Sources */,
 				431F3302207467D2000267BC /* User.swift in Sources */,
 				43ED358A206DDA5F004BBED6 /* SpeedView.swift in Sources */,
 				43DF1DFB2078A598001DF01C /* PersonalViewController.swift in Sources */,

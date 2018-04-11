@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AMapServices.shared().enableHTTPS = true
         
         //login status
-        
         //let defaults = UserDefaults.standard
         //defaults.set("no", forKey: "LogInStatus")
         

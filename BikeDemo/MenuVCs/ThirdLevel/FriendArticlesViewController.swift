@@ -105,7 +105,6 @@ class FriendArticlesViewController: UIViewController {
 
 extension FriendArticlesViewController: UITableViewDelegate, UITableViewDataSource, ArticleDetialCellDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("count:\(self.articles.count)")
         return self.articles.count
     }
     
