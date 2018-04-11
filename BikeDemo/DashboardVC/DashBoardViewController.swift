@@ -12,7 +12,7 @@ class DashBoardViewController: UIViewController {
     
     var timer = Timer()
     let locationManager = AMapLocationManager()
-    var rideRecord = RideRecord()
+    //var rideRecord = RideRecord()
     
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var speedView: SpeedView!
