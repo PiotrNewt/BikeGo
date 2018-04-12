@@ -696,18 +696,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zma-vy-owU">
+                                <rect key="frame" x="171.66666666666666" y="525" width="31" height="30"/>
+                                <state key="normal" title="开始"/>
+                                <connections>
+                                    <action selector="RideBtnClick:" destination="lZ1-uG-0T5" eventType="touchUpInside" id="5IB-Pv-vaI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Zma-vy-owU" firstAttribute="centerX" secondItem="CjO-tu-hNd" secondAttribute="centerX" id="H01-vN-Wwh"/>
                             <constraint firstItem="7SB-Ji-eIc" firstAttribute="centerX" secondItem="CjO-tu-hNd" secondAttribute="centerX" id="Mrl-Vp-Ftx"/>
                             <constraint firstItem="7SB-Ji-eIc" firstAttribute="top" secondItem="Ebx-lH-BFu" secondAttribute="top" constant="2" id="Vwl-N9-PK0"/>
                             <constraint firstItem="ElM-kr-Qte" firstAttribute="centerX" secondItem="CjO-tu-hNd" secondAttribute="centerX" id="gkV-Pu-7qo"/>
                             <constraint firstItem="Ebx-lH-BFu" firstAttribute="bottom" secondItem="ElM-kr-Qte" secondAttribute="bottom" constant="86" id="lSH-Lc-2l8"/>
+                            <constraint firstItem="ElM-kr-Qte" firstAttribute="top" secondItem="Zma-vy-owU" secondAttribute="bottom" constant="67.670000000000002" id="rYd-EL-00G"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ebx-lH-BFu"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="码表" id="okq-vc-6P2"/>
                     <connections>
+                        <outlet property="RideBtn" destination="Zma-vy-owU" id="nfG-HN-HC9"/>
                         <outlet property="speedLabel" destination="3IR-5F-dsL" id="kZY-jU-gce"/>
                         <outlet property="speedView" destination="7SB-Ji-eIc" id="2UP-M2-pO7"/>
                         <outlet property="testLabel" destination="ElM-kr-Qte" id="UyD-WB-Imm"/>

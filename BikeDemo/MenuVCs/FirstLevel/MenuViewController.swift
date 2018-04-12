@@ -53,8 +53,8 @@ class MenuViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         //判断用户是否登陆 -> 调整UI
         let defaults = UserDefaults.standard
-        let LogInStatus = String(describing: defaults.value(forKey: "LogInStatus")!)
-        if LogInStatus == "yes" {
+        if let LogInStatus = defaults.value(forKey: "LogInStatus"),
+            String(describing: LogInStatus) == "yes" {
             //如果用户登录过 -> 彩色UI / 从Realm获取用户的头像 ／获取用户的昵称
             SignOutBtn.isHidden = false
             let UserID = String(describing: defaults.value(forKey: "UserID")!)

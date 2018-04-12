@@ -7,16 +7,26 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DashBoardViewController: UIViewController {
     
     var timer = Timer()
     let locationManager = AMapLocationManager()
-    //var rideRecord = RideRecord()
+    //用于一次记录点
+    var recordPois: [RecordPoint] = [RecordPoint]()
     
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var speedView: SpeedView!
     @IBOutlet weak var testLabel: UILabel!
+    @IBOutlet weak var RideBtn: UIButton!
+    
+    
+    @IBAction func RideBtnClick(_ sender: Any) {
+        startRecordRideData()
+        RideBtn.titleLabel?.text = "sss"
+        testLabel.text = "定位真的开启了喽"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +39,11 @@ class DashBoardViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        locationManager.startUpdatingLocation()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 10
         locationManager.locationTimeout = 10
     
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(getSystemLocationInfo), userInfo: nil, repeats: true)
+        //timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(getSystemLocationInfo), userInfo: nil, repeats: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -63,8 +72,22 @@ class DashBoardViewController: UIViewController {
     func endRecordRideData() {
         locationManager.stopUpdatingLocation()
         //结束啦喽，将骑行信息存入用户数据库
+        let defaults = UserDefaults.standard
+        let userID = String(describing: defaults.value(forKey: "UserID")!)
+        
+        let rideRecord = RideRecord()
+        rideRecord.userID = Int(userID)!
+        
+        for poi in recordPois {
+            poi.subOne = rideRecord
+            rideRecord.recordPoints.append(poi)
+        }
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(rideRecord)
+        }
+        
     }
-    
     
     //全局短信接口
     static func sendMessageWithDeviceLocation() {
@@ -109,6 +132,7 @@ extension DashBoardViewController: AMapLocationManagerDelegate {
     func amapLocationManager(_ manager: AMapLocationManager!, didUpdate location: CLLocation!) {
         NSLog("speed：\(location.speed)")
         getSystemLocationInfo(speed: location.speed / 3.6)
+        //向数据库中写入数据 func(location)
         testLabel.text = String(location.speed)
     }
 }
