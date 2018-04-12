@@ -28,6 +28,7 @@
 		4326774B207CA63A004B8325 /* FriendArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4326774A207CA63A004B8325 /* FriendArticlesViewController.swift */; };
 		4340EA0B207DA2E1000DC504 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4340EA0A207DA2E1000DC504 /* MessageViewController.swift */; };
 		4340EA11207E00F6000DC504 /* RideRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4340EA10207E00F6000DC504 /* RideRecord.swift */; };
+		43629C94207F49A70040BF60 /* AddArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43629C93207F49A70040BF60 /* AddArticleViewController.swift */; };
 		43641C412079B40700A536EB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43641C402079B40700A536EB /* Article.swift */; };
 		436C6297207AFE4B00374514 /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C6296207AFE4B00374514 /* ArticleDetailViewController.swift */; };
 		436C6299207B0CB400374514 /* ArticleDetialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C6298207B0CB400374514 /* ArticleDetialCell.swift */; };
@@ -94,6 +95,7 @@
 		4326774A207CA63A004B8325 /* FriendArticlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendArticlesViewController.swift; sourceTree = "<group>"; };
 		4340EA0A207DA2E1000DC504 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		4340EA10207E00F6000DC504 /* RideRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRecord.swift; sourceTree = "<group>"; };
+		43629C93207F49A70040BF60 /* AddArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArticleViewController.swift; sourceTree = "<group>"; };
 		43641C402079B40700A536EB /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		436C6296207AFE4B00374514 /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
 		436C6298207B0CB400374514 /* ArticleDetialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetialCell.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				436C6296207AFE4B00374514 /* ArticleDetailViewController.swift */,
 				4326774A207CA63A004B8325 /* FriendArticlesViewController.swift */,
 				4340EA0A207DA2E1000DC504 /* MessageViewController.swift */,
+				43629C93207F49A70040BF60 /* AddArticleViewController.swift */,
 			);
 			path = ThirdLevel;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 				43C339FD20735F5A0007366D /* MenuViewController.swift in Sources */,
 				43208CEE206B2A7A00364148 /* SearchViewController.swift in Sources */,
 				43B1163E206E1E3200177E5F /* DashBoardViewController.swift in Sources */,
+				43629C94207F49A70040BF60 /* AddArticleViewController.swift in Sources */,
 				432446AA20638CD500030F9B /* RoadPlanViewController.swift in Sources */,
 				436C6299207B0CB400374514 /* ArticleDetialCell.swift in Sources */,
 				43DF1DFD2078B2D1001DF01C /* ArticleCell.swift in Sources */,

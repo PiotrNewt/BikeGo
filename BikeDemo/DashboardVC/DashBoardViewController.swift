@@ -87,6 +87,9 @@ class DashBoardViewController: UIViewController {
             realm.add(rideRecord)
         }
         
+        //清空用于记录的数组
+        recordPois.removeAll()
+        
     }
     
     //全局短信接口

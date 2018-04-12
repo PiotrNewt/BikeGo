@@ -29,7 +29,6 @@ class MenuViewController: UIViewController {
         SignOutBtn.isHidden = true
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,7 +75,7 @@ class MenuViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         //延时进入personalVC
-        guard isComeToPersonal == true else {
+        guard isComeToPersonal == true || HelloLabel.text == "sign in / sign up" else {
             let time: TimeInterval = 0.25
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) {
                 self.selectHeadImageOrHelloLabel()

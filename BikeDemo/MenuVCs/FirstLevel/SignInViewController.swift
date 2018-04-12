@@ -39,6 +39,9 @@ class SignInViewController: UIViewController {
         SignUpLabel.isUserInteractionEnabled = true
         let SignUpGesture = UITapGestureRecognizer(target: self , action: #selector(selectSignUpLabel))
         SignUpLabel.addGestureRecognizer(SignUpGesture)
+        
+        //添加键盘收回手势
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(keyboardComeback)))
 
     }
 
@@ -112,6 +115,12 @@ class SignInViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    //收回键盘
+    @objc func keyboardComeback() {
+        NameTF.resignFirstResponder()
+        PasswordTF.resignFirstResponder()
     }
     
     @objc func selectSignUpLabel() -> Void {

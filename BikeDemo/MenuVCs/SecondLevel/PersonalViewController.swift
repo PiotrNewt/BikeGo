@@ -22,12 +22,14 @@ class PersonalViewController: UIViewController {
     @IBOutlet weak var DateLabel: UILabel!
     @IBOutlet weak var CollectionView: UICollectionView!
     
-    
-    
     @IBAction func BackBtnClick(_ sender: Any) {
         hero.dismissViewController()
     }
     
+    @IBAction func AddArticleBtnClick(_ sender: Any) {
+        let addArticleVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddArticle") as? AddArticleViewController)!
+        self.show(addArticleVC, sender: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

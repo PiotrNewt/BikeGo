@@ -40,6 +40,9 @@ class SignUpViewController: UIViewController {
         
         NameTF.delegate = self
         
+        //添加键盘收回手势
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(keyboardComeback)))
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -125,7 +128,7 @@ class SignUpViewController: UIViewController {
                 let json = JSON(value)
                 let judgement = json[]["hasSame"]
                 guard judgement != true else {
-                    //警告已被注册
+                    //to do 警告已被注册
                     NSLog("用户名被占用")
                     return
                 }
@@ -136,6 +139,12 @@ class SignUpViewController: UIViewController {
     @objc func selectSignInLabel() -> Void {
         let signInVC = (UIStoryboard(name: "LogIn", bundle: nil).instantiateViewController(withIdentifier: "SignIn") as? SignInViewController)!
         hero.replaceViewController(with: signInVC)
+    }
+    
+    //收回键盘
+    @objc func keyboardComeback() {
+        NameTF.resignFirstResponder()
+        PasswordTF.resignFirstResponder()
     }
 
 }
