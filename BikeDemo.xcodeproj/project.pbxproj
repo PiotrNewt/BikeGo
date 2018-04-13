@@ -40,6 +40,7 @@
 		43C339FD20735F5A0007366D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C339FC20735F5A0007366D /* MenuViewController.swift */; };
 		43DF1DFB2078A598001DF01C /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF1DFA2078A598001DF01C /* PersonalViewController.swift */; };
 		43DF1DFD2078B2D1001DF01C /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF1DFC2078B2D1001DF01C /* ArticleCell.swift */; };
+		43E0E0E120807F40003095F9 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E0E0E020807F40003095F9 /* ImageCell.swift */; };
 		43ED358A206DDA5F004BBED6 /* SpeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ED3589206DDA5F004BBED6 /* SpeedView.swift */; };
 		43F6EA33207358DE00A56C7A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F6EA32207358DE00A56C7A /* SignInViewController.swift */; };
 		50992076A835C00488AEA143 /* Pods_BikeDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BDB56F07FA1E7D0BDDFA84B /* Pods_BikeDemoTests.framework */; };
@@ -107,6 +108,7 @@
 		43C339FC20735F5A0007366D /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		43DF1DFA2078A598001DF01C /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		43DF1DFC2078B2D1001DF01C /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
+		43E0E0E020807F40003095F9 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		43ED3589206DDA5F004BBED6 /* SpeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedView.swift; sourceTree = "<group>"; };
 		43F6EA32207358DE00A56C7A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		7BDB56F07FA1E7D0BDDFA84B /* Pods_BikeDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BikeDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -308,6 +310,7 @@
 				43DF1DFC2078B2D1001DF01C /* ArticleCell.swift */,
 				436C6298207B0CB400374514 /* ArticleDetialCell.swift */,
 				436C629C207B0D1600374514 /* CommentCell.swift */,
+				43E0E0E020807F40003095F9 /* ImageCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 				43B1163E206E1E3200177E5F /* DashBoardViewController.swift in Sources */,
 				43629C94207F49A70040BF60 /* AddArticleViewController.swift in Sources */,
 				432446AA20638CD500030F9B /* RoadPlanViewController.swift in Sources */,
+				43E0E0E120807F40003095F9 /* ImageCell.swift in Sources */,
 				436C6299207B0CB400374514 /* ArticleDetialCell.swift in Sources */,
 				43DF1DFD2078B2D1001DF01C /* ArticleCell.swift in Sources */,
 				436C6297207AFE4B00374514 /* ArticleDetailViewController.swift in Sources */,

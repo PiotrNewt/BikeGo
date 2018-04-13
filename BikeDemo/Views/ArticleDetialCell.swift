@@ -145,7 +145,8 @@ extension ArticleDetialCell: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollImagItem", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollImagItem", for: indexPath) as! ImageCell
+        cell.Image.image = images[indexPath.item]
         return cell
     }
     

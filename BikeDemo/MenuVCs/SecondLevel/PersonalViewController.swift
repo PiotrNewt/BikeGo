@@ -143,7 +143,7 @@ extension PersonalViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: "collItem", for: indexPath) as? ArticleCell)!
         cell.article = articles[indexPath.item]
-        cell.backgroundColor = UIColor.gray
+        //cell.backgroundColor = UIColor.gray
         return cell
     }
     
