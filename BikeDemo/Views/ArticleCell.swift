@@ -32,7 +32,7 @@ class ArticleCell: UICollectionViewCell {
     
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        //to do 自适应高度
+        //to do contentLabel自适应高度
     }
     
     

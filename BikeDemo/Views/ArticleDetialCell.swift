@@ -39,7 +39,7 @@ class ArticleDetialCell: UITableViewCell {
     }
     
     
-    var images: [UIImage] = []
+    var images: [UIImage] = [UIImage]()
     var cellHeight: CGFloat = 0.0
     
     var article = Article(){
@@ -56,7 +56,7 @@ class ArticleDetialCell: UITableViewCell {
             }else{
                 LikeBtn.setImage(#imageLiteral(resourceName: "LikeBtn"), for: .normal)
             }
-            if images.count == 0{
+            if article.articleImgs.count == 0{
                 IamgeCollView.isHidden = true
             }else{
                 IamgeCollView.isHidden = false
@@ -84,13 +84,15 @@ class ArticleDetialCell: UITableViewCell {
     
     func transfImages() {
         if article.articleImgs.count == 0{return}
+        //先清除再加载下一次的
+        images.removeAll()
         for imageUrlString in article.articleImgs {
             let imageUrl = NSURL(string: imageUrlString)
             if let data = try? Data(contentsOf: imageUrl! as URL){
                 images.append(UIImage(data: data as Data)!)
             }
-            IamgeCollView.reloadData()
         }
+        IamgeCollView.reloadData()
     }
     
     //点赞和取消赞的静态方法

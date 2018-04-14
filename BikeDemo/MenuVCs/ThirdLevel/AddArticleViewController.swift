@@ -32,8 +32,7 @@ class AddArticleViewController: UIViewController {
         if ArticleContentTV.text == "" {
             // 错误提示
         }else{
-            //netPublish()
-            netUploadImage(ArticleId: "140")
+            netPublish()
         }
     }
     
@@ -86,7 +85,10 @@ class AddArticleViewController: UIViewController {
                 if code == 200{
                     //to do 发布成功
                     NSLog("发布成功")
-                    //self.netUploadImage() 检查一下有没有图片
+                    if let articleId = json[]["articleId"].int,
+                        self.images.count != 0{
+                    self.netUploadImage(ArticleId: String(articleId))
+                    }
                 }else{
                     //to do 错误处理
                 }
@@ -95,11 +97,8 @@ class AddArticleViewController: UIViewController {
     }
     
     func netUploadImage(ArticleId: String) {
-        let defaults = UserDefaults.standard
-        let userID = String(describing: defaults.value(forKey: "UserID")!)
         
         let parameters: Parameters = [
-            "userId": userID,
             "articleId": ArticleId
         ]
         
@@ -114,11 +113,11 @@ class AddArticleViewController: UIViewController {
                 let data: Data = str.data(using:String.Encoding.utf8)!
                 multipartFormData.append(data, withName: key)
             }
-            
-            for index in 0...self.images.count - 1{
-                multipartFormData.append(UIImagePNGRepresentation(self.images[index])!, withName: "image\(index)")
+            for index in 0..<self.images.count {
+                multipartFormData.append(UIImagePNGRepresentation(self.images[index])!, withName: "articleImgs", fileName: "image\(index)", mimeType: "image/png")
             }
-            },to: url,
+            debugPrint(multipartFormData)
+        },to: url, headers: nil,
               encodingCompletion: {
                 encodingResult in
                 switch encodingResult {
