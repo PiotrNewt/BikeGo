@@ -37,9 +37,9 @@ class MenuViewController: UIViewController {
         HeadPortraitIamgeView.layer.masksToBounds = true
         HeadPortraitIamgeView.layer.cornerRadius = 45
         HeadPortraitIamgeView.isUserInteractionEnabled = true
+        HelloLabel.isUserInteractionEnabled = true
         let headImageGesture = UITapGestureRecognizer(target: self, action: #selector(selectHeadImageOrHelloLabel))
         HeadPortraitIamgeView.addGestureRecognizer(headImageGesture)
-        HelloLabel.isUserInteractionEnabled = true
         HelloLabel.addGestureRecognizer(headImageGesture)
         
     }

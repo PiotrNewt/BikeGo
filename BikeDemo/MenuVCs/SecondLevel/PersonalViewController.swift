@@ -37,6 +37,9 @@ class PersonalViewController: UIViewController {
         
         HeadPortraitIamgeView.layer.masksToBounds = true
         HeadPortraitIamgeView.layer.cornerRadius = 45
+        HeadPortraitIamgeView.isUserInteractionEnabled = true
+        let headImageGesture = UITapGestureRecognizer(target: self, action: #selector(replaceHeadImg))
+        HeadPortraitIamgeView.addGestureRecognizer(headImageGesture)
         
         CollectionView.delegate = self
         CollectionView.dataSource = self
@@ -83,6 +86,51 @@ class PersonalViewController: UIViewController {
                 articleDVC.article = self.articles[currentCellIndex.item]
         }
     }
+    
+    //修改头像
+    @objc func replaceHeadImg() {
+        let alert = UIAlertController(title: "添加照片", message: "", preferredStyle: .actionSheet)
+        let photoAction = UIAlertAction(title: "相册", style: .default , handler: { (action:UIAlertAction)in
+            self.photo()
+        })
+        let cameraAction = UIAlertAction(title: "相机", style: .default , handler: { (action:UIAlertAction)in
+            self.camera()
+        })
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel , handler: nil)
+        
+        alert.addAction(photoAction)
+        alert.addAction(cameraAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //相册方法
+    func photo() {
+        
+        let pick:UIImagePickerController = UIImagePickerController()
+        pick.delegate = self
+        pick.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        self.present(pick, animated: true, completion: nil)
+        
+    }
+    
+    //相机方法
+    func camera() {
+        
+        guard UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) == true else{
+            //to do 警告相机无法使用
+            NSLog("相机无法使用")
+            return
+        }
+        
+        let pick:UIImagePickerController = UIImagePickerController()
+        pick.delegate = self
+        pick.sourceType = UIImagePickerControllerSourceType.camera
+        self.present(pick, animated: true, completion: nil)
+        
+    }
+
     
     func netLoadAriticle(){
         let defaults = UserDefaults.standard
@@ -134,7 +182,7 @@ class PersonalViewController: UIViewController {
 }
 
 
-extension PersonalViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+extension PersonalViewController: UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return articles.count
@@ -147,6 +195,26 @@ extension PersonalViewController: UICollectionViewDataSource, UICollectionViewDe
         return cell
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        self.HeadPortraitIamgeView.image = image
+        
+        //to do网络请求 -> 200 存到数据库中
+        
+        //存到数据库中
+        let defaults = UserDefaults.standard
+        let UserID = String(describing: defaults.value(forKey: "UserID")!)
+        let realm = try! Realm()
+        let user = realm.objects(User.self).filter("userID = \(UserID)")[0]
+        
+        user.userImg = UIImagePNGRepresentation(image)! as NSData
+        
+        try! realm.write {
+            realm.add(user, update: true)
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
     
 }
 
