@@ -12,24 +12,15 @@ import RealmSwift
 class MessageViewController: UIViewController {
 
     @IBOutlet weak var PhoneNumTF: UITextField!
-    @IBOutlet weak var MessageContentTV: UITextView!
+    @IBOutlet weak var NameTF: UITextField!
     
     @IBAction func BackBtnClick(_ sender: Any) {
         hero.dismissViewController()
     }
     
     @IBAction func SendBtnClick(_ sender: Any) {
-        if saveUserEmegecyInfo() == true {
-            DashBoardViewController.sendMessageWithDeviceLocation()
-        }else{
-            //发送失败，错误处理
-        }
-    }
-    
-    @IBAction func SaveBtnClick(_ sender: Any) {
-        guard saveUserEmegecyInfo() == true else {
-            //保存失败，错误处理
-            return
+        if saveUserEmegecyInfo() != true{
+            // to do 报错
         }
     }
     
@@ -50,12 +41,12 @@ class MessageViewController: UIViewController {
         let user = realm.objects(User.self).filter("userID = \(UserID)")[0]
         
         self.PhoneNumTF.text = user.userEmergencyPhone
-        self.MessageContentTV.text = user.userEmergencyMessage
+        self.NameTF.text = user.userEmergencyMessage
     }
     
     func saveUserEmegecyInfo() -> Bool{
         
-        if PhoneNumTF.text == "" || MessageContentTV.text == "" {
+        if PhoneNumTF.text == "" || NameTF.text == "" {
             return false
         }
         
@@ -65,12 +56,12 @@ class MessageViewController: UIViewController {
         let realm = try! Realm()
         let user = realm.objects(User.self).filter("userID = \(UserID)")[0]
         
-        user.userEmergencyPhone = PhoneNumTF.text!
-        user.userEmergencyMessage = MessageContentTV.text!
-        
         try! realm.write {
+            user.userEmergencyPhone = PhoneNumTF.text!
+            user.userEmergencyMessage = NameTF.text!
             realm.add(user, update: true)
         }
+        DashBoardViewController.sendMessageWithDeviceLocation(phone: self.PhoneNumTF.text!, name: self.NameTF.text!)
         return true
     }
 

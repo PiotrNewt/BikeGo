@@ -13,9 +13,7 @@ import SwiftyJSON
 
 class PersonalViewController: UIViewController {
     
-    var articles: [Article] = [Article]() {
-        didSet {CollectionView.reloadData()}
-    }
+    var articles: [Article] = [Article]()
 
     @IBOutlet weak var HeadPortraitIamgeView: UIImageView!
     @IBOutlet weak var HelloLabel: UILabel!
@@ -44,6 +42,12 @@ class PersonalViewController: UIViewController {
         CollectionView.delegate = self
         CollectionView.dataSource = self
         
+        updateLeaveView()
+        let queue = DispatchQueue(label: "BikeDemo.mclareny1ang", attributes: .concurrent)
+        queue.sync {
+            netLoadAriticle()
+        }
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,8 +56,7 @@ class PersonalViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateLeaveView()
-        netLoadAriticle()
+        
     }
     
     func updateLeaveView() {
@@ -130,9 +133,54 @@ class PersonalViewController: UIViewController {
         self.present(pick, animated: true, completion: nil)
         
     }
+    
+    func netChangeHeadImg(image: UIImage) {
+        let defaults = UserDefaults.standard
+        let UserID = String(describing: defaults.value(forKey: "UserID")!)
+        //参数
+        let parameters: Parameters = [
+            "uid": UserID
+        ]
+        //网络请求
+        let url = MenuViewController.APIURLHead + "img/changeUser"
+        
+        Alamofire.upload(multipartFormData: {
+            multipartFormData in
+            
+            for (key, value) in parameters {
+                let str: String = value as! String
+                let data: Data = str.data(using:String.Encoding.utf8)!
+                multipartFormData.append(data, withName: key)
+            }
+            
+            multipartFormData.append(UIImagePNGRepresentation(image)!, withName: "userImg", fileName: "HeadImage", mimeType: "image/png")
+            
+        },to: url, headers: nil,
+          encodingCompletion: {
+            encodingResult in
+            switch encodingResult {
+            case .success(let upload, _, _):
+                upload.responseJSON {
+                    request in
+                    NSLog("怕是添加成功了哦")
+                    if let value = request.result.value{
+                        let json = JSON(value)
+                        print(json)
+                        let code = json[]["code"]
+                        if code != 200{
+                            //to do 头像修改失败
+                        }
+                    }
+                }
+            case .failure(let encodingError):
+                print(encodingError)
+            }
+        })
+    }
 
     
     func netLoadAriticle(){
+        
         let defaults = UserDefaults.standard
         let UserID = String(describing: defaults.value(forKey: "UserID")!)
         
@@ -175,6 +223,10 @@ class PersonalViewController: UIViewController {
                         
                         self.articles.append(article)
                     }
+                    
+                    DispatchQueue.main.async {
+                        self.CollectionView.reloadData()
+                    }
                 }
             }
         }
@@ -199,20 +251,21 @@ extension PersonalViewController: UICollectionViewDataSource, UICollectionViewDe
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.HeadPortraitIamgeView.image = image
         
-        //to do网络请求 -> 200 存到数据库中
-        
-        //存到数据库中
-        let defaults = UserDefaults.standard
-        let UserID = String(describing: defaults.value(forKey: "UserID")!)
-        let realm = try! Realm()
-        let user = realm.objects(User.self).filter("userID = \(UserID)")[0]
-        
-        user.userImg = UIImagePNGRepresentation(image)! as NSData
-        
-        try! realm.write {
-            realm.add(user, update: true)
+        netChangeHeadImg(image: image)
+        //存到数据库中 - 异步修改
+        let queue = DispatchQueue(label: "BikeDemo.mclarenyang")
+        queue.async {
+            let defaults = UserDefaults.standard
+            let UserID = String(describing: defaults.value(forKey: "UserID")!)
+            
+            let realm = try! Realm()
+            let user = realm.objects(User.self).filter("userID = \(UserID)")[0]
+            
+            try! realm.write {
+                user.userImg = UIImagePNGRepresentation(image)! as NSData
+                realm.add(user, update: true)
+            }
         }
-        
         picker.dismiss(animated: true, completion: nil)
     }
     

@@ -98,10 +98,10 @@ class AddArticleViewController: UIViewController {
     
     func netUploadImage(ArticleId: String) {
         
+        //参数
         let parameters: Parameters = [
             "articleId": ArticleId
         ]
-        
         //网络请求
         let url = MenuViewController.APIURLHead + "img/article"
     

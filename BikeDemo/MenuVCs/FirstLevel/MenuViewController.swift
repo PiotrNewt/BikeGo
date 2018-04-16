@@ -96,6 +96,7 @@ class MenuViewController: UIViewController {
             let personalVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Personal") as? PersonalViewController)!
             self.isComeToPersonal = true
             self.show(personalVC, sender: nil)
+            
         }
     }
 

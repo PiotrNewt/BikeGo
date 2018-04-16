@@ -109,8 +109,8 @@ class SignInViewController: UIViewController {
                     defaults.set("yes", forKey: "LogInStatus")
                     
                     self.hero.dismissViewController()
-                    
                 }else{
+                    // to do 获取失败警告提示
                     NSLog("获取失败")
                 }
             }

@@ -8,6 +8,8 @@
 
 import UIKit
 import RealmSwift
+import Alamofire
+import SwiftyJSON
 
 class DashBoardViewController: UIViewController {
     
@@ -93,7 +95,7 @@ class DashBoardViewController: UIViewController {
     }
     
     //全局短信接口
-    static func sendMessageWithDeviceLocation() {
+    static func sendMessageWithDeviceLocation(phone: String, name: String) {
         let locationManager = AMapLocationManager()
         locationManager.requestLocation(withReGeocode: false, completionBlock: { (location: CLLocation?, reGeocode: AMapLocationReGeocode?, error: Error?) in
             
@@ -112,10 +114,34 @@ class DashBoardViewController: UIViewController {
                     || error.code == AMapLocationErrorCode.notConnectedToInternet.rawValue
                     || error.code == AMapLocationErrorCode.cannotConnectToHost.rawValue {
                     NSLog("逆地理错误:{\(error.code) - \(error.localizedDescription)};")
+                    //to do 错误提示
                 }
                 else {
                     //没有错误：location有返回值，regeocode是否有返回值取决于是否进行逆地理操作，发送短信
-                    
+                    var address = "位置信息获取失败，请电话联系\(name)"
+                    if let location = location,
+                        let reGeocode = reGeocode {
+                            address = "\(reGeocode.aoiName)\n经纬度:\(location.coordinate.longitude),\(location.coordinate.latitude)"
+                    }
+                    let parameters: Parameters = [
+                        "phone": phone,
+                        "name": name,
+                        "address": address
+                        ]
+                    //网络请求
+                    let url = MenuViewController.APIURLHead + "sms/send"
+                    Alamofire.request(url, method: .post, parameters: parameters).responseJSON{
+                        request in
+                        if let value = request.result.value{
+                            let json = JSON(value)
+                            let code = json[]["code"]
+                            if code == 200{
+                                NSLog("发送成功")
+                            }else{
+                                // to do 失败提示
+                            }
+                        }
+                    }
                 }
             }
             

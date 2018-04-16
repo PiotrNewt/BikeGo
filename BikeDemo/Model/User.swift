@@ -16,7 +16,7 @@ class User: Object {
     @objc dynamic var userPassword: String = ""
     @objc dynamic var userImg: NSData = NSData()
     @objc dynamic var userEmergencyPhone: String = ""
-    @objc dynamic var userEmergencyMessage: String = "你好，我遇到了危险，请你尽快来帮助我!"
+    @objc dynamic var userEmergencyMessage: String = "骑车帮用户"
     
     //主键
     override static func primaryKey() -> String? {

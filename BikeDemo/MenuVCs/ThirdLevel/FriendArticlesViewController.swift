@@ -52,6 +52,8 @@ class FriendArticlesViewController: UIViewController {
     }
     
     func netGetArticleWithFresh(){
+        let queue = DispatchQueue(label: "BikeDemo.mclarenyang")
+        queue.async {
         let defaults = UserDefaults.standard
         let UserID = String(describing: defaults.value(forKey: "UserID")!)
         
@@ -95,12 +97,15 @@ class FriendArticlesViewController: UIViewController {
                         
                         self.articles.append((article,0.0))
                     }
-                    self.ArticlesTableView.reloadData()
+                    let mainQueue = DispatchQueue.main
+                    mainQueue.async {
+                         self.ArticlesTableView.reloadData()
+                    }
                 }
             }
         }
     }
-
+    }
 }
 
 extension FriendArticlesViewController: UITableViewDelegate, UITableViewDataSource, ArticleDetialCellDelegate{
