@@ -16,6 +16,7 @@ PODS:
   - Realm/Headers (3.3.1)
   - RealmSwift (3.3.1):
     - Realm (= 3.3.1)
+  - ScrollableGraphView (4.0.4)
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - AMapSearch
   - Hero (~> 1.1.0)
   - RealmSwift (~> 3.3.0)
+  - ScrollableGraphView (~> 4.0.4)
   - SwiftyJSON (~> 4.0.0)
 
 SPEC CHECKSUMS:
@@ -37,8 +39,9 @@ SPEC CHECKSUMS:
   Hero: ce59e81c79390613d97b43da7179e2c5e1017e04
   Realm: 63ebf4903b446b0bdf2131244eb1e1549925c724
   RealmSwift: f28fe8507bdfb8f1c924962401b83e7b9d7abb5c
+  ScrollableGraphView: 072ea302f4ca27779692656a49d51fe537b2b1e7
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 43a25d9568f5368609e4a492f150f8a8b2fe6938
+PODFILE CHECKSUM: 13c00153300139d972e24320b49f95c304bb0c12
 
 COCOAPODS: 1.4.0

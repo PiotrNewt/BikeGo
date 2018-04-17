@@ -38,6 +38,7 @@
 		4379D47D20735D65009A102B /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4379D47C20735D65009A102B /* LogIn.storyboard */; };
 		43B1163E206E1E3200177E5F /* DashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B1163D206E1E3200177E5F /* DashBoardViewController.swift */; };
 		43C339FD20735F5A0007366D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C339FC20735F5A0007366D /* MenuViewController.swift */; };
+		43D564E22085B8AB00870D08 /* RideDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D564E12085B8AB00870D08 /* RideDataCell.swift */; };
 		43DF1DFB2078A598001DF01C /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF1DFA2078A598001DF01C /* PersonalViewController.swift */; };
 		43DF1DFD2078B2D1001DF01C /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DF1DFC2078B2D1001DF01C /* ArticleCell.swift */; };
 		43E0E0E120807F40003095F9 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E0E0E020807F40003095F9 /* ImageCell.swift */; };
@@ -106,6 +107,7 @@
 		4379D47C20735D65009A102B /* LogIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogIn.storyboard; sourceTree = "<group>"; };
 		43B1163D206E1E3200177E5F /* DashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewController.swift; sourceTree = "<group>"; };
 		43C339FC20735F5A0007366D /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		43D564E12085B8AB00870D08 /* RideDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDataCell.swift; sourceTree = "<group>"; };
 		43DF1DFA2078A598001DF01C /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		43DF1DFC2078B2D1001DF01C /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		43E0E0E020807F40003095F9 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				436C6298207B0CB400374514 /* ArticleDetialCell.swift */,
 				436C629C207B0D1600374514 /* CommentCell.swift */,
 				43E0E0E020807F40003095F9 /* ImageCell.swift */,
+				43D564E12085B8AB00870D08 /* RideDataCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/ScrollableGraphView/ScrollableGraphView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -577,6 +581,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScrollableGraphView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -659,6 +664,7 @@
 				436C6299207B0CB400374514 /* ArticleDetialCell.swift in Sources */,
 				43DF1DFD2078B2D1001DF01C /* ArticleCell.swift in Sources */,
 				436C6297207AFE4B00374514 /* ArticleDetailViewController.swift in Sources */,
+				43D564E22085B8AB00870D08 /* RideDataCell.swift in Sources */,
 				4340EA0B207DA2E1000DC504 /* MessageViewController.swift in Sources */,
 				431F3302207467D2000267BC /* User.swift in Sources */,
 				43ED358A206DDA5F004BBED6 /* SpeedView.swift in Sources */,

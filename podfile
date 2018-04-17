@@ -13,6 +13,7 @@ target 'BikeDemo' do
   pod 'RealmSwift', '~> 3.3.0'
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftyJSON', '~> 4.0.0'
+  pod 'ScrollableGraphView', '~> 4.0.4'
 
 
   # Pods for BikeDemo
