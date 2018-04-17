@@ -66,6 +66,10 @@ class FriendArticlesViewController: UIViewController {
         let url = MenuViewController.APIURLHead + "article/fresh"
         Alamofire.request(url, method: .post, parameters: parameters).responseJSON{
             request in
+            
+            let queue = DispatchQueue(label: "BikeDemo.mclarenyang", attributes: .concurrent)
+            queue.async {
+                
             if let value = request.result.value{
                 let json = JSON(value)
                 let code = json[]["code"]
@@ -97,13 +101,12 @@ class FriendArticlesViewController: UIViewController {
                         
                         self.articles.append((article,0.0))
                     }
-                    let mainQueue = DispatchQueue.main
-                    mainQueue.async {
+                    DispatchQueue.main.async {
                          self.ArticlesTableView.reloadData()
                     }
                 }
             }
-        }
+        }}
     }
     }
 }

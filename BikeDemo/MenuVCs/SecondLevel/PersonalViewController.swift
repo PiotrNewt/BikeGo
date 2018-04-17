@@ -43,11 +43,7 @@ class PersonalViewController: UIViewController {
         CollectionView.dataSource = self
         
         updateLeaveView()
-        let queue = DispatchQueue(label: "BikeDemo.mclareny1ang", attributes: .concurrent)
-        queue.sync {
-            netLoadAriticle()
-        }
-       
+        netLoadAriticle()
     }
 
     override func didReceiveMemoryWarning() {
@@ -194,6 +190,9 @@ class PersonalViewController: UIViewController {
         let url = MenuViewController.APIURLHead + "article/getHis"
         Alamofire.request(url, method: .post, parameters: parameters).responseJSON{
             request in
+            // 后台修改
+            let queue = DispatchQueue(label: "BikeDemo.mclarenyang", attributes: .concurrent)
+            queue.async {
             if let value = request.result.value{
                 let json = JSON(value)
                 let code = json[]["code"]
@@ -229,7 +228,7 @@ class PersonalViewController: UIViewController {
                     }
                 }
             }
-        }
+        }}
     }
 }
 
