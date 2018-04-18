@@ -117,9 +117,9 @@ extension FriendArticlesViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = (tableView.dequeueReusableCell(withIdentifier: "FriendArticleDetialItem", for: indexPath) as! ArticleDetialCell)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendArticleDetialItem", for: indexPath) as! ArticleDetialCell
         cell.article = self.articles[indexPath.row].0
-        cell.delegate = self
+        cell.delegate = self // to do 在下面
         self.articles[indexPath.row].1 = cell.cellHeight
         return cell
     }

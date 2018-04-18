@@ -83,16 +83,23 @@ class ArticleDetialCell: UITableViewCell {
     }
     
     func transfImages() {
+        
         if article.articleImgs.count == 0{return}
-        //先清除再加载下一次的
-        images.removeAll()
-        for imageUrlString in article.articleImgs {
-            let imageUrl = NSURL(string: imageUrlString)
-            if let data = try? Data(contentsOf: imageUrl! as URL){
-                images.append(UIImage(data: data as Data)!)
+        
+        let queue = DispatchQueue(label: "BikeDemo.mclarenyang", attributes: .concurrent)
+        queue.async {
+            //先清除再加载下一次的
+            self.images.removeAll()
+            for imageUrlString in self.article.articleImgs {
+                let imageUrl = NSURL(string: imageUrlString)
+                if let data = try? Data(contentsOf: imageUrl! as URL){
+                    self.images.append(UIImage(data: data as Data)!)
+                }
+            }
+            DispatchQueue.main.async {
+                self.IamgeCollView.reloadData()
             }
         }
-        IamgeCollView.reloadData()
     }
     
     //点赞和取消赞的静态方法
@@ -135,7 +142,6 @@ class ArticleDetialCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 

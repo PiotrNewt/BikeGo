@@ -41,6 +41,7 @@ class DashBoardViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.allowsBackgroundLocationUpdates = true
@@ -58,9 +59,6 @@ class DashBoardViewController: UIViewController {
         //let speed = Int(arc4random_uniform(50))+1
         NSLog("当前速度：\(speed)")
         let nowspeed: Int = speed <= 1 ? 0 : Int(speed)
-        guard nowspeed != 0 else {
-            return
-        }
         //更新主屏显示
         speedView.speedValue = CGFloat(nowspeed)
         speedLabel.text = String(Int(nowspeed))
@@ -70,7 +68,7 @@ class DashBoardViewController: UIViewController {
     func startRecordRideData() {
         locationManager.startUpdatingLocation()
         //用个什么来记录一下骑行信息（RidedataModel） -> 在持续定位的回调中写入信息
-        //调出设备的加速计算法func
+        //调出设备的加速计算法func 监听设备情况 —> 是否摔倒、显示倾角
     }
     
     //骑行结束
@@ -97,14 +95,36 @@ class DashBoardViewController: UIViewController {
         
     }
     
-    //全局短信接口
+    //每次改变位置后向内存写入位置信息
+    func writeRideDate(location: CLLocation){
+        let locationPoi = RecordPoint()
+        locationPoi.altitude = location.altitude
+        locationPoi.latitude = location.coordinate.latitude
+        locationPoi.longitude = location.coordinate.longitude
+        locationPoi.speed = location.speed * 3.6 // m/s -> km/h
+        locationPoi.times = Date()
+        
+        self.recordPois.append(locationPoi)
+    }
+    
+    /*
+     *  全局发送短信
+     *  独立定位管理：不会被持续定位打断
+     *  to-do 只有在获取到足够信息之后才发送短信 -> 多次定位
+     */
     static func sendMessageWithDeviceLocation(phone: String, name: String) {
+        
         let SmslocationManager = AMapLocationManager()
-        SmslocationManager.desiredAccuracy = kCLLocationAccuracyBest
+        SmslocationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        SmslocationManager.locatingWithReGeocode = true
         SmslocationManager.reGeocodeTimeout = 10
         SmslocationManager.locationTimeout = 10
-        SmslocationManager.requestLocation(withReGeocode: true, completionBlock: { (location: CLLocation?, reGeocode: AMapLocationReGeocode?, error: Error?) in
+        
+        let mm = SmslocationManager.requestLocation(withReGeocode: true, completionBlock: { (location: CLLocation?, reGeocode: AMapLocationReGeocode?, error: Error?) in
             
+            let queue = DispatchQueue(label: "BikeDemo.mclarenyang")
+            queue.async {
+                
             if let error = error {
                 let error = error as NSError
                 
@@ -112,18 +132,17 @@ class DashBoardViewController: UIViewController {
                     //定位错误：此时location和regeocode没有返回值，不进行annotation的添加
                     NSLog("定位错误:{\(error.code) - \(error.localizedDescription)};")
                     return
-                }
-                else if error.code == AMapLocationErrorCode.reGeocodeFailed.rawValue
+                }else if error.code == AMapLocationErrorCode.reGeocodeFailed.rawValue
                     || error.code == AMapLocationErrorCode.timeOut.rawValue
                     || error.code == AMapLocationErrorCode.cannotFindHost.rawValue
                     || error.code == AMapLocationErrorCode.badURL.rawValue
                     || error.code == AMapLocationErrorCode.notConnectedToInternet.rawValue
-                    || error.code == AMapLocationErrorCode.cannotConnectToHost.rawValue {
+                    || error.code == AMapLocationErrorCode.cannotConnectToHost.rawValue
+                    || error.code == AMapLocationErrorCode.canceled.rawValue{
                     NSLog("逆地理错误:{\(error.code) - \(error.localizedDescription)};")
                     //to do 错误提示
-                }
-                else {
-                    //没有错误：location有返回值，regeocode是否有返回值取决于是否进行逆地理操作，发送短信
+                }else {
+                    //没有错误：location有返回值，regeocode是否有返回值取决于是否进行逆地理操作
                     var address = "位置信息获取失败，请电话联系\(name)"
                     
                     if let location = location {
@@ -135,41 +154,45 @@ class DashBoardViewController: UIViewController {
                     
                     NSLog("\(address)")
                     
-                    let queue = DispatchQueue(label: "BikeDemo.mclarenyang")
-                    queue.sync {
-                    
-                    let parameters: Parameters = [
-                        "phone": phone,
-                        "name": name,
-                        "address": address
-                        ]
-                    //网络请求
-                    let url = MenuViewController.APIURLHead + "sms/send"
-                    Alamofire.request(url, method: .post, parameters: parameters).responseJSON{
-                        request in
-                        if let value = request.result.value{
-                            let json = JSON(value)
-                            let code = json[]["code"]
-                            print(json)
-                            if code == 200{
-                                NSLog("发送成功")
-                            }else{
-                                // to do 失败提示
-                                NSLog("发送失败")
-                            }
-                        }
-                    }
-                }}
+//                    let queue = DispatchQueue(label: "BikeDemo.mclarenyang")
+//                    queue.sync {
+//
+//                    let parameters: Parameters = [
+//                        "phone": phone,
+//                        "name": name,
+//                        "address": address
+//                        ]
+//                    //网络请求
+//                    let url = MenuViewController.APIURLHead + "sms/send"
+//                    Alamofire.request(url, method: .post, parameters: parameters).responseJSON{
+//                        request in
+//                        if let value = request.result.value{
+//                            let json = JSON(value)
+//                            let code = json[]["code"]
+//                            print(json)
+//                            if code == 200{
+//                                NSLog("发送成功")
+//                            }else{
+//                                // to do 失败提示
+//                                NSLog("发送失败")
+//                            }
+//                        }
+//                    }
+//                }
+                } }
             }
         })
+        NSLog("mm:\(mm)")
     }
 }
 
-extension DashBoardViewController: AMapLocationManagerDelegate {
+extension DashBoardViewController: AMapLocationManagerDelegate{
+    
     func amapLocationManager(_ manager: AMapLocationManager!, didUpdate location: CLLocation!) {
-        
-        getSystemLocationInfo(speed: location.speed)
-        //to do 向数据库中写入数据 func(location)
+
+        getSystemLocationInfo(speed: location.speed * 3.6)
+        //向数据库中写入数据
+        //writeRideDate(location: location)
         testLabel.text = String(location.speed)
     }
 }

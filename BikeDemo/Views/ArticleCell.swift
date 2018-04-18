@@ -56,7 +56,7 @@ class ArticleCell: UICollectionViewCell {
         }
     }
     
-    //点赞和取消赞的静态方法
+    //点赞和取消赞的方法
     func netChangeLiekArticle(userID: Int, articleID: Int){
         let parameters: Parameters = [
             "userId": userID,

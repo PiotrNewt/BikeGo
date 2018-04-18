@@ -26,6 +26,7 @@
 		43208CEE206B2A7A00364148 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43208CED206B2A7A00364148 /* SearchViewController.swift */; };
 		432446AA20638CD500030F9B /* RoadPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432446A920638CD500030F9B /* RoadPlanViewController.swift */; };
 		4326774B207CA63A004B8325 /* FriendArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4326774A207CA63A004B8325 /* FriendArticlesViewController.swift */; };
+		433FCDAD2086EA860043D2A4 /* RideDataListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433FCDAC2086EA860043D2A4 /* RideDataListViewController.swift */; };
 		4340EA0B207DA2E1000DC504 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4340EA0A207DA2E1000DC504 /* MessageViewController.swift */; };
 		4340EA11207E00F6000DC504 /* RideRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4340EA10207E00F6000DC504 /* RideRecord.swift */; };
 		43629C94207F49A70040BF60 /* AddArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43629C93207F49A70040BF60 /* AddArticleViewController.swift */; };
@@ -95,6 +96,7 @@
 		43208CED206B2A7A00364148 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		432446A920638CD500030F9B /* RoadPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadPlanViewController.swift; sourceTree = "<group>"; };
 		4326774A207CA63A004B8325 /* FriendArticlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendArticlesViewController.swift; sourceTree = "<group>"; };
+		433FCDAC2086EA860043D2A4 /* RideDataListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDataListViewController.swift; sourceTree = "<group>"; };
 		4340EA0A207DA2E1000DC504 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		4340EA10207E00F6000DC504 /* RideRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRecord.swift; sourceTree = "<group>"; };
 		43629C93207F49A70040BF60 /* AddArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArticleViewController.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				4326774A207CA63A004B8325 /* FriendArticlesViewController.swift */,
 				4340EA0A207DA2E1000DC504 /* MessageViewController.swift */,
 				43629C93207F49A70040BF60 /* AddArticleViewController.swift */,
+				433FCDAC2086EA860043D2A4 /* RideDataListViewController.swift */,
 			);
 			path = ThirdLevel;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				4379D47B20735BA6009A102B /* SignUpViewController.swift in Sources */,
 				4312613E205F9A4100DCA265 /* AppDelegate.swift in Sources */,
 				436C629F207B5CB800374514 /* Comment.swift in Sources */,
+				433FCDAD2086EA860043D2A4 /* RideDataListViewController.swift in Sources */,
 				43C339FD20735F5A0007366D /* MenuViewController.swift in Sources */,
 				43208CEE206B2A7A00364148 /* SearchViewController.swift in Sources */,
 				43B1163E206E1E3200177E5F /* DashBoardViewController.swift in Sources */,

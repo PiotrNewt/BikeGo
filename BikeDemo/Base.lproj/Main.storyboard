@@ -134,7 +134,7 @@
         <!--骑行数据-->
         <scene sceneID="CcM-5x-G3H">
             <objects>
-                <viewController title="骑行数据" id="iVi-XI-woC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RideDataList" title="骑行数据" id="iVi-XI-woC" customClass="RideDataListViewController" customModule="BikeDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WjI-5i-v6H">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -147,6 +147,7 @@
                                 </constraints>
                                 <state key="normal" image="back_down"/>
                                 <connections>
+                                    <action selector="BackBtnClick:" destination="iVi-XI-woC" eventType="touchUpInside" id="CNL-1h-GCw"/>
                                     <action selector="BackBtnClick:" destination="m8b-Cl-95A" eventType="touchUpInside" id="CwL-VT-38M"/>
                                     <action selector="BackBtnClick:" destination="RMz-6n-fnr" eventType="touchUpInside" id="efM-M6-IrC"/>
                                     <action selector="BackBtnClick:" destination="cjW-7O-r6o" eventType="touchUpInside" id="gzr-cU-kX9"/>
@@ -159,7 +160,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="72" id="uUx-12-lss" customClass="RideDataCell" customModule="BikeDemo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RideDataItem" rowHeight="72" id="uUx-12-lss" customClass="RideDataCell" customModule="BikeDemo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uUx-12-lss" id="QQD-ov-x21">
@@ -205,6 +206,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cZJ-iI-MRm"/>
                     </view>
+                    <connections>
+                        <outlet property="ListTableView" destination="TyF-o1-HJW" id="RXW-Lx-jJf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VQh-bo-PY9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1239,9 +1243,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9Ku-pr-6hG" kind="relationship" relationship="viewControllers" id="gSW-rt-ete"/>
                         <segue destination="lZ1-uG-0T5" kind="relationship" relationship="viewControllers" id="S0A-JC-p08"/>
                         <segue destination="bKf-d5-hQZ" kind="relationship" relationship="viewControllers" id="XLL-cb-rV9"/>
+                        <segue destination="9Ku-pr-6hG" kind="relationship" relationship="viewControllers" id="xMf-wG-qZ0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sej-bp-oP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
