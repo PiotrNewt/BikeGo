@@ -115,7 +115,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Bpx-rF-jmw" firstAttribute="leading" secondItem="tzA-dC-bHe" secondAttribute="leading" constant="3" id="QnB-Xh-HlO"/>
                             <constraint firstItem="Bpx-rF-jmw" firstAttribute="top" secondItem="tzA-dC-bHe" secondAttribute="top" constant="8" id="Rcq-Xq-VUZ"/>
@@ -213,6 +213,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VQh-bo-PY9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1084" y="2211.576354679803"/>
+        </scene>
+        <!--Data Graph View Controller-->
+        <scene sceneID="ooJ-NJ-dDE">
+            <objects>
+                <viewController storyboardIdentifier="DataGraph" id="Gor-fP-z7M" customClass="DataGraphViewController" customModule="BikeDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="M3w-So-p5R">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hmC-CD-xfL">
+                                <rect key="frame" x="146" y="660" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Reload">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="ReloadBtnClick:" destination="Gor-fP-z7M" eventType="touchUpInside" id="bPn-qh-Pup"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="SR9-aU-Udn"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="phi-f0-rQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1084" y="1429.8029556650247"/>
         </scene>
         <!--个人主页-->
         <scene sceneID="FBY-g9-PFn">
@@ -510,7 +537,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tso-1r-2Q5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="544.79999999999995" y="1426.8472906403942"/>
+            <point key="canvasLocation" x="228" y="1430"/>
         </scene>
         <!--文章-->
         <scene sceneID="VJh-ue-a3K">

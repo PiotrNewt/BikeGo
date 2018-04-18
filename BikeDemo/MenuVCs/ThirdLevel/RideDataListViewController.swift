@@ -35,14 +35,20 @@ class RideDataListViewController: UIViewController {
 
 extension RideDataListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rideRecords.count
+       //return rideRecords.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RideDataItem", for: indexPath) as! RideDataCell
-        cell.rideRecord = rideRecords[indexPath.row]
+        //cell.rideRecord = rideRecords[indexPath.row]
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dataGraphVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DataGraph") as? DataGraphViewController)!
+        //dataGraphVC.rideRecord = self.rideRecords[indexPath.row]
+        self.show(dataGraphVC, sender: nil)
+    }
     
 }

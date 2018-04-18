@@ -35,6 +35,8 @@
 		436C6299207B0CB400374514 /* ArticleDetialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C6298207B0CB400374514 /* ArticleDetialCell.swift */; };
 		436C629D207B0D1600374514 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C629C207B0D1600374514 /* CommentCell.swift */; };
 		436C629F207B5CB800374514 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C629E207B5CB800374514 /* Comment.swift */; };
+		4374B9EB20870A130012B480 /* DataGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4374B9EA20870A130012B480 /* DataGraphViewController.swift */; };
+		4374B9ED20871A7C0012B480 /* UIColor+colorFromHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4374B9EC20871A7C0012B480 /* UIColor+colorFromHex.swift */; };
 		4379D47B20735BA6009A102B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4379D47A20735BA6009A102B /* SignUpViewController.swift */; };
 		4379D47D20735D65009A102B /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4379D47C20735D65009A102B /* LogIn.storyboard */; };
 		43B1163E206E1E3200177E5F /* DashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B1163D206E1E3200177E5F /* DashBoardViewController.swift */; };
@@ -105,6 +107,8 @@
 		436C6298207B0CB400374514 /* ArticleDetialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetialCell.swift; sourceTree = "<group>"; };
 		436C629C207B0D1600374514 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		436C629E207B5CB800374514 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		4374B9EA20870A130012B480 /* DataGraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataGraphViewController.swift; sourceTree = "<group>"; };
+		4374B9EC20871A7C0012B480 /* UIColor+colorFromHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+colorFromHex.swift"; sourceTree = "<group>"; };
 		4379D47A20735BA6009A102B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4379D47C20735D65009A102B /* LogIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogIn.storyboard; sourceTree = "<group>"; };
 		43B1163D206E1E3200177E5F /* DashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 		4303D3F620609B760071B441 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				4374B9EC20871A7C0012B480 /* UIColor+colorFromHex.swift */,
 				4303D3F720609BDF0071B441 /* AMapDemoSwift-Bridging-Header.h */,
 			);
 			path = Support;
@@ -284,6 +289,7 @@
 				4340EA0A207DA2E1000DC504 /* MessageViewController.swift */,
 				43629C93207F49A70040BF60 /* AddArticleViewController.swift */,
 				433FCDAC2086EA860043D2A4 /* RideDataListViewController.swift */,
+				4374B9EA20870A130012B480 /* DataGraphViewController.swift */,
 			);
 			path = ThirdLevel;
 			sourceTree = "<group>";
@@ -663,6 +669,7 @@
 				43208CEE206B2A7A00364148 /* SearchViewController.swift in Sources */,
 				43B1163E206E1E3200177E5F /* DashBoardViewController.swift in Sources */,
 				43629C94207F49A70040BF60 /* AddArticleViewController.swift in Sources */,
+				4374B9EB20870A130012B480 /* DataGraphViewController.swift in Sources */,
 				432446AA20638CD500030F9B /* RoadPlanViewController.swift in Sources */,
 				43E0E0E120807F40003095F9 /* ImageCell.swift in Sources */,
 				436C6299207B0CB400374514 /* ArticleDetialCell.swift in Sources */,
@@ -670,6 +677,7 @@
 				436C6297207AFE4B00374514 /* ArticleDetailViewController.swift in Sources */,
 				43D564E22085B8AB00870D08 /* RideDataCell.swift in Sources */,
 				4340EA0B207DA2E1000DC504 /* MessageViewController.swift in Sources */,
+				4374B9ED20871A7C0012B480 /* UIColor+colorFromHex.swift in Sources */,
 				431F3302207467D2000267BC /* User.swift in Sources */,
 				43ED358A206DDA5F004BBED6 /* SpeedView.swift in Sources */,
 				43DF1DFB2078A598001DF01C /* PersonalViewController.swift in Sources */,

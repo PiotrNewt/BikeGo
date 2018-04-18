@@ -30,7 +30,7 @@ class AddArticleViewController: UIViewController {
     
     @IBAction func AddBtnClick(_ sender: Any) {
         if ArticleContentTV.text == "" {
-            // 错误提示
+            //to do 错误提示
         }else{
             netPublish()
         }
