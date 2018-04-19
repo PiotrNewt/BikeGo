@@ -34,19 +34,12 @@ class DataGraphViewController: UIViewController {
     @IBAction func BlackBtnClick(_ sender: Any) {
         hero.dismissViewController()
     }
-    
-    var numberOfItems = 27
-    var plotOneData: [Double] = [3,45,64,75,3,23,232,5,5,75,6,75,8,9,89,7,0,3,87,32,4,54,56,7,56,7,86]
-    var plotTwoData: [Double] = [7,0,3,87,32,4,54,56,7,56,86,6,75,8,9,89,7,3,45,64,75,3,23,23,5,5,75,34]
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hero.isEnabled = true
         
         loadGraphView_speed()
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -144,20 +137,20 @@ extension DataGraphViewController: ScrollableGraphViewDataSource{
     func value(forPlot plot: Plot, atIndex pointIndex: Int) -> Double {
         switch(plot.identifier) {
         case "speed":
-            return plotOneData[pointIndex]
+            return rideRecord.recordPoints[pointIndex].speed
         case "altitude":
-            return plotTwoData[pointIndex]
+            return rideRecord.recordPoints[pointIndex].altitude
         default:
             return 0
         }
     }
     
     func label(atIndex pointIndex: Int) -> String {
-        return "下标 \(pointIndex)"
+        return "Data\(pointIndex)"
     }
     
     func numberOfPoints() -> Int {
-        return numberOfItems
+        return rideRecord.recordPoints.count
     }
     
     

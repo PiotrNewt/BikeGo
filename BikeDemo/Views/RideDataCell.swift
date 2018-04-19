@@ -40,7 +40,7 @@ class RideDataCell: UITableViewCell {
         }
         // 时间
         if let startDate = rideRecord.recordPoints[0].times,
-            let endDate = rideRecord.recordPoints[rideRecord.recordPoints.endIndex].times{
+            let endDate = rideRecord.recordPoints[rideRecord.recordPoints.endIndex - 1].times{
                 let timeNumber = Int(endDate.timeIntervalSince1970 - startDate.timeIntervalSince1970)
             self.TimeLabel.text = getHHMMSSFormSS(seconds: timeNumber)
         }

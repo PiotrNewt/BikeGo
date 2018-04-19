@@ -25,6 +25,7 @@ class RideDataListViewController: UIViewController {
 
         ListTableView.delegate = self
         ListTableView.dataSource = self
+        loadDataFromRealmDB()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,19 +35,17 @@ class RideDataListViewController: UIViewController {
     
     //加载数据
     func loadDataFromRealmDB() {
-        let queue = DispatchQueue(label: "BikeDemo.mclarenyang", attributes: .concurrent)
-        queue.async {
-            let defaults = UserDefaults.standard
-            let UserID = String(describing: defaults.value(forKey: "UserID")!)
-            let realm = try! Realm()
-            let rideRecords_DB = realm.objects(RideRecord.self).filter("userID = \(UserID)")
-            for oneRideRecord in rideRecords_DB{
-                self.rideRecords.append(oneRideRecord)
-            }
-            DispatchQueue.main.async {
-                self.ListTableView.reloadData()
-            }
+        
+        rideRecords.removeAll()
+        
+        let defaults = UserDefaults.standard
+        let UserID = String(describing: defaults.value(forKey: "UserID")!)
+        let realm = try! Realm()
+        let rideRecords_DB = realm.objects(RideRecord.self).filter("userID = \(UserID)")
+        for RR in rideRecords_DB{
+            self.rideRecords.append(RR)
         }
+        self.ListTableView.reloadData()
     }
 
 }
@@ -54,6 +53,10 @@ class RideDataListViewController: UIViewController {
 extension RideDataListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return rideRecords.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 72
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,5 +70,6 @@ extension RideDataListViewController: UITableViewDelegate, UITableViewDataSource
         dataGraphVC.rideRecord = self.rideRecords[indexPath.row]
         self.show(dataGraphVC, sender: nil)
     }
+    
     
 }

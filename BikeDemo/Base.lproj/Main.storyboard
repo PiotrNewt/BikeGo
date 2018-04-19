@@ -164,7 +164,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uUx-12-lss" id="QQD-ov-x21">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="71.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="04月05日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWS-jS-my9">
@@ -222,16 +222,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hmC-CD-xfL">
-                                <rect key="frame" x="146" y="660" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Reload">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="ReloadBtnClick:" destination="Gor-fP-z7M" eventType="touchUpInside" id="bPn-qh-Pup"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ael-Vn-I3w">
                                 <rect key="frame" x="3" y="52" width="48" height="48"/>
                                 <constraints>
@@ -249,11 +239,22 @@
                                     <action selector="hero_dismissViewController" destination="phi-f0-rQp" eventType="touchUpInside" id="VC0-w7-NbI"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hmC-CD-xfL">
+                                <rect key="frame" x="164" y="541" width="47" height="30"/>
+                                <state key="normal" title="Reload">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="ReloadBtnClick:" destination="Gor-fP-z7M" eventType="touchUpInside" id="bPn-qh-Pup"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Ael-Vn-I3w" firstAttribute="top" secondItem="SR9-aU-Udn" secondAttribute="top" constant="8" id="1Nw-s3-F0g"/>
                             <constraint firstItem="Ael-Vn-I3w" firstAttribute="leading" secondItem="SR9-aU-Udn" secondAttribute="leading" constant="3" id="9YI-Kj-z20"/>
+                            <constraint firstItem="hmC-CD-xfL" firstAttribute="centerY" secondItem="M3w-So-p5R" secondAttribute="centerY" constant="150" id="BZv-nB-fSy"/>
+                            <constraint firstItem="hmC-CD-xfL" firstAttribute="centerX" secondItem="M3w-So-p5R" secondAttribute="centerX" id="F7y-tS-YbW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SR9-aU-Udn"/>
                     </view>
@@ -590,7 +591,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="358"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YGH-hV-xhh" id="tYz-oJ-yv7">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="357.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="357.66666666666669"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="khe-Rs-wyZ">
@@ -696,7 +697,7 @@
                                         <rect key="frame" x="0.0" y="386" width="375" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hox-1x-QUu" id="PK0-fv-qwj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="91.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="91.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Djt-f3-Wag">
@@ -782,7 +783,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="358"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Li3-c5-7eU" id="WoR-HV-w4A">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="357.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="357.66666666666669"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Kue-DO-Z2E">
@@ -1024,7 +1025,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yWt-iw-S8p" id="AGa-p1-5Ng">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="35.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="35.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

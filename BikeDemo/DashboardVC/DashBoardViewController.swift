@@ -58,15 +58,12 @@ class DashBoardViewController: UIViewController {
         NSLog("当前速度：\(speed)")
         let nowspeed: Int = speed <= 1 ? 0 : Int(speed)
         //更新主屏显示
-        if ifDashVCAppear == true{
-            speedView.speedValue = CGFloat(nowspeed)
-            speedLabel.text = String(Int(nowspeed))
-        }
+        speedView.speedValue = CGFloat(nowspeed)
+        speedLabel.text = String(Int(nowspeed))
     }
     
     //骑行开始
     func startRecordRideData() {
-        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.allowsBackgroundLocationUpdates = true
@@ -96,11 +93,11 @@ class DashBoardViewController: UIViewController {
             let defaults = UserDefaults.standard
             let userID = String(describing: defaults.value(forKey: "UserID")!)
         
-            let rideRecord = RideRecord()
-            rideRecord.userID = Int(userID)!
-        
             //采样处理
             self.recordPois = self.samplingRideData(pois: self.recordPois)
+            
+            let rideRecord = RideRecord()
+            rideRecord.userID = Int(userID)!
         
             for poi in self.recordPois {
                 poi.subOne = rideRecord
@@ -109,6 +106,7 @@ class DashBoardViewController: UIViewController {
             let realm = try! Realm()
             try! realm.write {
                 realm.add(rideRecord)
+                NSLog("骑行数据已经存入数据库")
             }
         
             //清空用于记录的数组
@@ -272,10 +270,12 @@ extension DashBoardViewController: AMapLocationManagerDelegate{
     
     func amapLocationManager(_ manager: AMapLocationManager!, didUpdate location: CLLocation!) {
         NSLog("位置刷新")
-        getSystemLocationInfo(speed: location.speed * 3.6)
+        if ifDashVCAppear == true{
+            getSystemLocationInfo(speed: location.speed * 3.6)
+            testLabel.text = String(location.speed)
+        }
         //内存中写入数据
         writeRideDate(location: location)
-        //testLabel.text = String(location.speed)
     }
 }
 
