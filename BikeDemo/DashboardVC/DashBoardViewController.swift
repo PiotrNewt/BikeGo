@@ -162,7 +162,7 @@ class DashBoardViewController: UIViewController {
                 speed += poi.speed
                 altitude += poi.altitude
                 index += 1
-                if index == ratio || poi == pois[pois.endIndex]{
+                if index == ratio || poi == pois[pois.endIndex - 1]{
                     poi.speed = speed / Double(index)
                     poi.altitude = altitude / Double(index)
                     nowPois.append(poi)
@@ -177,7 +177,7 @@ class DashBoardViewController: UIViewController {
         if compressionTyPe == .sample{
             for poi in pois{
                 index += 1
-                if index == ratio || poi == pois[pois.endIndex]{
+                if index == ratio || poi == pois[pois.endIndex - 1]{
                     nowPois.append(poi)
                     index = 0
                 }
