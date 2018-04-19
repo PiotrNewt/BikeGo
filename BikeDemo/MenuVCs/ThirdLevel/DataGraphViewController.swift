@@ -31,6 +31,9 @@ class DataGraphViewController: UIViewController {
             return
         }
     }
+    @IBAction func BlackBtnClick(_ sender: Any) {
+        hero.dismissViewController()
+    }
     
     var numberOfItems = 27
     var plotOneData: [Double] = [3,45,64,75,3,23,232,5,5,75,6,75,8,9,89,7,0,3,87,32,4,54,56,7,56,7,86]

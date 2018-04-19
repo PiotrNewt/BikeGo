@@ -20,6 +20,8 @@ class RoadPlanViewController: UIViewController {
     let rideView = AMapNaviRideView(frame: UIScreen.main.bounds)
     //路线管理
     let rideManager = AMapNaviRideManager()
+    //实例化一个Dash用于调用记录方法
+    let DashVC = DashBoardViewController()
 
     @IBOutlet weak var BackBtn: UIButton!
     @IBOutlet weak var NaviBtn: UIButton!
@@ -28,6 +30,8 @@ class RoadPlanViewController: UIViewController {
         initRideView()
         addRepresent()
         rideManager.startGPSNavi()
+        DashVC.ifDashVCAppear = false
+        DashVC.startRecordRideData()
     }
     
     override func viewDidLoad() {
@@ -180,6 +184,7 @@ extension RoadPlanViewController: AMapNaviRideManagerDelegate, MAMapViewDelegate
     func rideViewCloseButtonClicked(_ rideView: AMapNaviRideView) {
         rideManager.stopNavi()
         rideView.removeFromSuperview()
+        DashVC.endRecordRideData()
     }
     
     //--- to - do ---//

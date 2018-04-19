@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RideDataListViewController: UIViewController {
     
@@ -30,24 +31,40 @@ class RideDataListViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //加载数据
+    func loadDataFromRealmDB() {
+        let queue = DispatchQueue(label: "BikeDemo.mclarenyang", attributes: .concurrent)
+        queue.async {
+            let defaults = UserDefaults.standard
+            let UserID = String(describing: defaults.value(forKey: "UserID")!)
+            let realm = try! Realm()
+            let rideRecords_DB = realm.objects(RideRecord.self).filter("userID = \(UserID)")
+            for oneRideRecord in rideRecords_DB{
+                self.rideRecords.append(oneRideRecord)
+            }
+            DispatchQueue.main.async {
+                self.ListTableView.reloadData()
+            }
+        }
+    }
 
 }
 
 extension RideDataListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       //return rideRecords.count
-        return 1
+       return rideRecords.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RideDataItem", for: indexPath) as! RideDataCell
-        //cell.rideRecord = rideRecords[indexPath.row]
+        cell.rideRecord = rideRecords[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dataGraphVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DataGraph") as? DataGraphViewController)!
-        //dataGraphVC.rideRecord = self.rideRecords[indexPath.row]
+        dataGraphVC.rideRecord = self.rideRecords[indexPath.row]
         self.show(dataGraphVC, sender: nil)
     }
     
