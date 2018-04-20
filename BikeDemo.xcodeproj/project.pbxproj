@@ -30,6 +30,7 @@
 		4340EA0B207DA2E1000DC504 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4340EA0A207DA2E1000DC504 /* MessageViewController.swift */; };
 		4340EA11207E00F6000DC504 /* RideRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4340EA10207E00F6000DC504 /* RideRecord.swift */; };
 		43629C94207F49A70040BF60 /* AddArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43629C93207F49A70040BF60 /* AddArticleViewController.swift */; };
+		4363C8952089B87200462B95 /* TipBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4363C8942089B87200462B95 /* TipBubble.swift */; };
 		43641C412079B40700A536EB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43641C402079B40700A536EB /* Article.swift */; };
 		436C6297207AFE4B00374514 /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C6296207AFE4B00374514 /* ArticleDetailViewController.swift */; };
 		436C6299207B0CB400374514 /* ArticleDetialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C6298207B0CB400374514 /* ArticleDetialCell.swift */; };
@@ -102,6 +103,7 @@
 		4340EA0A207DA2E1000DC504 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		4340EA10207E00F6000DC504 /* RideRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideRecord.swift; sourceTree = "<group>"; };
 		43629C93207F49A70040BF60 /* AddArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArticleViewController.swift; sourceTree = "<group>"; };
+		4363C8942089B87200462B95 /* TipBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipBubble.swift; sourceTree = "<group>"; };
 		43641C402079B40700A536EB /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		436C6296207AFE4B00374514 /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
 		436C6298207B0CB400374514 /* ArticleDetialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetialCell.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				436C629C207B0D1600374514 /* CommentCell.swift */,
 				43E0E0E020807F40003095F9 /* ImageCell.swift */,
 				43D564E12085B8AB00870D08 /* RideDataCell.swift */,
+				4363C8942089B87200462B95 /* TipBubble.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -662,6 +665,7 @@
 				430EBE1A205FB74C00B92835 /* NaviViewController.swift in Sources */,
 				4326774B207CA63A004B8325 /* FriendArticlesViewController.swift in Sources */,
 				4379D47B20735BA6009A102B /* SignUpViewController.swift in Sources */,
+				4363C8952089B87200462B95 /* TipBubble.swift in Sources */,
 				4312613E205F9A4100DCA265 /* AppDelegate.swift in Sources */,
 				436C629F207B5CB800374514 /* Comment.swift in Sources */,
 				433FCDAD2086EA860043D2A4 /* RideDataListViewController.swift in Sources */,

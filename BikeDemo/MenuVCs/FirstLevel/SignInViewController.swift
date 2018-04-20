@@ -69,6 +69,10 @@ class SignInViewController: UIViewController {
                     self.netGetUserInfo(userID: Int(String(describing: json[]["uid"]))!)
                 }else{
                     NSLog("登陆失败")
+                    let tip = TipBubble()
+                    tip.TipContent = "登陆不咋地，你失败了"
+                    self.view.addSubview(tip)
+                    tip.show(dalay: 2)
                 }
             }
         }

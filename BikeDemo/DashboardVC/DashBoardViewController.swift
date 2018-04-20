@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreMotion
 import RealmSwift
 import Alamofire
 import SwiftyJSON
@@ -19,7 +20,9 @@ enum compressionTyPe {
 
 class DashBoardViewController: UIViewController {
 
+    var timer = Timer()
     let locationManager = AMapLocationManager()
+    let motionManager = CMMotionManager()
     //用于一次记录点
     var recordPois: [RecordPoint] = [RecordPoint]()
     // 用于不同方法下调用
@@ -32,13 +35,16 @@ class DashBoardViewController: UIViewController {
     
     
     @IBAction func RideBtnClick(_ sender: Any) {
-        startRecordRideData()
+        //startRecordRideData()
+        startRecodeDeviceMotion()
         RideBtn.titleLabel?.text = "sss"
         testLabel.text = "定位真的开启了喽"
     }
     
     @IBAction func EndRideBtnClick(_ sender: Any) {
-        endRecordRideData()
+        //endRecordRideData()
+        motionManager.stopDeviceMotionUpdates()
+        timer.invalidate()
         testLabel.text = "定位怕是结束了哦"
     }
     
@@ -53,7 +59,7 @@ class DashBoardViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @objc func getSystemLocationInfo(speed: Double) -> Void {
+    func getSystemLocationInfo(speed: Double) -> Void {
         //let speed = Int(arc4random_uniform(50))+1
         NSLog("当前速度：\(speed)")
         let nowspeed: Int = speed <= 1 ? 0 : Int(speed)
@@ -187,6 +193,29 @@ class DashBoardViewController: UIViewController {
         return nowPois
     }
     
+    //开始获取设备移动信息
+    func startRecodeDeviceMotion(){
+        if motionManager.isAccelerometerAvailable,
+            motionManager.isGyroAvailable{
+            self.motionManager.deviceMotionUpdateInterval = 1 / 60
+            self.motionManager.startDeviceMotionUpdates()
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(judgeDeviceMotion), userInfo: nil, repeats: true)
+        }else{
+            //to do 警告设备加速计不能使用
+            NSLog("设备加速计或者陀螺仪不能使用")
+        }
+    }
+    
+    //
+    @objc func judgeDeviceMotion(){
+        if let newMotionData = self.motionManager.deviceMotion{
+            NSLog("姿态旋转\(newMotionData.attitude.roll)")
+            NSLog("姿态偏移\(newMotionData.attitude.yaw)")
+            NSLog("陀螺仪旋转y\(newMotionData.rotationRate.y)")
+            NSLog("加速度x\(newMotionData.userAcceleration.x)")
+        }
+    }
+    
     /*
      *  全局发送短信
      *  独立定位管理：不会被持续定位打断
@@ -266,7 +295,7 @@ class DashBoardViewController: UIViewController {
     }
 }
 
-extension DashBoardViewController: AMapLocationManagerDelegate{
+extension DashBoardViewController: AMapLocationManagerDelegate, UIAccelerometerDelegate{
     
     func amapLocationManager(_ manager: AMapLocationManager!, didUpdate location: CLLocation!) {
         NSLog("位置刷新")
