@@ -20,7 +20,6 @@ class NaviViewController: UIViewController {
     
     @IBOutlet weak var TouchInfoView: UIView!
     @IBOutlet weak var TouchName: UILabel!
-    @IBOutlet weak var TouchRoadPlanBtn: UIButton!
     @IBOutlet weak var TouchAddress: UILabel!
     
     @IBOutlet weak var MapModeBtn: UIButton!
@@ -109,9 +108,8 @@ class NaviViewController: UIViewController {
         ///位置按钮
         mapView.addSubview(MyLocationBtn)
         TouchInfoView.isHidden = true
-        
-        //mapView.userLocation.location.speed
-        //let lo = CLLocation()
+        let touchInfoGesture = UITapGestureRecognizer(target: self, action: #selector(selectRodePlan))
+        TouchInfoView.addGestureRecognizer(touchInfoGesture)
         
         //定位蓝点
         r.showsHeadingIndicator = true
@@ -130,22 +128,24 @@ class NaviViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let RoadPlanVC = segue.destination as? RoadPlanViewController{
-            RoadPlanVC.endPointCoordinate = pointAnnotation.coordinate
-            RoadPlanVC.startPoi = GetUserLocation()
-            RoadPlanVC.mapView.mapType = mapView.mapType
-        }
-        
         if let searchVC = segue.destination as? SearchViewController {
             searchVC.delegate = self
         }
+    }
+    
+    //路线规划跳转
+    @objc func selectRodePlan() {
+        let RoadPlanVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RoadPlanSelect") as? RoadPlanViewController)!
+        RoadPlanVC.endPointCoordinate = pointAnnotation.coordinate
+        RoadPlanVC.startPoi = GetUserLocation()
+        RoadPlanVC.mapView.mapType = mapView.mapType
+        self.show(RoadPlanVC, sender: nil)
     }
     
     func LoadTouchInfoView(touchPoi: MATouchPoi) -> UIView {
         TouchName.text = touchPoi.name
         TouchInfoView.addSubview(TouchName)
         TouchInfoView.addSubview(TouchAddress)
-        TouchInfoView.addSubview(TouchRoadPlanBtn)
         ifTouchInfoViewLoaded = true
         TouchInfoView.isHidden = false
         //定位按钮空位
@@ -199,7 +199,6 @@ extension NaviViewController: AMapSearchDelegate, MAMapViewDelegate, AMapLocatio
             TouchAddress.text = selectedTip.address
             TouchInfoView.addSubview(TouchName)
             TouchInfoView.addSubview(TouchAddress)
-            TouchInfoView.addSubview(TouchRoadPlanBtn)
             ifTouchInfoViewLoaded = true
             TouchInfoView.isHidden = false
             //定位按钮空位

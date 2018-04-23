@@ -1064,55 +1064,51 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWM-Uz-taK" userLabel="TouchInfoView">
-                                <rect key="frame" x="0.0" y="632" width="375" height="97"/>
+                                <rect key="frame" x="17" y="644" width="340" height="80"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationBar" translatesAutoresizingMaskIntoConstraints="NO" id="vPv-wX-imU">
+                                        <rect key="frame" x="-9" y="-8" width="358" height="97"/>
+                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPW-jP-tXW">
-                                        <rect key="frame" x="18" y="28" width="35" height="23"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="8" y="14" width="32.666666666666664" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRs-yV-Qxx">
-                                        <rect key="frame" x="18" y="60" width="359" height="21"/>
+                                        <rect key="frame" x="8" y="45" width="272" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="suQ-tm-m2T"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="0.7987746147260274" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d54-2L-zYV">
-                                        <rect key="frame" x="303" y="-25" width="56" height="58"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RoadPlanBtn" translatesAutoresizingMaskIntoConstraints="NO" id="yzq-ku-Rej">
+                                        <rect key="frame" x="298" y="23" width="34" height="35"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="56" id="qGR-uA-yXu"/>
+                                            <constraint firstAttribute="width" constant="34" id="K7A-N8-vl5"/>
                                         </constraints>
-                                        <state key="normal" image="RoadPlanBtn"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="NRB"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="heroModifierString" value="arc"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <segue destination="rgz-ob-3yM" kind="show" id="DcJ-fr-55z"/>
-                                        </connections>
-                                    </button>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="97" id="5Ds-jH-Bp4"/>
-                                    <constraint firstItem="yRs-yV-Qxx" firstAttribute="top" secondItem="cPW-jP-tXW" secondAttribute="bottom" constant="9" id="CK7-ZD-TLS"/>
-                                    <constraint firstItem="yRs-yV-Qxx" firstAttribute="leading" secondItem="qWM-Uz-taK" secondAttribute="leading" constant="18" id="KM1-Uq-oJF"/>
-                                    <constraint firstAttribute="bottom" secondItem="yRs-yV-Qxx" secondAttribute="bottom" constant="16" id="Lkn-u5-xh7"/>
+                                    <constraint firstAttribute="height" constant="80" id="5Ds-jH-Bp4"/>
+                                    <constraint firstItem="yRs-yV-Qxx" firstAttribute="top" secondItem="cPW-jP-tXW" secondAttribute="bottom" constant="8" id="CK7-ZD-TLS"/>
+                                    <constraint firstItem="vPv-wX-imU" firstAttribute="leading" secondItem="qWM-Uz-taK" secondAttribute="leading" constant="-9" id="E5I-0k-oUX"/>
+                                    <constraint firstAttribute="bottom" secondItem="vPv-wX-imU" secondAttribute="bottom" constant="-9" id="FDR-7b-idO"/>
+                                    <constraint firstItem="yRs-yV-Qxx" firstAttribute="leading" secondItem="qWM-Uz-taK" secondAttribute="leading" constant="8" id="KM1-Uq-oJF"/>
+                                    <constraint firstAttribute="bottom" secondItem="yRs-yV-Qxx" secondAttribute="bottom" constant="14" id="Lkn-u5-xh7"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cPW-jP-tXW" secondAttribute="trailing" constant="20" symbolic="YES" id="MKg-0c-17I"/>
-                                    <constraint firstItem="cPW-jP-tXW" firstAttribute="top" secondItem="qWM-Uz-taK" secondAttribute="top" constant="28" id="NkE-xk-Tbc"/>
-                                    <constraint firstAttribute="trailing" secondItem="yRs-yV-Qxx" secondAttribute="trailing" constant="-2" id="bkr-Id-uyy"/>
-                                    <constraint firstAttribute="bottom" secondItem="d54-2L-zYV" secondAttribute="bottom" constant="64" id="fde-yy-xXh"/>
-                                    <constraint firstAttribute="trailing" secondItem="d54-2L-zYV" secondAttribute="trailing" constant="16" id="nAS-r9-okT"/>
-                                    <constraint firstItem="cPW-jP-tXW" firstAttribute="leading" secondItem="qWM-Uz-taK" secondAttribute="leading" constant="18" id="wSK-Ga-tf3"/>
-                                    <constraint firstItem="d54-2L-zYV" firstAttribute="top" secondItem="qWM-Uz-taK" secondAttribute="top" constant="-25" id="z4v-ZQ-tuZ"/>
+                                    <constraint firstItem="vPv-wX-imU" firstAttribute="top" secondItem="qWM-Uz-taK" secondAttribute="top" constant="-8" id="MRQ-lp-ARG"/>
+                                    <constraint firstItem="cPW-jP-tXW" firstAttribute="top" secondItem="qWM-Uz-taK" secondAttribute="top" constant="14" id="NkE-xk-Tbc"/>
+                                    <constraint firstAttribute="bottom" secondItem="yzq-ku-Rej" secondAttribute="bottom" constant="22" id="VM7-tq-pzh"/>
+                                    <constraint firstAttribute="trailing" secondItem="vPv-wX-imU" secondAttribute="trailing" constant="-9" id="Vg6-TC-Feb"/>
+                                    <constraint firstAttribute="trailing" secondItem="yzq-ku-Rej" secondAttribute="trailing" constant="8" id="alj-Q2-Sr8"/>
+                                    <constraint firstItem="yzq-ku-Rej" firstAttribute="top" secondItem="qWM-Uz-taK" secondAttribute="top" constant="23" id="tJ7-rB-bTM"/>
+                                    <constraint firstItem="yzq-ku-Rej" firstAttribute="leading" secondItem="yRs-yV-Qxx" secondAttribute="trailing" constant="18" id="vVd-gf-aye"/>
+                                    <constraint firstItem="cPW-jP-tXW" firstAttribute="leading" secondItem="qWM-Uz-taK" secondAttribute="leading" constant="8" id="wSK-Ga-tf3"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="RoadView"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9LH-an-Hfi">
                                 <rect key="frame" x="303" y="197" width="56" height="58"/>
@@ -1121,16 +1117,6 @@
                                 </constraints>
                                 <connections>
                                     <action selector="changeTrafficInfo:" destination="9Ku-pr-6hG" eventType="touchUpInside" id="m7s-js-4gn"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xdb-sw-Kzw">
-                                <rect key="frame" x="16" y="655" width="56" height="58"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="58" id="hpm-os-cRv"/>
-                                </constraints>
-                                <state key="normal" image="MyLocation"/>
-                                <connections>
-                                    <action selector="setMapCenterINMyLocation:" destination="9Ku-pr-6hG" eventType="touchUpInside" id="vnv-9B-9RQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqu-aQ-2Z9">
@@ -1189,19 +1175,29 @@
                                     <action selector="mapModeBtnClick:" destination="9Ku-pr-6hG" eventType="touchUpInside" id="HMk-bt-7ht"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xdb-sw-Kzw">
+                                <rect key="frame" x="16" y="655" width="58" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="hpm-os-cRv"/>
+                                </constraints>
+                                <state key="normal" image="MyLocation"/>
+                                <connections>
+                                    <action selector="setMapCenterINMyLocation:" destination="9Ku-pr-6hG" eventType="touchUpInside" id="vnv-9B-9RQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qWM-Uz-taK" firstAttribute="leading" secondItem="HIa-FK-2TP" secondAttribute="leading" id="1BE-EI-6wW"/>
+                            <constraint firstItem="qWM-Uz-taK" firstAttribute="leading" secondItem="HIa-FK-2TP" secondAttribute="leading" constant="17" id="1BE-EI-6wW"/>
                             <constraint firstItem="jqu-aQ-2Z9" firstAttribute="leading" secondItem="HIa-FK-2TP" secondAttribute="leading" constant="16" id="3sR-M8-03y"/>
                             <constraint firstItem="9LH-an-Hfi" firstAttribute="leading" relation="lessThanOrEqual" secondItem="HIa-FK-2TP" secondAttribute="leading" constant="303" id="3tI-Yu-BRX"/>
                             <constraint firstItem="HIa-FK-2TP" firstAttribute="trailing" secondItem="LwX-ag-i2s" secondAttribute="trailing" constant="16" id="6lL-XZ-0wj"/>
-                            <constraint firstItem="qWM-Uz-taK" firstAttribute="bottom" secondItem="HIa-FK-2TP" secondAttribute="bottom" id="7gn-5P-wzx"/>
+                            <constraint firstItem="qWM-Uz-taK" firstAttribute="bottom" secondItem="HIa-FK-2TP" secondAttribute="bottom" constant="-5" id="7gn-5P-wzx"/>
                             <constraint firstItem="HIa-FK-2TP" firstAttribute="trailing" secondItem="D0B-i5-000" secondAttribute="trailing" constant="16" id="FwB-D1-g6T"/>
                             <constraint firstItem="HIa-FK-2TP" firstAttribute="trailing" secondItem="68d-nx-bvh" secondAttribute="trailing" constant="16" id="IJd-oi-prn"/>
                             <constraint firstItem="LwX-ag-i2s" firstAttribute="top" secondItem="jqu-aQ-2Z9" secondAttribute="bottom" constant="33" id="MZu-r3-KdA"/>
-                            <constraint firstItem="qWM-Uz-taK" firstAttribute="trailing" secondItem="HIa-FK-2TP" secondAttribute="trailing" id="MzT-My-H8K"/>
-                            <constraint firstItem="qWM-Uz-taK" firstAttribute="top" secondItem="Xdb-sw-Kzw" secondAttribute="bottom" constant="-81" id="Ouk-0U-v6A"/>
+                            <constraint firstItem="qWM-Uz-taK" firstAttribute="trailing" secondItem="HIa-FK-2TP" secondAttribute="trailing" constant="-18" id="MzT-My-H8K"/>
+                            <constraint firstItem="qWM-Uz-taK" firstAttribute="top" secondItem="Xdb-sw-Kzw" secondAttribute="bottom" constant="-69" id="Ouk-0U-v6A"/>
                             <constraint firstItem="Xdb-sw-Kzw" firstAttribute="leading" secondItem="HIa-FK-2TP" secondAttribute="leading" constant="16" id="QFD-Dc-jvh"/>
                             <constraint firstItem="D0B-i5-000" firstAttribute="top" secondItem="jqu-aQ-2Z9" secondAttribute="bottom" constant="33" id="S7J-2B-d5j"/>
                             <constraint firstItem="HIa-FK-2TP" firstAttribute="trailing" secondItem="9LH-an-Hfi" secondAttribute="trailing" constant="16" id="UQS-PJ-2NM"/>
@@ -1227,14 +1223,13 @@
                         <outlet property="TouchAddress" destination="yRs-yV-Qxx" id="EwQ-GQ-ghr"/>
                         <outlet property="TouchInfoView" destination="qWM-Uz-taK" id="DFK-Fe-Cy6"/>
                         <outlet property="TouchName" destination="cPW-jP-tXW" id="COU-Yf-bji"/>
-                        <outlet property="TouchRoadPlanBtn" destination="d54-2L-zYV" id="tFd-94-ahk"/>
                         <outlet property="TrafficBtn" destination="9LH-an-Hfi" id="uPz-H3-eTB"/>
                         <outletCollection property="TouchInfoView" destination="qWM-Uz-taK" collectionClass="NSMutableArray" id="zVT-Ug-MkB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LDm-Ws-bYU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="228" y="-360.59113300492612"/>
+            <point key="canvasLocation" x="226.40000000000001" y="-361.33004926108379"/>
         </scene>
         <!--路线-->
         <scene sceneID="s6U-jc-hE1">
@@ -1279,9 +1274,6 @@
                             <constraint firstItem="zJN-uK-X5s" firstAttribute="leading" secondItem="lhO-nv-3wP" secondAttribute="leading" constant="4" id="wmx-pu-pno"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lhO-nv-3wP"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="RoadView"/>
-                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <outlet property="BackBtn" destination="zJN-uK-X5s" id="Tgi-p2-BmD"/>
@@ -1319,15 +1311,16 @@
         <image name="FriendsBtn" width="37" height="37"/>
         <image name="HeadPortraitIamge" width="218" height="237"/>
         <image name="LikeBtn" width="30" height="26"/>
+        <image name="LocationBar" width="312" height="102"/>
         <image name="MapCommonStyle" width="56" height="56"/>
         <image name="MapMode" width="56" height="58"/>
         <image name="MapNightStyle" width="56" height="56"/>
         <image name="MapSateStyle" width="56" height="56"/>
         <image name="MessageBtn" width="37" height="37"/>
-        <image name="MyLocation" width="56" height="58"/>
+        <image name="MyLocation" width="58" height="58"/>
         <image name="NaviBtn" width="66" height="68"/>
         <image name="RideDateBtn" width="37" height="37"/>
-        <image name="RoadPlanBtn" width="56" height="59"/>
+        <image name="RoadPlanBtn" width="34" height="35"/>
         <image name="SearchBar" width="351" height="44"/>
         <image name="SearchBtn" width="30" height="30"/>
         <image name="back_down" width="24" height="24"/>
