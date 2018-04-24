@@ -38,12 +38,12 @@ class ArticleCell: UICollectionViewCell {
     
     var article = Article(){
         didSet{
-            if article.articleImgs.count != 0{
-                let imageURL = NSURL(string: (article.articleImgs[0]))
-                if let data = try? Data(contentsOf: imageURL! as URL){
-                    TopImageView.image = UIImage(data: data)
-                }
-            }
+//            if article.articleImgs.count != 0{
+//                let imageURL = NSURL(string: (article.articleImgs[0]))
+//                if let data = try? Data(contentsOf: imageURL! as URL){
+//                    TopImageView.image = UIImage(data: data)
+//                }
+//            }
             ContentLabel.text = article.articleContent
             DateLabel.text = article.date + "/" + article.time
             if article.likeArticle == true {
