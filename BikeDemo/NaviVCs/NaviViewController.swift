@@ -101,9 +101,6 @@ class NaviViewController: UIViewController {
         mapView.touchPOIEnabled = true
         self.view.addSubview(mapView)
         
-        //头像
-        loadHeadImage()
-        
         //添加控件
         mapView.addSubview(MapCommonStyleBtn)
         mapView.addSubview(MapSateStyleBtn)
@@ -138,12 +135,18 @@ class NaviViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        //头像
+        loadHeadImage()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let searchVC = segue.destination as? SearchViewController {
             searchVC.delegate = self
         }
     }
+    
     
     //头像加载
     func loadHeadImage(){
@@ -171,8 +174,15 @@ class NaviViewController: UIViewController {
 
     //头像点击跳转
     @objc func selectHeadImage(){
-        let menuVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MenuVC") as? MenuViewController)!
-        self.show(menuVC, sender: nil)
+        if HeadPortraitIamgeView.image == #imageLiteral(resourceName: "HeadPortraitIamge") {
+            // 跳转到登录页面
+            let signInVC = (UIStoryboard(name: "LogIn", bundle: nil).instantiateViewController(withIdentifier: "SignIn") as? SignInViewController)!
+            self.show(signInVC, sender: nil)
+        } else {
+            // 跳转到个人主页
+            let personalVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Personal") as? PersonalViewController)!
+            self.show(personalVC, sender: nil)
+        }
     }
     
     //路线规划跳转

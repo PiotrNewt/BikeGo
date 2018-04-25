@@ -53,6 +53,7 @@ class ArticleCell: UICollectionViewCell {
             }
             
             hero.id = "myArticle\(String(describing: article.articleID))"
+            self.layer.cornerRadius = 5
         }
     }
     

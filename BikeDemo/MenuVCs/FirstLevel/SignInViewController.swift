@@ -112,7 +112,9 @@ class SignInViewController: UIViewController {
                     defaults.set(String(describing: userID), forKey: "UserID")
                     defaults.set("yes", forKey: "LogInStatus")
                     
-                    self.hero.dismissViewController()
+                    let personalVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Personal") as? PersonalViewController)!
+                    self.hero.replaceViewController(with: personalVC)
+                    
                 }else{
                     // to do 获取失败警告提示
                     NSLog("获取失败")
