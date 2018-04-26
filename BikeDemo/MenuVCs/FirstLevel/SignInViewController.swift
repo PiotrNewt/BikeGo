@@ -10,13 +10,15 @@ import UIKit
 import RealmSwift
 import Alamofire
 import SwiftyJSON
+import TextFieldEffects
 
 class SignInViewController: UIViewController {
 
     
     @IBOutlet weak var SignUpLabel: UILabel!
-    @IBOutlet weak var NameTF: UITextField!
-    @IBOutlet weak var PasswordTF: UITextField!
+    
+    var NameTF = HoshiTextField()
+    var PasswordTF = HoshiTextField()
     
     
     @IBAction func BackBtnClick(_ sender: Any) {
@@ -42,7 +44,25 @@ class SignInViewController: UIViewController {
         
         //添加键盘收回手势
         self.view.addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(keyboardComeback)))
-
+        
+        //修饰TF
+        let nframe = CGRect(x:UIScreen.main.bounds.width / 2 - 122, y: UIScreen.main.bounds.height / 2 - 91, width: 244, height: 50)
+        NameTF.frame = nframe
+        NameTF.placeholder = "昵称"
+        NameTF.placeholderColor = UIColor.colorFromHex(hexString: "#9B9B9B")
+        NameTF.borderInactiveColor = UIColor.colorFromHex(hexString: "#979797")
+        NameTF.borderActiveColor = UIColor.colorFromHex(hexString: "#6A39F7")
+        self.view.addSubview(NameTF)
+        
+        let pframe = CGRect(x:UIScreen.main.bounds.width / 2 - 122, y: UIScreen.main.bounds.height / 2 - 25, width: 244, height: 50)
+        PasswordTF.frame = pframe
+        PasswordTF.placeholder = "密码"
+        PasswordTF.placeholderColor = UIColor.colorFromHex(hexString: "#9B9B9B")
+        PasswordTF.borderInactiveColor = UIColor.colorFromHex(hexString: "#979797")
+        PasswordTF.borderActiveColor = UIColor.colorFromHex(hexString: "#6A39F7")
+        PasswordTF.isSecureTextEntry = true
+        self.view.addSubview(PasswordTF)
+        
     }
 
     override func didReceiveMemoryWarning() {

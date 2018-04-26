@@ -50,7 +50,7 @@ class RideDataCell: UITableViewCell {
             speed += rideRecord.recordPoints[index].speed
         }
         speed /= Double(rideRecord.recordPoints.count)
-        self.SpeedLabel.text = "\(speed)"
+        self.SpeedLabel.text = String(format: "%.1f", speed)
     }
     
     func getHHMMSSFormSS(seconds:Int) -> String {

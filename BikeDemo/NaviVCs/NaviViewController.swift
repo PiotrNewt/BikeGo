@@ -174,14 +174,16 @@ class NaviViewController: UIViewController {
 
     //头像点击跳转
     @objc func selectHeadImage(){
-        if HeadPortraitIamgeView.image == #imageLiteral(resourceName: "HeadPortraitIamge") {
-            // 跳转到登录页面
-            let signInVC = (UIStoryboard(name: "LogIn", bundle: nil).instantiateViewController(withIdentifier: "SignIn") as? SignInViewController)!
-            self.show(signInVC, sender: nil)
-        } else {
+        let defaults = UserDefaults.standard
+        if let LogInStatus = defaults.value(forKey: "LogInStatus"),
+            String(describing: LogInStatus) == "yes"{
             // 跳转到个人主页
             let personalVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Personal") as? PersonalViewController)!
             self.show(personalVC, sender: nil)
+        } else {
+            // 跳转到登录页面
+            let signInVC = (UIStoryboard(name: "LogIn", bundle: nil).instantiateViewController(withIdentifier: "SignIn") as? SignInViewController)!
+            self.show(signInVC, sender: nil)
         }
     }
     

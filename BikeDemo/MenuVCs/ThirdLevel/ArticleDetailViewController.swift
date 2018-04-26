@@ -25,7 +25,9 @@ class ArticleDetailViewController: UIViewController {
     var textFieldHeight: CGFloat = 0.0
     
     @IBOutlet weak var TableView: UITableView!
-    @IBOutlet weak var CommentTF: UITextField!
+   // @IBOutlet weak var CommentTF: UITextField!
+    
+    var CommentTF = UITextField()
     
     
     @IBAction func BackBtnClick(_ sender: Any) {
@@ -42,6 +44,16 @@ class ArticleDetailViewController: UIViewController {
         
         CommentTF.textAlignment = .center
         CommentTF.delegate = self
+
+        let frame = CGRect(x:0, y:UIScreen.main.bounds.height - 35 , width: UIScreen.main.bounds.width, height: 35)
+        CommentTF.frame = frame
+        CommentTF.placeholder = "评论"
+        CommentTF.textAlignment = .center
+        CommentTF.backgroundColor = UIColor.white
+        CommentTF.borderStyle = .roundedRect
+        CommentTF.returnKeyType = .done
+        self.view.addSubview(CommentTF)
+        
         textFieldHeight = CommentTF.frame.origin.y
         //监听
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDisShow(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
