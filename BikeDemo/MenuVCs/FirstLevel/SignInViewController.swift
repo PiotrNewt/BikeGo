@@ -30,6 +30,10 @@ class SignInViewController: UIViewController {
             netSignin()
         }else{
             NSLog("输入为空")
+            let tip = TipBubble()
+            tip.TipContent = "请输入完整信息"
+            self.view.addSubview(tip)
+            tip.show(dalay: 2)
         }
     }
     
@@ -90,7 +94,7 @@ class SignInViewController: UIViewController {
                 }else{
                     NSLog("登陆失败")
                     let tip = TipBubble()
-                    tip.TipContent = "登陆不咋地，你失败了"
+                    tip.TipContent = "用户名或密码错误"
                     self.view.addSubview(tip)
                     tip.show(dalay: 2)
                 }
@@ -138,6 +142,10 @@ class SignInViewController: UIViewController {
                 }else{
                     // to do 获取失败警告提示
                     NSLog("获取失败")
+                    let tip = TipBubble()
+                    tip.TipContent = "用户信息拉取失败"
+                    self.view.addSubview(tip)
+                    tip.show(dalay: 2)
                 }
             }
         }

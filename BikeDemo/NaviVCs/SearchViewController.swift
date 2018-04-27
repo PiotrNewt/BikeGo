@@ -89,6 +89,8 @@ extension SearchViewController: AMapSearchDelegate, UISearchBarDelegate, UITable
     //查询
     func onInputTipsSearchDone(_ request: AMapInputTipsSearchRequest!, response: AMapInputTipsSearchResponse!) {
         NSLog("查询成功")
+        //清空数组
+        resultArray.removeAll()
         for index in response.tips {
             resultArray.append(index)
         }
@@ -102,8 +104,6 @@ extension SearchViewController: AMapSearchDelegate, UISearchBarDelegate, UITable
     //改变字符的回调
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         NSLog("searchBar回调成功")
-        //清空数组
-        resultArray.removeAll()
         request.keywords = searchBar.text
         search?.aMapInputTipsSearch(request)
     }

@@ -30,6 +30,10 @@ class SignUpViewController: UIViewController {
             netSignUp()
         }else{
             NSLog("输入为空")
+            let tip = TipBubble()
+            tip.TipContent = "请输入完整信息"
+            self.view.addSubview(tip)
+            tip.show(dalay: 2)
         }
     }
     
@@ -95,6 +99,10 @@ class SignUpViewController: UIViewController {
                         self.netGetUserInfo(userID: Int(String(describing: json[]["uid"]))!)
                     }else{
                         NSLog("注册失败")
+                        let tip = TipBubble()
+                        tip.TipContent = "注册失败"
+                        self.view.addSubview(tip)
+                        tip.show(dalay: 2)
                     }
             }
         }
@@ -157,6 +165,10 @@ class SignUpViewController: UIViewController {
                 guard judgement != true else {
                     //to do 警告已被注册
                     NSLog("用户名被占用")
+                    let tip = TipBubble()
+                    tip.TipContent = "用户名已被注册"
+                    self.view.addSubview(tip)
+                    tip.show(dalay: 2)
                     return
                 }
             }
