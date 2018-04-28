@@ -8,11 +8,18 @@
 
 import UIKit
 import RealmSwift
+import TextFieldEffects
 
 class MessageViewController: UIViewController {
-
-    @IBOutlet weak var PhoneNumTF: UITextField!
-    @IBOutlet weak var NameTF: UITextField!
+    
+    var PhoneNumTF = HoshiTextField()
+    var NameTF = HoshiTextField()
+    
+    
+    @IBOutlet weak var MessageView: UIView!
+    @IBOutlet weak var SendBtn: UIButton!
+    
+    
     
     @IBAction func BackBtnClick(_ sender: Any) {
         hero.dismissViewController()
@@ -27,6 +34,9 @@ class MessageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hero.isEnabled = true
+        
+        //添加键盘收回手势
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(keyboardComeback)))
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +45,32 @@ class MessageViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        setTF()
+    }
+    
+    func setTF() {
+        //self.view.addSubview(MessageView)
+        
+        //修饰TF
+        let pframe = CGRect(x:MessageView.frame.width / 2 - 100, y: MessageView.frame.width / 2 - 25 - 60, width: 200, height: 50)
+        PhoneNumTF.frame = pframe
+        PhoneNumTF.placeholder = "电话"
+        PhoneNumTF.placeholderColor = UIColor.colorFromHex(hexString: "#9B9B9B")
+        PhoneNumTF.borderInactiveColor = UIColor.colorFromHex(hexString: "#979797")
+        PhoneNumTF.borderActiveColor = UIColor.colorFromHex(hexString: "#6A39F7")
+        self.MessageView.addSubview(PhoneNumTF)
+        
+        let nframe = CGRect(x:MessageView.frame.width / 2 - 100, y: MessageView.frame.width / 2 - 20, width: 200, height: 50)
+        NameTF.frame = nframe
+        NameTF.placeholder = "名称"
+        NameTF.placeholderColor = UIColor.colorFromHex(hexString: "#9B9B9B")
+        NameTF.borderInactiveColor = UIColor.colorFromHex(hexString: "#979797")
+        NameTF.borderActiveColor = UIColor.colorFromHex(hexString: "#6A39F7")
+        self.MessageView.addSubview(NameTF)
+        
+        self.MessageView.addSubview(self.SendBtn)
+        
+        //数据库获取数据
         let defaults = UserDefaults.standard
         let UserID = String(describing: defaults.value(forKey: "UserID")!)
         let realm = try! Realm()
@@ -63,6 +99,12 @@ class MessageViewController: UIViewController {
         }
         DashBoardViewController.sendMessageWithDeviceLocation(phone: self.PhoneNumTF.text!, name: self.NameTF.text!)
         return true
+    }
+    
+    //收回键盘
+    @objc func keyboardComeback() {
+        NameTF.resignFirstResponder()
+        PhoneNumTF.resignFirstResponder()
     }
 
 }

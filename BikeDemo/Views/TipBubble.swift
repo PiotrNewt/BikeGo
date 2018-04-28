@@ -17,7 +17,7 @@ class TipBubble: UIView {
     
     func layout() -> CGRect {
         TipLable.text = TipContent
-        TipLable.textColor = UIColor.white
+        TipLable.textColor = TipTextColor
         TipLable.font = UIFont.systemFont(ofSize: 13)
         let textMaxSize = CGSize(width: 240, height: CGFloat(MAXFLOAT))
         let textLabelSize = self.textSize(text: TipContent, font: TipLable.font, maxSize: textMaxSize)
@@ -30,7 +30,7 @@ class TipBubble: UIView {
         let height = TipLable.frame.height
         let width = TipLable.frame.width
         
-        let frame = CGRect(x: (UIScreen.main.bounds.width - width) / 2 - 10, y: 30, width: width + 20, height: height + 20)
+        let frame = CGRect(x: (UIScreen.main.bounds.width - width) / 2 - 10, y: 40, width: width + 20, height: height + 20)
         self.backgroundColor = BubbackgroundColor
         self.layer.cornerRadius = height - 5
         self.layer.masksToBounds = true

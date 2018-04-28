@@ -32,12 +32,14 @@ class DashBoardViewController: UIViewController {
     let motionManager = CMMotionManager()
     //用于一次记录点
     var recordPois: [RecordPoint] = [RecordPoint]()
-    // 用于不同方法下调用
+    //极速模式
+    var isHighSpeedMode = false
+    //用于不同界面下调用
     var ifDashVCAppear = true
     
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var speedView: SpeedView!
-    @IBOutlet weak var testLabel: UILabel!
+
     @IBOutlet weak var RideBtn: UIButton!
     @IBOutlet weak var EndRideBtn: UIButton!
     @IBOutlet weak var RideInfoView: UIView!
@@ -62,7 +64,7 @@ class DashBoardViewController: UIViewController {
     
     @IBAction func RideBtnClick(_ sender: Any) {
         startRecordRideData()
-        testLabel.text = "定位真的开启了喽"
+        
     }
     
     @IBAction func EndRideBtnClick(_ sender: Any) {
@@ -73,15 +75,18 @@ class DashBoardViewController: UIViewController {
         min = 0
         sec = 0
         balanceLabel.text = "0.0˚"
-        testLabel.text = "定位怕是结束了哦"
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hero.isEnabled = true
-        
         setRideInfoView()
+        
+        //添加切换极速模式的手势
+        let moreTap = UITapGestureRecognizer.init(target:self, action: #selector(handleMoreTap(tap:)))
+        moreTap.numberOfTapsRequired = 2
+        self.speedView.addGestureRecognizer(moreTap)
     }
 
     override func didReceiveMemoryWarning() {
@@ -91,6 +96,43 @@ class DashBoardViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         mtimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(openAnimation), userInfo: nil, repeats: true)
+    }
+    
+    //双击手势
+    @objc func handleMoreTap(tap:UITapGestureRecognizer) {
+        if isHighSpeedMode == false{
+            UIView.animate(withDuration: 1.0, delay: 0.1, options: .curveLinear, animations: {() -> Void in
+                self.view.backgroundColor = UIColor.colorFromHex(hexString: "#F8B563")
+            }, completion: nil)
+            
+            //警告进入极速模式
+            let tip = TipBubble()
+            tip.BubbackgroundColor = UIColor.colorFromHex(hexString: "#FFFFFF").withAlphaComponent(0.6)
+            tip.TipTextColor = UIColor.black
+            tip.TipContent = "极速模式"
+            self.view.addSubview(tip)
+            tip.show(dalay: 1.5)
+            
+            isHighSpeedMode = true
+            return
+        }
+        
+        if isHighSpeedMode == true {
+            UIView.animate(withDuration: 1.0, delay: 0.1, options: .curveLinear, animations: {() -> Void in
+                self.view.backgroundColor = UIColor.colorFromHex(hexString: "#1F1F1F")
+            }, completion: nil)
+            //警告推出极速模式
+            let tip = TipBubble()
+            tip.BubbackgroundColor = UIColor.colorFromHex(hexString: "#FFFFFF").withAlphaComponent(0.6)
+            tip.TipTextColor = UIColor.black
+            tip.TipContent = "普通模式"
+            self.view.addSubview(tip)
+            tip.show(dalay: 1.5)
+            
+            
+            isHighSpeedMode = false
+            return
+        }
     }
     
     //启动动画
@@ -109,6 +151,20 @@ class DashBoardViewController: UIViewController {
             getSystemLocationInfo(speed: Double(0))
             mtimer.invalidate()
             EndRideBtn.isEnabled = false
+            
+            //判断是否登陆
+            let defaults = UserDefaults.standard
+            if let LogInStatus = defaults.value(forKey: "LogInStatus"),
+                String(describing: LogInStatus) == "yes"{
+            }else{
+                let tip = TipBubble()
+                tip.BubbackgroundColor = UIColor.colorFromHex(hexString: "#FFFFFF").withAlphaComponent(0.6)
+                tip.TipTextColor = UIColor.black
+                tip.TipContent = "您未登陆,骑行记录将不会被保存"
+                self.view.addSubview(tip)
+                tip.show(dalay: 2)
+            }
+            
             return
         default:
             break
@@ -275,7 +331,7 @@ class DashBoardViewController: UIViewController {
         locationManager.stopUpdatingLocation()
         //结束啦喽，将骑行信息存入用户数据库
         //判断一下点是不是不够哎
-        guard recordPois.count >= 100 else {
+        guard recordPois.count >= 10 else {
             
             NSLog("这波行程太短")
             let tip = TipBubble()
@@ -284,6 +340,13 @@ class DashBoardViewController: UIViewController {
             tip.TipContent = "行程太短"
             self.view.addSubview(tip)
             tip.show(dalay: 2)
+            return
+        }
+        
+        let defaults = UserDefaults.standard
+        if let LogInStatus = defaults.value(forKey: "LogInStatus"),
+            String(describing: LogInStatus) == "yes"{
+            }else{
             return
         }
         
@@ -418,13 +481,14 @@ class DashBoardViewController: UIViewController {
         sec += 1
         if sec >= 60{
             min += 1
+            sec = 0
         }
         var sst = String(sec)
         var mst = String(min)
         if sec < 10 {
             sst = "0" + sst
         }
-        if sec < 10 {
+        if min < 10 {
             mst = "0" + mst
         }
         timeLabel.text = mst + ":" + sst
@@ -515,7 +579,6 @@ extension DashBoardViewController: AMapLocationManagerDelegate, UIAccelerometerD
         NSLog("位置刷新")
         if ifDashVCAppear == true{
             getSystemLocationInfo(speed: location.speed * 3.6)
-            testLabel.text = String(location.speed)
             altitudeLabel.text = String(format: "%.1f", location.altitude) + "∆"
         }
         //内存中写入数据
