@@ -112,7 +112,7 @@ class PersonalViewController: UIViewController {
         }
     }
     
-    //头像下个小按钮的移动
+    //头像下各个小按钮的移动
     @objc func selectHeadView() {
         if self.ChangeHeadBtn.frame == self.SignOutBtn.frame{
             miniBtnsComeOut()

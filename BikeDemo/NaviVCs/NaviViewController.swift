@@ -17,7 +17,7 @@ class NaviViewController: UIViewController {
     let pointAnnotation = MAPointAnnotation()
     let r = MAUserLocationRepresentation()
     var ifTouchInfoViewLoaded = false
-    var reAddress = ""
+    //var reAddress = ""
     
     @IBOutlet weak var HeadBackView: UIView!
     @IBOutlet weak var HeadPortraitIamgeView: UIImageView!
@@ -281,7 +281,7 @@ extension NaviViewController: AMapSearchDelegate, MAMapViewDelegate, AMapLocatio
         //解析逆地理返回值
         if response.regeocode != nil {
             TouchAddress.text = response.regeocode.formattedAddress
-            reAddress = response.regeocode.formattedAddress
+            //reAddress = response.regeocode.formattedAddress
         }
     }
     

@@ -6,6 +6,8 @@
 //  Copyright © 2018年 mclarenYang. All rights reserved.
 //
 
+//写触发事件 分别触发show 和 getdevice
+
 import UIKit
 import CoreMotion
 import RealmSwift
@@ -22,6 +24,7 @@ class DashBoardViewController: UIViewController {
 
     var timer = Timer()
     var mtimer = Timer()
+    var countDownTimer = Timer()
     var mtimes = 0
     
     //时间
@@ -30,12 +33,21 @@ class DashBoardViewController: UIViewController {
     
     let locationManager = AMapLocationManager()
     let motionManager = CMMotionManager()
+    let search = AMapSearchAPI()
     //用于一次记录点
     var recordPois: [RecordPoint] = [RecordPoint]()
     //极速模式
     var isHighSpeedMode = false
     //用于不同界面下调用
     var ifDashVCAppear = true
+    //监控弹窗
+    var alertController: UIAlertController!
+    var alertAppear = false
+    var countdown = 30
+    
+    //定位保障
+    var address = ""
+    var locationTimes = 0
     
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var speedView: SpeedView!
@@ -81,12 +93,15 @@ class DashBoardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hero.isEnabled = true
-        setRideInfoView()
+        search?.delegate = self
         
-        //添加切换极速模式的手势
-        let moreTap = UITapGestureRecognizer.init(target:self, action: #selector(handleMoreTap(tap:)))
-        moreTap.numberOfTapsRequired = 2
-        self.speedView.addGestureRecognizer(moreTap)
+        if ifDashVCAppear == true{
+            setRideInfoView()
+            //添加切换极速模式的手势
+            let moreTap = UITapGestureRecognizer.init(target:self, action: #selector(handleMoreTap(tap:)))
+            moreTap.numberOfTapsRequired = 2
+            self.speedView.addGestureRecognizer(moreTap)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,6 +111,10 @@ class DashBoardViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         mtimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(openAnimation), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        EndRideBtnClick(self)
     }
     
     //双击手势
@@ -254,6 +273,7 @@ class DashBoardViewController: UIViewController {
             return
         }
     }
+    
     @objc func rideInfoViewSwipToRight() {
         switch PageC.currentPage {
         case 0:
@@ -299,8 +319,10 @@ class DashBoardViewController: UIViewController {
     //骑行开始
     func startRecordRideData() {
         
-        RideBtn.isEnabled = false
-        EndRideBtn.isEnabled = true
+       if ifDashVCAppear == true {
+            self.RideBtn.isEnabled = false
+            self.EndRideBtn.isEnabled = true
+        }
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -320,9 +342,10 @@ class DashBoardViewController: UIViewController {
     //骑行结束
     func endRecordRideData() {
         
-        RideBtn.isEnabled = true
-        EndRideBtn.isEnabled = false
-        
+        if ifDashVCAppear == true {
+            RideBtn.isEnabled = true
+            EndRideBtn.isEnabled = false
+        }
         //停止监听设备移动
         motionManager.stopDeviceMotionUpdates()
         timer.invalidate()
@@ -331,7 +354,7 @@ class DashBoardViewController: UIViewController {
         locationManager.stopUpdatingLocation()
         //结束啦喽，将骑行信息存入用户数据库
         //判断一下点是不是不够哎
-        guard recordPois.count >= 10 else {
+        guard recordPois.count >= 100 else {
             
             NSLog("这波行程太短")
             let tip = TipBubble()
@@ -459,6 +482,9 @@ class DashBoardViewController: UIViewController {
             self.motionManager.startDeviceMotionUpdates(to: queue!, withHandler:{
                 (MotionData,error)  in
                 NSLog(String(format: "%.1f", (MotionData?.userAcceleration.x)!))
+                if Double((MotionData?.rotationRate.y)!) > 10.0{
+                    self.showSendAlrt()
+                }
             })
            // self.motionManager.startDeviceMotionUpdates()
         }else{
@@ -477,29 +503,94 @@ class DashBoardViewController: UIViewController {
 //            NSLog("加速度x\(newMotionData.userAcceleration.x)")
 //        }
         
-        //时间函数
-        sec += 1
-        if sec >= 60{
-            min += 1
-            sec = 0
+        if ifDashVCAppear == true{
+            //时间函数
+            sec += 1
+            if sec >= 60{
+                min += 1
+                sec = 0
+            }
+            var sst = String(sec)
+            var mst = String(min)
+            if sec < 10 {
+                sst = "0" + sst
+            }
+            if min < 10 {
+                mst = "0" + mst
+            }
+            timeLabel.text = mst + ":" + sst
         }
-        var sst = String(sec)
-        var mst = String(min)
-        if sec < 10 {
-            sst = "0" + sst
-        }
-        if min < 10 {
-            mst = "0" + mst
-        }
-        timeLabel.text = mst + ":" + sst
     }
     
+    func showSendAlrt(){
+        //如果显示了就直接返回
+        if alertAppear == true {return}
+        
+        //数据库获取数据
+        let defaults = UserDefaults.standard
+        let UserID = String(describing: defaults.value(forKey: "UserID")!)
+        let realm = try! Realm()
+        let user = realm.objects(User.self).filter("userID = \(UserID)")[0]
+        
+        let phone = user.userEmergencyPhone
+        
+        alertController = UIAlertController(title: "应急短信即将发送至：\(phone)", message: "倒计时:\(countdown)秒", preferredStyle: .alert)
+        let messageAction = UIAlertAction(title: "发送", style: .default , handler: { (action:UIAlertAction)in
+            //显示状态清零
+            self.getDeviceLocation()
+            self.countDownTimer.invalidate()
+            self.alertAppear = false
+            self.countdown = 30
+        })
+        let phoneAction = UIAlertAction(title: "电话联系", style: .default , handler: { (action:UIAlertAction)in
+            //显示状态清零
+            let urlString = "tel://\(phone)"
+            if let url = URL(string: urlString) {
+                //根据iOS系统版本，分别处理
+                if #available(iOS 10, *) {
+                    UIApplication.shared.open(url, options: [:],completionHandler: nil)
+                    self.countDownTimer.invalidate()
+                } else {
+                    UIApplication.shared.openURL(url)
+                    self.countDownTimer.invalidate()
+                }
+            }
+            self.alertAppear = false
+            self.countdown = 30
+        })
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel , handler: {(action:UIAlertAction)in
+            //显示状态清零
+            self.alertAppear = false
+            self.countdown = 30
+            
+        })
+        alertController.addAction(messageAction)
+        alertController.addAction(phoneAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+       
+        countDownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
+        
+        alertAppear = true
+    }
+    
+    @objc func countDown(){
+        countdown -= 1
+        if countdown == 0{
+            //发送，time停止
+            getDeviceLocation()
+            countDownTimer.invalidate()
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        alertController.message = "倒计时:\(countdown)秒"
+    }
+    
+    
     /*
-     *  全局发送短信
+     *  发送短信
      *  独立定位管理：不会被持续定位打断
-     *  to-do 只有在获取到足够信息之后才发送短信 -> 多次定位
      */
-    static func sendMessageWithDeviceLocation(phone: String, name: String) {
+    func getDeviceLocation() {
         
         let SmslocationManager = AMapLocationManager()
         SmslocationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
@@ -507,73 +598,73 @@ class DashBoardViewController: UIViewController {
         SmslocationManager.reGeocodeTimeout = 10
         SmslocationManager.locationTimeout = 10
         
-        let mm = SmslocationManager.requestLocation(withReGeocode: true, completionBlock: { (location: CLLocation?, reGeocode: AMapLocationReGeocode?, error: Error?) in
+        SmslocationManager.requestLocation(withReGeocode: false, completionBlock: { (location: CLLocation?, reGeocode: AMapLocationReGeocode?, error: Error?) in
             
-            let queue = DispatchQueue(label: "BikeDemo.mclarenyang")
-            queue.async {
-                
-            if let error = error {
-                let error = error as NSError
-                
-                if error.code == AMapLocationErrorCode.locateFailed.rawValue {
-                    //定位错误：此时location和regeocode没有返回值，不进行annotation的添加
-                    NSLog("定位错误:{\(error.code) - \(error.localizedDescription)};")
-                    return
-                }else if error.code == AMapLocationErrorCode.reGeocodeFailed.rawValue
-                    || error.code == AMapLocationErrorCode.timeOut.rawValue
-                    || error.code == AMapLocationErrorCode.cannotFindHost.rawValue
-                    || error.code == AMapLocationErrorCode.badURL.rawValue
-                    || error.code == AMapLocationErrorCode.notConnectedToInternet.rawValue
-                    || error.code == AMapLocationErrorCode.cannotConnectToHost.rawValue
-                    || error.code == AMapLocationErrorCode.canceled.rawValue{
-                    NSLog("逆地理错误:{\(error.code) - \(error.localizedDescription)};")
-                    //to do 错误提示
-                }else {
-                    //没有错误：location有返回值，regeocode是否有返回值取决于是否进行逆地理操作
-                    var address = "位置信息获取失败，请电话联系\(name)"
-                    
-                    if let location = location {
-                        address = "经纬度:\(location.coordinate.longitude),\(location.coordinate.latitude)"
-                        if let reGeocode = reGeocode {
-                            address = "\(reGeocode.aoiName)\n经纬度:\(location.coordinate.longitude),\(location.coordinate.latitude)"
-                        }
-                    }
-                    
-                    NSLog("\(address)")
-                    
-//                    let queue = DispatchQueue(label: "BikeDemo.mclarenyang")
-//                    queue.sync {
-//
-//                    let parameters: Parameters = [
-//                        "phone": phone,
-//                        "name": name,
-//                        "address": address
-//                        ]
-//                    //网络请求
-//                    let url = MenuViewController.APIURLHead + "sms/send"
-//                    Alamofire.request(url, method: .post, parameters: parameters).responseJSON{
-//                        request in
-//                        if let value = request.result.value{
-//                            let json = JSON(value)
-//                            let code = json[]["code"]
-//                            print(json)
-//                            if code == 200{
-//                                NSLog("发送成功")
-//                            }else{
-//                                // to do 失败提示
-//                                NSLog("发送失败")
-//                            }
-//                        }
-//                    }
-//                }
-                } }
+            if let location = location {
+                self.address = "经纬度:\(location.coordinate.longitude),\(location.coordinate.latitude)"
+                //逆地理
+                self.ReverseGeoCoding(coordinate: location.coordinate)
+            }else if self.locationTimes < 5{
+                self.locationTimes += 1
+                self.getDeviceLocation()
             }
         })
-        NSLog("mm:\(mm)")
+    }
+    
+    //逆地理编码
+    func ReverseGeoCoding(coordinate: CLLocationCoordinate2D) -> Void {
+        
+        let request = AMapReGeocodeSearchRequest()
+        request.location = AMapGeoPoint.location(withLatitude: CGFloat(coordinate.latitude), longitude: CGFloat(coordinate.longitude))
+        request.requireExtension = true
+        
+        search?.aMapReGoecodeSearch(request)
+    }
+    
+    //发送短信
+    func netSendMessage(address: String) {
+        
+        //数据库获取数据
+        let defaults = UserDefaults.standard
+        let UserID = String(describing: defaults.value(forKey: "UserID")!)
+        let realm = try! Realm()
+        let user = realm.objects(User.self).filter("userID = \(UserID)")[0]
+        
+        let phone = user.userEmergencyPhone
+        let name = user.userEmergencyMessage
+        
+        
+        let queue = DispatchQueue(label: "BikeDemo.mclarenyang")
+        queue.sync {
+            let parameters: Parameters = [
+                "phone": phone,
+                "name": name,
+                "address": address
+            ]
+            //网络请求
+            let url = MenuViewController.APIURLHead + "sms/send"
+            Alamofire.request(url, method: .post, parameters: parameters).responseJSON{
+                request in
+                if let value = request.result.value{
+                    let json = JSON(value)
+                    let code = json[]["code"]
+                    print(json)
+                    if code == 200{
+                        // to do 成功提示
+                        NSLog("发送成功")
+                    }else{
+                        // to do 失败提示
+                        NSLog("发送失败")
+                    }
+                }
+            }
+        }
+        //结束行程
+        self.endRecordRideData()
     }
 }
 
-extension DashBoardViewController: AMapLocationManagerDelegate, UIAccelerometerDelegate{
+extension DashBoardViewController: AMapLocationManagerDelegate, UIAccelerometerDelegate, AMapSearchDelegate{
     
     func amapLocationManager(_ manager: AMapLocationManager!, didUpdate location: CLLocation!) {
         NSLog("位置刷新")
@@ -583,6 +674,41 @@ extension DashBoardViewController: AMapLocationManagerDelegate, UIAccelerometerD
         }
         //内存中写入数据
         writeRideDate(location: location)
+    }
+    
+    //逆地理解析回调
+    func onReGeocodeSearchDone(_ request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
+        //解析逆地理返回值
+        if response.regeocode != nil {
+            var sendAddress = ""
+            if request.location != nil{
+                sendAddress = response.regeocode.formattedAddress + "附近，" + "经纬度:\(request.location.longitude),\(request.location.latitude)"
+            }else{
+                sendAddress = response.regeocode.formattedAddress + "附近，" + self.address
+            }
+            self.netSendMessage(address: sendAddress)
+        }
+    }
+}
+
+//扩展获取显示的VC
+public extension UIWindow {
+    public var visibleViewController: UIViewController? {
+        return UIWindow.getVisibleViewControllerFrom(self.rootViewController)
+    }
+    
+    public static func getVisibleViewControllerFrom(_ vc: UIViewController?) -> UIViewController? {
+        if let nc = vc as? UINavigationController {
+            return UIWindow.getVisibleViewControllerFrom(nc.visibleViewController)
+        } else if let tc = vc as? UITabBarController {
+            return UIWindow.getVisibleViewControllerFrom(tc.selectedViewController)
+        } else {
+            if let pvc = vc?.presentedViewController {
+                return UIWindow.getVisibleViewControllerFrom(pvc)
+            } else {
+                return vc
+            }
+        }
     }
 }
 
