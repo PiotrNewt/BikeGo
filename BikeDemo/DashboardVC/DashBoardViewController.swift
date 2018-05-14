@@ -86,7 +86,7 @@ class DashBoardViewController: UIViewController {
         timeLabel.text = "00:00"
         min = 0
         sec = 0
-        balanceLabel.text = "0.0˚"
+        balanceLabel.text = "0˚"
     }
     
     
@@ -215,7 +215,7 @@ class DashBoardViewController: UIViewController {
         altitudeLabel.frame = leftFrame
         RideInfoView.addSubview(altitudeLabel)
         
-        balanceLabel.text = "0.0˚"
+        balanceLabel.text = "0˚"
         balanceLabel.textColor = UIColor.white
         balanceLabel.font = UIFont.init(name: "Arial Rounded MT Bold", size: 15)
         balanceLabel.textAlignment = .center
@@ -481,21 +481,45 @@ class DashBoardViewController: UIViewController {
             let queue = OperationQueue.current
             self.motionManager.startDeviceMotionUpdates(to: queue!, withHandler:{
                 (MotionData,error)  in
-                NSLog(String(format: "%.1f", (MotionData?.userAcceleration.x)!))
-                if Double((MotionData?.rotationRate.y)!) > 10.0{
-                    self.showSendAlrt()
+                
+                if MotionData != nil{
+                    self.show_judgeDevice(motionData: MotionData!)
                 }
+                
+//                NSLog(String(format: "%.1f", (MotionData?.userAcceleration.x)!))
+//                if Double((MotionData?.rotationRate.y)!) > 10.0{
+//                    self.showSendAlrt()
+//                }
             })
-           // self.motionManager.startDeviceMotionUpdates()
         }else{
-            //to do 警告设备加速计不能使用
             NSLog("设备加速计或者陀螺仪不能使用")
+            let tip = TipBubble()
+            tip.BubbackgroundColor = UIColor.colorFromHex(hexString: "#FFFFFF").withAlphaComponent(0.6)
+            tip.TipTextColor = UIColor.black
+            tip.TipContent = "设备加速计或者陀螺仪不能使用"
+            self.view.addSubview(tip)
+            tip.show(dalay: 1.5)
         }
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(judgeDeviceMotion), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(refrashTime), userInfo: nil, repeats: true)
     }
     
-    //判断是否出事故
-    @objc func judgeDeviceMotion(){
+    //平衡显示算法_事故检测算法
+    func show_judgeDevice(motionData:CMDeviceMotion){
+        //平衡显示
+        let pitch = motionData.attitude.pitch * 90
+        let roll = motionData.attitude.roll * 60
+        
+        let balance = sqrt( pitch * pitch + roll * roll)
+        if (pitch < 0 && abs(pitch) > abs(roll)) || (roll < 0 && abs(roll) > abs(pitch)){
+            balanceLabel.text = "-" + String(format: "%.0f", balance) + "˚"
+        }else{
+            balanceLabel.text = String(format: "%.0f", balance) + "˚"
+        }
+        //事故检测
+    }
+    
+    //刷新时间
+    @objc func refrashTime(){
 //        if let newMotionData = self.motionManager.deviceMotion{
 //            NSLog("姿态旋转\(newMotionData.attitude.roll)")
 //            NSLog("姿态偏移\(newMotionData.attitude.yaw)")
@@ -758,4 +782,5 @@ public extension UIWindow {
         }
     }
 }
+
 
