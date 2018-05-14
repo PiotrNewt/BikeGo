@@ -74,11 +74,20 @@ class PersonalViewController: UIViewController {
         
         updateLeaveView()
         netLoadAriticle()
+        
+        //刷新手势
+        let moreTap = UITapGestureRecognizer.init(target:self, action: #selector(handleMoreTap(tap:)))
+        moreTap.numberOfTapsRequired = 2
+        self.view.addGestureRecognizer(moreTap)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func handleMoreTap(tap:UITapGestureRecognizer) {
+        netLoadAriticle()
     }
     
     func updateLeaveView() {

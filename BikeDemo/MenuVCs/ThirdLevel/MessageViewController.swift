@@ -129,14 +129,17 @@ class MessageViewController: UIViewController {
     }
     
     //发送短信
-    func netSendEMessage(phone:String, name:String, address: String){
+    func netSendEMessage(phone:String, name:String, province:String, city:String, address:String, long_latitude:String){
         
         let queue = DispatchQueue(label: "BikeDemo.mclarenyang")
             queue.sync {
                 let parameters: Parameters = [
                     "phone": phone,
                     "name": name,
-                    "address": address
+                    "province": province,
+                    "city": city,
+                    "address": address,
+                    "jingweidu":long_latitude
                     ]
                 //网络请求
                 let url = MenuViewController.APIURLHead + "sms/send"
@@ -149,11 +152,24 @@ class MessageViewController: UIViewController {
                         if code == 200{
                             // to do 失败提示
                             NSLog("发送成功")
+                            let tip = TipBubble()
+                            tip.BubbackgroundColor = UIColor.colorFromHex(hexString: "#FFFFFF").withAlphaComponent(0.6)
+                            tip.TipTextColor = UIColor.black
+                            tip.TipContent = "发送成功"
+                            self.view.addSubview(tip)
+                            tip.show(dalay: 1.5)
+                            
                             //保存数据
                             self.saveUserEmegecyInfo()
                         }else{
                             // to do 失败提示
                             NSLog("发送失败")
+                            let tip = TipBubble()
+                            tip.BubbackgroundColor = UIColor.colorFromHex(hexString: "#FFFFFF").withAlphaComponent(0.6)
+                            tip.TipTextColor = UIColor.black
+                            tip.TipContent = "发送失败"
+                            self.view.addSubview(tip)
+                            tip.show(dalay: 1.5)
                         }
                     }
                 }
@@ -183,15 +199,50 @@ extension MessageViewController: AMapSearchDelegate{
     func onReGeocodeSearchDone(_ request: AMapReGeocodeSearchRequest!, response: AMapReGeocodeSearchResponse!) {
         //解析逆地理返回值
         if response.regeocode != nil {
-            var sendAddress = ""
-            if request.location != nil{
-                sendAddress = response.regeocode.formattedAddress + "附近，" + "经纬度:\(request.location.longitude),\(request.location.latitude)"
-            }else{
-                sendAddress = response.regeocode.formattedAddress + "附近，" + self.address
+            var province = "某"
+            if response.regeocode.addressComponent.province != nil{
+                province = response.regeocode.addressComponent.province
+                //去掉省市字
+                let startIndex = province.index(province.startIndex, offsetBy: province.count - 1)
+                let endIndex = province.index(province.startIndex, offsetBy: province.count - 1)
+                province.removeSubrange(startIndex...endIndex)
             }
-            self.netSendEMessage(phone: self.PhoneNumTF.text!, name: self.NameTF.text!, address: sendAddress)
+            var city = "某"
+            if province == "重庆" || province == "北京" || province == "上海" || province == "天津"{
+                city = response.regeocode.addressComponent.district
+            }else{
+                city = response.regeocode.addressComponent.city
+            }
+            //去掉区域字
+            let startIndex = city.index(city.startIndex, offsetBy: city.count - 1)
+            let endIndex = city.index(city.startIndex, offsetBy: city.count - 1)
+            city.removeSubrange(startIndex...endIndex)
+            
+            var sendAddress = ""
+            if response.regeocode.formattedAddress != nil{
+                sendAddress = response.regeocode.formattedAddress
+                let startIndex = sendAddress.index(sendAddress.startIndex, offsetBy: 0)
+                let endIndex = sendAddress.index(sendAddress.startIndex, offsetBy: province.count + city.count + 1)
+                sendAddress.removeSubrange(startIndex...endIndex)
+            }
+            
+            //判断地址是否符合后台20的要求
+            if sendAddress.count > 20{
+                //不符合删掉街道信息
+                let startIndex = sendAddress.index(sendAddress.startIndex, offsetBy: 0)
+                let endIndex = sendAddress.index(sendAddress.startIndex, offsetBy: response.regeocode.addressComponent.township.count - 1)
+                sendAddress.removeSubrange(startIndex...endIndex)
+            }
+            
+            let long_latitude = String(format: "%.5f", request.location.longitude) + "," + String(format: "%.5f", request.location.latitude)
+            
+            self.netSendEMessage(phone: self.PhoneNumTF.text!, name: self.NameTF.text!, province: province, city: city, address: sendAddress, long_latitude: long_latitude)
             //
-            print(sendAddress)
+            print(province + "/" + city + "/" + sendAddress + long_latitude)
         }
     }
 }
+
+
+
+
