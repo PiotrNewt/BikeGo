@@ -354,7 +354,7 @@ class DashBoardViewController: UIViewController {
         locationManager.stopUpdatingLocation()
         //结束啦喽，将骑行信息存入用户数据库
         //判断一下点是不是不够哎
-        guard recordPois.count >= 100 else {
+        guard recordPois.count >= 10 else {
             
             NSLog("这波行程太短")
             let tip = TipBubble()
@@ -485,11 +485,6 @@ class DashBoardViewController: UIViewController {
                 if MotionData != nil{
                     self.show_judgeDevice(motionData: MotionData!)
                 }
-                
-//                NSLog(String(format: "%.1f", (MotionData?.userAcceleration.x)!))
-//                if Double((MotionData?.rotationRate.y)!) > 10.0{
-//                    self.showSendAlrt()
-//                }
             })
         }else{
             NSLog("设备加速计或者陀螺仪不能使用")
@@ -516,16 +511,23 @@ class DashBoardViewController: UIViewController {
             balanceLabel.text = String(format: "%.0f", balance) + "˚"
         }
         //事故检测
+        if isHighSpeedMode == false{
+            //各个阈值判断
+            if abs(motionData.userAcceleration.x) > 7 ||
+                abs(motionData.userAcceleration.y) > 7 ||
+                abs(motionData.userAcceleration.z) > 7 ||
+                abs(motionData.rotationRate.x) > 20 ||
+                abs(motionData.rotationRate.y) > 20 ||
+                abs(motionData.rotationRate.z) > 20{
+                //
+                showSendAlrt()
+            }
+        }
     }
     
     //刷新时间
     @objc func refrashTime(){
-//        if let newMotionData = self.motionManager.deviceMotion{
-//            NSLog("姿态旋转\(newMotionData.attitude.roll)")
-//            NSLog("姿态偏移\(newMotionData.attitude.yaw)")
-//            NSLog("陀螺仪旋转y\(newMotionData.rotationRate.x)")
-//            NSLog("加速度x\(newMotionData.userAcceleration.x)")
-//        }
+
         
         if ifDashVCAppear == true{
             //时间函数
@@ -587,6 +589,7 @@ class DashBoardViewController: UIViewController {
             //显示状态清零
             self.alertAppear = false
             self.countdown = 30
+            self.countDownTimer.invalidate()
             
         })
         alertController.addAction(messageAction)

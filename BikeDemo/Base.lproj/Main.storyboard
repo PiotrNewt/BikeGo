@@ -863,6 +863,9 @@
                                     <constraint firstAttribute="width" constant="60" id="e8d-y7-idR"/>
                                     <constraint firstAttribute="height" constant="60" id="sYj-E1-AP9"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="HeadImg"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qb-4y-ULH">
                                 <rect key="frame" x="84" y="128" width="277" height="21"/>
@@ -1458,6 +1461,9 @@
                                 <state key="normal" image="RideStartBtn">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="Btn2"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="RideBtnClick:" destination="lZ1-uG-0T5" eventType="touchUpInside" id="5IB-Pv-vaI"/>
                                 </connections>
@@ -1471,6 +1477,9 @@
                                 <state key="normal" image="RideEndBtn">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="Btn3"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="EndRideBtnClick:" destination="lZ1-uG-0T5" eventType="touchUpInside" id="g88-0B-GVW"/>
                                 </connections>
@@ -2020,6 +2029,6 @@
         <image name="back_down" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9za-3G-S3G"/>
+        <segue reference="qmY-Z1-eOS"/>
     </inferredMetricsTieBreakers>
 </document>
