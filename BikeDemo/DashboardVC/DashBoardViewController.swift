@@ -13,6 +13,8 @@ import CoreMotion
 import RealmSwift
 import Alamofire
 import SwiftyJSON
+import AVFoundation
+import MediaPlayer
 
 //用于数据点采样的方法判断
 enum compressionTyPe {
@@ -44,6 +46,12 @@ class DashBoardViewController: UIViewController {
     var alertController: UIAlertController!
     var alertAppear = false
     var countdown = 30
+    //是否登陆
+    var isSignin = false
+    
+    //语音播报
+    let synth = AVSpeechSynthesizer() //TTS对象
+    let audioSession = AVAudioSession.sharedInstance() //语音引擎
     
     //定位保障
     var address = ""
@@ -101,8 +109,36 @@ class DashBoardViewController: UIViewController {
             let moreTap = UITapGestureRecognizer.init(target:self, action: #selector(handleMoreTap(tap:)))
             moreTap.numberOfTapsRequired = 2
             self.speedView.addGestureRecognizer(moreTap)
+            
+            //测试手势
+            //let testTap = UITapGestureRecognizer.init(target:self, action: #selector(test))
+            //self.speedView.addGestureRecognizer(testTap)
         }
     }
+    
+    /*
+    var testnum = 12.0
+    var add = true
+    //测试
+    @objc func test(){
+        getSystemLocationInfo(speed: testnum)
+        if add == true{
+            testnum += 2
+        }
+        if add == false{
+            testnum -= 2
+        }
+        
+        if testnum > 25 && add == true{
+            add = false
+            return
+        }
+        if testnum < 12 && add == false{
+            add = true
+            return
+        }
+    }
+     */
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -160,6 +196,8 @@ class DashBoardViewController: UIViewController {
         switch mtimes {
         case 5,30:
             rideInfoViewSwipToRight()
+            //开启极速防止播报
+            isHighSpeedMode = true
             break
         case 18:
             rideInfoViewSwipToLeft()
@@ -170,11 +208,14 @@ class DashBoardViewController: UIViewController {
             getSystemLocationInfo(speed: Double(0))
             mtimer.invalidate()
             EndRideBtn.isEnabled = false
+            //关闭极速
+            isHighSpeedMode = false
             
             //判断是否登陆
             let defaults = UserDefaults.standard
             if let LogInStatus = defaults.value(forKey: "LogInStatus"),
                 String(describing: LogInStatus) == "yes"{
+                isSignin = true
             }else{
                 let tip = TipBubble()
                 tip.BubbackgroundColor = UIColor.colorFromHex(hexString: "#FFFFFF").withAlphaComponent(0.6)
@@ -307,13 +348,53 @@ class DashBoardViewController: UIViewController {
         }
     }
     
+    //速度刷新
     func getSystemLocationInfo(speed: Double) -> Void {
-        //let speed = Int(arc4random_uniform(50))+1
+        //let speed = Double(arc4random_uniform(30))+1
         //NSLog("当前速度：\(speed)")
         let nowspeed: Int = speed <= 0.5 ? 0 : Int(speed)
         //更新主屏显示
         speedView.speedValue = CGFloat(nowspeed)
         speedLabel.text = String(Int(nowspeed))
+        
+        //超速
+        if nowspeed > 20 && isHighSpeedMode == false{
+            speechMessage()
+            UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveLinear, animations: {() -> Void in
+                self.view.backgroundColor = UIColor.colorFromHex(hexString: "#F44747")
+            }, completion: nil)
+            return
+        }
+        if nowspeed < 20 && isHighSpeedMode == false{
+            synth.stopSpeaking(at: AVSpeechBoundary.word)
+            UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveLinear, animations: {() -> Void in
+                self.view.backgroundColor = UIColor.colorFromHex(hexString: "#1F1F1F")
+            }, completion: nil)
+            return
+        }
+    }
+    
+    //超速语音方法
+    func speechMessage(){
+        let queue = DispatchQueue(label: "BikeDemo.mclarenyang", attributes: .concurrent)
+        queue.async {
+            do {
+                // 设置语音环境，保证能朗读出声音（特别是刚做过语音识别，这句话必加，不然没声音）
+                try self.audioSession.setCategory(AVAudioSessionCategoryAmbient)
+            }catch let error as NSError{
+                print(error.code)
+            }
+            //需要转的文本
+            let utterance = AVSpeechUtterance.init(string: "您已超过安全行驶速度，请减速行驶")
+            //设置语言，这里是中文
+            utterance.voice = AVSpeechSynthesisVoice.init(language: "zh_CN")
+            //设置声音大小
+            utterance.volume = 1
+            //设置音频
+            utterance.pitchMultiplier = 1.1
+            //开始朗读
+            self.synth.speak(utterance)
+        }
     }
     
     //骑行开始
@@ -336,7 +417,7 @@ class DashBoardViewController: UIViewController {
         startRecodeDeviceMotion()
         
         //用个什么来记录一下骑行信息（RidedataModel） -> 在持续定位的回调中写入信息 Done
-        //调出设备的加速计算法func 监听设备情况 —> 是否摔倒、显示倾角Because in my memory, Thai restaurants are high-end restaurants.
+        //调出设备的加速计算法func 监听设备情况 —> 是否摔倒、显示倾角
     }
     
     //骑行结束
@@ -511,14 +592,14 @@ class DashBoardViewController: UIViewController {
             balanceLabel.text = String(format: "%.0f", balance) + "˚"
         }
         //事故检测
-        if isHighSpeedMode == false{
+        if isHighSpeedMode == false && isSignin == true{
             //各个阈值判断
-            if abs(motionData.userAcceleration.x) > 7 ||
-                abs(motionData.userAcceleration.y) > 7 ||
-                abs(motionData.userAcceleration.z) > 7 ||
-                abs(motionData.rotationRate.x) > 20 ||
-                abs(motionData.rotationRate.y) > 20 ||
-                abs(motionData.rotationRate.z) > 20{
+            if abs(motionData.userAcceleration.x) > 7.04 ||
+                abs(motionData.userAcceleration.y) > 8.13 ||
+                abs(motionData.userAcceleration.z) > 7.08 ||
+                abs(motionData.rotationRate.x) > 20.24 ||
+                abs(motionData.rotationRate.y) > 22.41 ||
+                abs(motionData.rotationRate.z) > 21.90{
                 //
                 showSendAlrt()
             }
@@ -527,8 +608,6 @@ class DashBoardViewController: UIViewController {
     
     //刷新时间
     @objc func refrashTime(){
-
-        
         if ifDashVCAppear == true{
             //时间函数
             sec += 1
