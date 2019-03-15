@@ -1,7 +1,7 @@
 # BikeDemo
 Graduation project Demo, a bike navi app by swift
 
-## 1. 概述
+## 1. 介绍
 ---
 ### 1.1 最终效果（未录制）
 
@@ -34,9 +34,7 @@ Graduation project Demo, a bike navi app by swift
 
 &emsp;项目使用iOS客户端作为传感设备，自设Matlab算法组合iOS设备测试产生安全阈值。
 
-### 1.3 目录说明（未完成）
-
-### 1.4 ToDo
+### 1.3 ToDo
 - [x] UI布局
 - [ ] 重写后台代码
 - [ ] 传输加密
