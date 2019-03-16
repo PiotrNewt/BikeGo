@@ -1,6 +1,7 @@
 # BikeDemo
 Graduation project Demo, a bike navi app by swift
-[English] | 简体中文
+
+[English](https://github.com/Mclarenyang/BikeDemo/blob/Layout/README.md) | 简体中文
 
 ## 1. 介绍
 ---
