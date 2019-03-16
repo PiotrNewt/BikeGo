@@ -1,69 +1,71 @@
 # BikeDemo
 Graduation project Demo, a bike navi app by swift
 
-## 1. 介绍
----
-### 1.1 最终效果（未录制）
+English | [简体中文](https://github.com/Mclarenyang/BikeDemo/blob/Layout/README_CHI.md)
+
+## 1. Introduction
+-----
+### 1.1 Final Result (not recorded)
 
 
-### 1.2 项目说明
-&emsp;本项目是一个原生iOS App实现，提供给骑行用户集导航、安全、数据和社交于一身的出行App。主要实现的功能如下：
-1. 导航功能模块
-    * 地图
-        * 地图渲染选择
-        * 地图选点
-        * 地点查询
-    * 骑行路线规划
-    * 导航
-2. 安全及仪表功能模块
-    * 显示
-        * 渐变色速度表盘
-        * 速度、海拔、用时及平衡显示（设备屏幕向上时与水平面最大夹角）
-    * 安全
-        * 超速提醒
-        * 摔倒检测及求助短信、电话触发
-    * 其他 
-        * 极速模式（不触发安全目录下功能）
-        * 数据记录
-3. 社区功能模块
-    * 登陆登出/注册
-    * 个人主页
-    * 动态发表、查看、点赞、评论
-    * 应急短信设置
-    * 骑行数据图表
+### 1.2 Project Instruction
+ This project is a native iOS app implementation that provides ride users with navigation, security, data and social travel apps. The main functions implemented are as follows:：
+1. Navigation module
+    * Map
+        * Map rendering options
+        * Map point selection
+        * Location inquiry
+    * Cycling route planning
+    * Navigation
+2. Safety and instrument modules
+    * display
+        * Gradient speed dial
+        * Speed, altitude, time and balance display (the maximum angle between the device screen and the horizontal plane)
+    * Safety
+        * Speed reminder
+        * Fall detection and help SMS, phone trigger
+    * Other
+        * Extreme speed mode (does not trigger the function under the security directory)
+        * Data record
+3. Community module
+    * Login to logout / registration
+    * Homepage
+    * Dynamically post, view, like, comment
+    * Emergency SMS settings
+    * Cycling data chart
 
-&emsp;项目使用iOS客户端作为传感设备，自设Matlab算法组合iOS设备测试产生安全阈值。
+ The project uses the iOS client as a sensing device, and the Matlab algorithm is combined with the iOS device test to generate a security threshold.
 
 ### 1.3 ToDo
-- [x] UI布局
-- [ ] 重写后台代码
-- [ ] 传输加密
+- [x] UI layout
+- [ ] Rewrite the servers code
+- [ ] transmission encryption
 - [ ] Iwatch + HealKit
-- [ ] Hybrid分支
+- [ ] Hybrid branch
 
-## 2.技术栈
----
-地图导航
-- [x] [高德导航SDK](https://lbs.amap.com/)：Swift桥接Objective-C
+## 2.Technology stack
+-----
+Navigation
+- [x] [Amap SDK](https://lbs.amap.com/)：Swift桥接Objective-C
 
-数据交互及存储
-- [x] [SwiftyJson](https://github.com/SwiftyJSON/SwiftyJSON) 解析库
-- [x] [Alamofire](https://github.com/Alamofire/Alamofire) 网络请求库
-- [x] [Realm](https://github.com/realm/realm-cocoa) 数据库
+Data interaction and storage
+- [x] [SwiftyJson](https://github.com/SwiftyJSON/SwiftyJSON) 
+- [x] [Alamofire](https://github.com/Alamofire/Alamofire) 
+- [x] [Realm](https://github.com/realm/realm-cocoa) 
 
-UI实现
-- [x] [TextFieldEffects](https://github.com/raulriera/TextFieldEffects) 文本框库
-- [x] [Hero](https://github.com/HeroTransitions/Hero) 过渡动画库
-- [x] [ScrollableGraphView](https://github.com/philackm/ScrollableGraphView) 数据图表
+UI implementation
+- [x] [TextFieldEffects](https://github.com/raulriera/TextFieldEffects) 
+- [x] [Hero](https://github.com/HeroTransitions/Hero) 
+- [x] [ScrollableGraphView](https://github.com/philackm/ScrollableGraphView) 
 
-UI设计
-- [x] 静态原型：[Sketch](https://www.sketchapp.com/) 49.1
+UI design
+- [x] [Sketch](https://www.sketchapp.com/) 49.1
 
 ## 3.UI
----
-&emsp;本人UI水平有限，在开发及设计过程中主要参照Dribbble社区优秀的设计作品，在此罗列给我提供了灵感或者设计参照的作品，并对设计者与分享者表达由衷的感谢。👍👏🙇‍♂️
+-----
+I have a limited level of UI. In the development and design process, I mainly refer to the excellent design works of the Dribbble community. Here I have provided me with inspiration or design reference works, and I would like to express my sincere gratitude to the designers and sharers.👍👏🙇‍♂️
 
-| 作品 | 作者 |
+| Design work | Designers |
 |:---:|:------:|
 |[Bike Assembly](https://dribbble.com/shots/1774057-Bike-Assembly)|Fraser Davidson|
 |[Bike History](https://dribbble.com/shots/2656218-Bike-History)|Levani Ambokadze|
