@@ -1,4 +1,4 @@
-# BikeDemo
+# BikeGo
 
 ![Xcode 10.0+](https://img.shields.io/badge/Xcode-10.0%2B-blue.svg)
 ![iOS 10.0+](https://img.shields.io/badge/iOS-10.0%2B-blue.svg)
@@ -13,7 +13,7 @@ English | [简体中文](https://github.com/Mclarenyang/BikeDemo/blob/Layout/REA
 
 
 ### 1.2 Project Instruction
- This project is a native iOS app implementation that provides ride users with navigation, security, data and social travel apps. The main functions implemented are as follows:
+**BikeGo** is a native iOS app implementation that provides ride users with navigation, security, data and social travel apps. The main functions implemented are as follows:
 1. Navigation module
     * Map
         * Map rendering options
