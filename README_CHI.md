@@ -1,5 +1,10 @@
 # BikeDemo
-Graduation project Demo, a bike navi app by swift
+一个自行车导航 iOS App，提供安全导航功能
+
+![Xcode 10.0+](https://img.shields.io/badge/Xcode-10.0%2B-blue.svg)
+![iOS 10.0+](https://img.shields.io/badge/iOS-10.0%2B-blue.svg)
+![Swift 4.0+](https://img.shields.io/badge/Swift-4.0%2B-orange.svg)
+[![License](https://img.shields.io/cocoapods/l/Hero.svg?style=flat)](https://github.com/lkzhao/Hero/blob/master/LICENSE?raw=true)
 
 [English](https://github.com/Mclarenyang/BikeDemo/blob/Layout/README.md) | 简体中文
 
