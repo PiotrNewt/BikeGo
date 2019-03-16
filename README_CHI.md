@@ -1,5 +1,6 @@
 # BikeDemo
 Graduation project Demo, a bike navi app by swift
+[English] | 简体中文
 
 ## 1. 介绍
 ---
