@@ -8,7 +8,6 @@
 English | [简体中文](https://github.com/Mclarenyang/BikeDemo/blob/Layout/README_CHI.md)
 
 ## 1. Introduction
------
 ### 1.1 Final Result🤳
 ![finalResultPreview](https://github.com/Mclarenyang/BikeGo/blob/Layout/UIWorkspace/finalResult%20Preview.png)
 
@@ -48,7 +47,6 @@ English | [简体中文](https://github.com/Mclarenyang/BikeDemo/blob/Layout/REA
 - [ ] Hybrid branch
 
 ## 2.Technology stack
------
 Navigation
 - [x] [Amap SDK](https://lbs.amap.com/)：Swift bridging Objective-C
 
@@ -66,7 +64,6 @@ UI design
 - [x] [Sketch](https://www.sketchapp.com/) 49.1
 
 ## 3.UI
------
 I have a limited level of UI. In the development and design process, I mainly refer to the excellent design works of the Dribbble community. Here I have provided me with inspiration or design reference works, and I would like to express my sincere gratitude to the designers and sharers.👍👏🙇‍♂️
 
 | Design work | Designers |
