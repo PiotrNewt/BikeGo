@@ -9,8 +9,8 @@ English | [简体中文](https://github.com/Mclarenyang/BikeDemo/blob/Layout/REA
 
 ## 1. Introduction
 -----
-### 1.1 Final Result (2Do)
-
+### 1.1 Final Result🤳
+![finalResultPreview](https://github.com/Mclarenyang/BikeGo/blob/Layout/UIWorkspace/finalResult%20Preview.png)
 
 ### 1.2 Project Instruction
 **BikeGo** is a native iOS app implementation that provides ride users with navigation, security, data and social travel apps. The main functions implemented are as follows:
@@ -82,6 +82,5 @@ I have a limited level of UI. In the development and design process, I mainly re
 |[GPS Speed for Android Wear](https://dribbble.com/shots/2099528-GPS-Speed-for-Android-Wear)|Alty|
 |[Server iOS Screens](https://dribbble.com/shots/2032069-Server-iOS-Screens)|⋈ Sam Thibault ⋈|
 |[Statistics (General trends)](https://dribbble.com/shots/1719845-Statistics-General-trends)| Mike / Creative Mints|
-
 
 
