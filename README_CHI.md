@@ -9,9 +9,8 @@
 [English](https://github.com/Mclarenyang/BikeGo) | 简体中文
 
 ## 1. 介绍
----
-### 1.1 最终效果（未录制）
-
+### 1.1 最终效果
+![finalResultPreview](https://github.com/Mclarenyang/BikeGo/blob/Layout/UIWorkspace/finalResult%20Preview.png)
 
 ### 1.2 项目说明
 &emsp;本项目是一个原生iOS App实现，提供给骑行用户集导航、安全、数据和社交于一身的出行App。主要实现的功能如下：
@@ -49,7 +48,6 @@
 - [ ] Hybrid分支
 
 ## 2.技术栈
----
 地图导航
 - [x] [高德导航SDK](https://lbs.amap.com/)：Swift桥接Objective-C
 
@@ -67,7 +65,6 @@ UI设计
 - [x] 静态原型：[Sketch](https://www.sketchapp.com/) 49.1
 
 ## 3.UI
----
 &emsp;本人UI水平有限，在开发及设计过程中主要参照Dribbble社区优秀的设计作品，在此罗列给我提供了灵感或者设计参照的作品，并对设计者与分享者表达由衷的感谢。👍👏🙇‍♂️
 
 | 作品 | 作者 |
