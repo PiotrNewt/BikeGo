@@ -610,7 +610,7 @@ extension List: MutableCollection {
     public func removeSubrange(_ bounds: ClosedRange<Int>) {
         removeSubrange(bounds.lowerBound...bounds.upperBound)
     }
-
+    /*
     //// :nodoc:
     public func removeSubrange(_ bounds: CountableRange<Int>) {
         for _ in bounds {
@@ -624,7 +624,7 @@ extension List: MutableCollection {
             remove(at: bounds.lowerBound)
         }
     }
-
+    */
     /// :nodoc:
     public func removeSubrange(_ bounds: DefaultRandomAccessIndices<List>) {
         removeSubrange(bounds.startIndex..<bounds.endIndex)
@@ -636,7 +636,8 @@ extension List: MutableCollection {
             removeSubrange(subrange)
             insert(contentsOf: newElements, at: subrange.lowerBound)
     }
-
+    
+    /*
     /// :nodoc:
     public func replaceSubrange<C: Collection>(_ subrange: CountableRange<Int>, with newElements: C)
         where C.Iterator.Element == Element {
@@ -650,6 +651,7 @@ extension List: MutableCollection {
             removeSubrange(subrange)
             insert(contentsOf: newElements, at: subrange.lowerBound)
     }
+    */
 
     /// :nodoc:
     public func replaceSubrange<C: Collection>(_ subrange: DefaultRandomAccessIndices<List>, with newElements: C)
