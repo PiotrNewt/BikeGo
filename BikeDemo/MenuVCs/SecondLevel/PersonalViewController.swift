@@ -15,7 +15,15 @@ class PersonalViewController: UIViewController {
     
     var articles: [Article] = [Article]()
 
+    
+    @IBOutlet weak var HeadBar: UIView!
     @IBOutlet weak var HeadPortraitIamgeView: UIImageView!
+    
+    @IBOutlet weak var ChangeHeadBtn: UIButton!
+    @IBOutlet weak var SignOutBtn: UIButton!
+    @IBOutlet weak var AboutBtn: UIButton!
+    
+    
     @IBOutlet weak var HelloLabel: UILabel!
     @IBOutlet weak var DateLabel: UILabel!
     @IBOutlet weak var CollectionView: UICollectionView!
@@ -23,6 +31,25 @@ class PersonalViewController: UIViewController {
     @IBAction func BackBtnClick(_ sender: Any) {
         hero.dismissViewController()
     }
+    
+    @IBAction func ChangeHeadBtnClick(_ sender: Any) {
+        replaceHeadImg()
+        miniBtnsGoBack()
+    }
+    
+    @IBAction func SignOutBtnClick(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        defaults.set("no", forKey: "LogInStatus")
+        miniBtnsGoBack()
+        let signInVC = (UIStoryboard(name: "LogIn", bundle: nil).instantiateViewController(withIdentifier: "SignIn") as? SignInViewController)!
+        hero.replaceViewController(with: signInVC)
+    }
+    
+    @IBAction func AboutBtnClick(_ sender: Any) {
+        miniBtnsGoBack()
+        //to - do 用户手册页面
+    }
+    
     
     @IBAction func AddArticleBtnClick(_ sender: Any) {
         let addArticleVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AddArticle") as? AddArticleViewController)!
@@ -33,22 +60,34 @@ class PersonalViewController: UIViewController {
         super.viewDidLoad()
         self.hero.isEnabled = true
         
+        HeadBar.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "HeadBar_75"))
         HeadPortraitIamgeView.layer.masksToBounds = true
-        HeadPortraitIamgeView.layer.cornerRadius = 45
+        HeadPortraitIamgeView.layer.cornerRadius = 35
         HeadPortraitIamgeView.isUserInteractionEnabled = true
-        let headImageGesture = UITapGestureRecognizer(target: self, action: #selector(replaceHeadImg))
+        let headImageGesture = UITapGestureRecognizer(target: self, action: #selector(selectHeadView))
         HeadPortraitIamgeView.addGestureRecognizer(headImageGesture)
         
         CollectionView.delegate = self
         CollectionView.dataSource = self
+        //设置背景透明
+        CollectionView.backgroundColor = UIColor.clear
         
         updateLeaveView()
         netLoadAriticle()
+        
+        //刷新手势
+        let moreTap = UITapGestureRecognizer.init(target:self, action: #selector(handleMoreTap(tap:)))
+        moreTap.numberOfTapsRequired = 2
+        self.view.addGestureRecognizer(moreTap)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func handleMoreTap(tap:UITapGestureRecognizer) {
+        netLoadAriticle()
     }
     
     func updateLeaveView() {
@@ -82,8 +121,43 @@ class PersonalViewController: UIViewController {
         }
     }
     
+    //头像下各个小按钮的移动
+    @objc func selectHeadView() {
+        if self.ChangeHeadBtn.frame == self.SignOutBtn.frame{
+            miniBtnsComeOut()
+        }else{
+            miniBtnsGoBack()
+        }
+    }
+    
+    func miniBtnsComeOut() {
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {() -> Void in
+            self.SignOutBtn.frame.origin.x += 74
+            self.ChangeHeadBtn.frame.origin.x += 48
+            self.AboutBtn.frame.origin.x += 49
+            self.ChangeHeadBtn.frame.origin.y -= 39
+            self.AboutBtn.frame.origin.y += 39
+            self.ChangeHeadBtn.alpha = 1
+            self.SignOutBtn.alpha = 1
+            self.AboutBtn.alpha = 1
+        }, completion: nil)
+    }
+    
+    func miniBtnsGoBack() {
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {() -> Void in
+            self.SignOutBtn.frame.origin.x -= 74
+            self.ChangeHeadBtn.frame.origin.x -= 48
+            self.AboutBtn.frame.origin.x -= 49
+            self.ChangeHeadBtn.frame.origin.y += 39
+            self.AboutBtn.frame.origin.y -= 39
+            self.ChangeHeadBtn.alpha = 0.1
+            self.SignOutBtn.alpha = 0.1
+            self.AboutBtn.alpha = 0.1
+        }, completion: nil)
+    }
+    
     //修改头像
-    @objc func replaceHeadImg() {
+    func replaceHeadImg() {
         let alert = UIAlertController(title: "添加照片", message: "", preferredStyle: .actionSheet)
         let photoAction = UIAlertAction(title: "相册", style: .default , handler: { (action:UIAlertAction)in
             self.photo()
@@ -198,7 +272,7 @@ class PersonalViewController: UIViewController {
                         let user = User()
                         user.userID = art[]["user"]["userId"].int!
                         user.userName = art[]["user"]["userName"].string!
-                        
+
                         let imageURL = NSURL(string: art[]["user"]["userImg"].string!)
                         user.userImg = try! Data(contentsOf: imageURL! as URL) as NSData
                         
@@ -238,7 +312,7 @@ extension PersonalViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = (collectionView.dequeueReusableCell(withReuseIdentifier: "collItem", for: indexPath) as? ArticleCell)!
         cell.article = articles[indexPath.item]
-        cell.backgroundColor = UIColor.gray
+        cell.backgroundColor = UIColor.white
         return cell
     }
     

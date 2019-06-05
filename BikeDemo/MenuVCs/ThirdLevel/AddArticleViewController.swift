@@ -49,6 +49,7 @@ class AddArticleViewController: UIViewController {
         ArticleImgCoLLView.dataSource = self
         
         images.removeAll()
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(keyboardComeback)))
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,6 +65,12 @@ class AddArticleViewController: UIViewController {
         
         UserAvatarImgView.image = UIImage(data: user.userImg as Data)
         UserNameLabel.text = user.userName
+    }
+    
+    //收回键盘
+    @objc func keyboardComeback() {
+        ArticleContentTV.resignFirstResponder()
+        
     }
     
     //网络请求
@@ -88,9 +95,17 @@ class AddArticleViewController: UIViewController {
                     if let articleId = json[]["articleId"].int,
                         self.images.count != 0{
                     self.netUploadImage(ArticleId: String(articleId))
+                    }else{
+                        self.hero.dismissViewController()
                     }
                 }else{
                     //to do 错误处理
+                    let tip = TipBubble()
+                    tip.BubbackgroundColor = UIColor.colorFromHex(hexString: "#FFFFFF").withAlphaComponent(0.6)
+                    tip.TipTextColor = UIColor.black
+                    tip.TipContent = "发布失败，稍后再试"
+                    self.view.addSubview(tip)
+                    tip.show(dalay: 1.5)
                 }
             }
         }
@@ -129,8 +144,9 @@ class AddArticleViewController: UIViewController {
                                 let json = JSON(value)
                                 print(json)
                                 let code = json[]["code"]
-                                if code != 200{
-                                        //to do 怕是上传失败了哦
+                                if code == 200{
+                                        //上传成功
+                                    self.hero.dismissViewController()
                                 }
                             }
                         }

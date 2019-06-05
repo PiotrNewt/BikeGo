@@ -10,13 +10,15 @@ import UIKit
 import RealmSwift
 import Alamofire
 import SwiftyJSON
+import TextFieldEffects
 
 class SignUpViewController: UIViewController {
 
     @IBOutlet weak var SignInLabel: UILabel!
-    @IBOutlet weak var NameTF: UITextField!
-    @IBOutlet weak var PasswordTF: UITextField!
-    @IBOutlet weak var PhoneNumberTF: UITextField!
+    
+    var NameTF = HoshiTextField()
+    var PasswordTF = HoshiTextField()
+    var PhoneNumberTF = HoshiTextField()
     
     
     @IBAction func BackBtnClick(_ sender: Any) {
@@ -28,6 +30,10 @@ class SignUpViewController: UIViewController {
             netSignUp()
         }else{
             NSLog("输入为空")
+            let tip = TipBubble()
+            tip.TipContent = "请输入完整信息"
+            self.view.addSubview(tip)
+            tip.show(dalay: 2)
         }
     }
     
@@ -43,6 +49,31 @@ class SignUpViewController: UIViewController {
         //添加键盘收回手势
         self.view.addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(keyboardComeback)))
         
+        //修饰TF
+        let nframe = CGRect(x:UIScreen.main.bounds.width / 2 - 122, y: UIScreen.main.bounds.height / 2 - 91, width: 244, height: 50)
+        NameTF.frame = nframe
+        NameTF.placeholder = "昵称"
+        NameTF.placeholderColor = UIColor.colorFromHex(hexString: "#9B9B9B")
+        NameTF.borderInactiveColor = UIColor.colorFromHex(hexString: "#979797")
+        NameTF.borderActiveColor = UIColor.colorFromHex(hexString: "#6A39F7")
+        self.view.addSubview(NameTF)
+        
+        let pframe = CGRect(x:UIScreen.main.bounds.width / 2 - 122, y: UIScreen.main.bounds.height / 2 - 25, width: 244, height: 50)
+        PasswordTF.frame = pframe
+        PasswordTF.placeholder = "密码"
+        PasswordTF.placeholderColor = UIColor.colorFromHex(hexString: "#9B9B9B")
+        PasswordTF.borderInactiveColor = UIColor.colorFromHex(hexString: "#979797")
+        PasswordTF.borderActiveColor = UIColor.colorFromHex(hexString: "#6A39F7")
+        PasswordTF.isSecureTextEntry = false
+        self.view.addSubview(PasswordTF)
+        
+        let eframe = CGRect(x:UIScreen.main.bounds.width / 2 - 122, y: UIScreen.main.bounds.height / 2 + 41, width: 244, height: 50)
+        PhoneNumberTF.frame = eframe
+        PhoneNumberTF.placeholder = "应急电话"
+        PhoneNumberTF.placeholderColor = UIColor.colorFromHex(hexString: "#9B9B9B")
+        PhoneNumberTF.borderInactiveColor = UIColor.colorFromHex(hexString: "#979797")
+        PhoneNumberTF.borderActiveColor = UIColor.colorFromHex(hexString: "#6A39F7")
+        self.view.addSubview(PhoneNumberTF)
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,6 +99,10 @@ class SignUpViewController: UIViewController {
                         self.netGetUserInfo(userID: Int(String(describing: json[]["uid"]))!)
                     }else{
                         NSLog("注册失败")
+                        let tip = TipBubble()
+                        tip.TipContent = "注册失败"
+                        self.view.addSubview(tip)
+                        tip.show(dalay: 2)
                     }
             }
         }
@@ -107,8 +142,8 @@ class SignUpViewController: UIViewController {
                     defaults.set(String(describing: userID), forKey: "UserID")
                     defaults.set("yes", forKey: "LogInStatus")
                     
-                    self.hero.dismissViewController()
-                    
+                    let personalVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Personal") as? PersonalViewController)!
+                    self.hero.replaceViewController(with: personalVC)
                 }else{
                     NSLog("获取失败")
                 }
@@ -130,6 +165,10 @@ class SignUpViewController: UIViewController {
                 guard judgement != true else {
                     //to do 警告已被注册
                     NSLog("用户名被占用")
+                    let tip = TipBubble()
+                    tip.TipContent = "用户名已被注册"
+                    self.view.addSubview(tip)
+                    tip.show(dalay: 2)
                     return
                 }
             }
@@ -145,6 +184,7 @@ class SignUpViewController: UIViewController {
     @objc func keyboardComeback() {
         NameTF.resignFirstResponder()
         PasswordTF.resignFirstResponder()
+        PhoneNumberTF.resignFirstResponder()
     }
 
 }

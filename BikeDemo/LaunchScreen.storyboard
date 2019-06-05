@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina5_9" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,19 +15,21 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LImage" translatesAutoresizingMaskIntoConstraints="NO" id="Hx0-7X-bYJ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MYLunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="Hx0-7X-bYJ">
+                                <rect key="frame" x="93.5" y="103.5" width="147" height="133"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="133" id="HLQ-yo-p9Z"/>
+                                    <constraint firstAttribute="width" constant="147" id="ebV-9E-lI2"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Hx0-7X-bYJ" firstAttribute="bottom" secondItem="Bcu-3y-fUS" secondAttribute="bottom" id="63r-3F-oD6"/>
-                            <constraint firstItem="Hx0-7X-bYJ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="7vB-5a-1rW"/>
-                            <constraint firstItem="Hx0-7X-bYJ" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="Jd1-uE-Xjx"/>
-                            <constraint firstItem="Hx0-7X-bYJ" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="zXh-KR-KUj"/>
+                            <constraint firstItem="Hx0-7X-bYJ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-114" id="ZrH-hC-pOg"/>
+                            <constraint firstItem="Hx0-7X-bYJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="7" id="mAo-65-ylg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                     </view>
@@ -38,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LImage" width="320" height="568"/>
+        <image name="MYLunchImage" width="147" height="133"/>
     </resources>
 </document>

@@ -87,17 +87,7 @@ class MenuViewController: UIViewController {
  
     //点击事件
     @objc func selectHeadImageOrHelloLabel(){
-        if HelloLabel.text == "sign in / sign up" {
-            // 跳转到登录页面
-            let signInVC = (UIStoryboard(name: "LogIn", bundle: nil).instantiateViewController(withIdentifier: "SignIn") as? SignInViewController)!
-            self.show(signInVC, sender: nil)
-        } else {
-            // 跳转到个人主页
-            let personalVC = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Personal") as? PersonalViewController)!
-            self.isComeToPersonal = true
-            self.show(personalVC, sender: nil)
-            
-        }
+        
     }
 
 }

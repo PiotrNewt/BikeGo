@@ -66,18 +66,12 @@ class ArticleDetialCell: UITableViewCell {
         }
     }
     
+    
     func layoutBtn() {
-        if images.count == 0{
-            LikeBtn.frame.origin.y = ContentLabel.frame.origin.y + ContentLabel.frame.height
-            CommentBtn.frame.origin.y = LikeBtn.frame.origin.y
-            LikeNumLabel.frame.origin.y = LikeBtn.frame.origin.y
-            CommentNumLabel.frame.origin.y = LikeBtn.frame.origin.y
+        print(article.articleImgs.count)
+        if article.articleImgs.count == 0{
             cellHeight = UserImgView.frame.height * 2 + ContentLabel.frame.height + LikeBtn.frame.height
         }else{
-            LikeBtn.frame.origin.y = IamgeCollView.frame.origin.y + IamgeCollView.frame.height
-            CommentBtn.frame.origin.y = LikeBtn.frame.origin.y
-            LikeNumLabel.frame.origin.y = LikeBtn.frame.origin.y
-            CommentNumLabel.frame.origin.y = LikeBtn.frame.origin.y
             cellHeight = IamgeCollView.frame.height + ContentLabel.frame.height + UserImgView.frame.height * 2 + LikeBtn.frame.height
         }
     }
@@ -85,21 +79,17 @@ class ArticleDetialCell: UITableViewCell {
     func transfImages() {
         
         if article.articleImgs.count == 0{return}
-        
-        let queue = DispatchQueue(label: "BikeDemo.mclarenyang", attributes: .concurrent)
-        queue.async {
-            //先清除再加载下一次的
-            self.images.removeAll()
-            for imageUrlString in self.article.articleImgs {
-                let imageUrl = NSURL(string: imageUrlString)
-                if let data = try? Data(contentsOf: imageUrl! as URL){
-                    self.images.append(UIImage(data: data as Data)!)
-                }
-            }
-            DispatchQueue.main.async {
-                self.IamgeCollView.reloadData()
+        //先清除再加载下一次的
+        self.images.removeAll()
+
+        for imageUrlString in self.article.articleImgs {
+            let imageUrl = NSURL(string: imageUrlString)
+            if let data = try? Data(contentsOf: imageUrl! as URL){
+                self.images.append(UIImage(data: data as Data)!)
             }
         }
+    
+        self.IamgeCollView.reloadData()
     }
     
     //点赞和取消赞的静态方法
@@ -144,6 +134,8 @@ class ArticleDetialCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
+    
+    
 
 }
 

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "sateStyle.png",
+      "filename" : "卫星.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "sateStyle@2x.png",
+      "filename" : "卫星@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "sateStyle@3x.png",
+      "filename" : "卫星@3x.png",
       "scale" : "3x"
     }
   ],

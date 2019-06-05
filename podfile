@@ -14,7 +14,7 @@ target 'BikeDemo' do
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftyJSON', '~> 4.0.0'
   pod 'ScrollableGraphView', '~> 4.0.4'
-
+  pod 'TextFieldEffects', '~> 1.4.0'
 
   # Pods for BikeDemo
 

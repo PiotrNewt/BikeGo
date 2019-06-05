@@ -18,6 +18,7 @@ PODS:
     - Realm (= 3.3.1)
   - ScrollableGraphView (4.0.4)
   - SwiftyJSON (4.0.0)
+  - TextFieldEffects (1.4.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - RealmSwift (~> 3.3.0)
   - ScrollableGraphView (~> 4.0.4)
   - SwiftyJSON (~> 4.0.0)
+  - TextFieldEffects (~> 1.4.0)
 
 SPEC CHECKSUMS:
   Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
@@ -41,7 +43,8 @@ SPEC CHECKSUMS:
   RealmSwift: f28fe8507bdfb8f1c924962401b83e7b9d7abb5c
   ScrollableGraphView: 072ea302f4ca27779692656a49d51fe537b2b1e7
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
 
-PODFILE CHECKSUM: 13c00153300139d972e24320b49f95c304bb0c12
+PODFILE CHECKSUM: 480cf964e9fd1de0dcbbca96d10c6b43d0cbbb0d
 
 COCOAPODS: 1.4.0

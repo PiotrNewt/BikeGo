@@ -22,9 +22,14 @@ class RoadPlanViewController: UIViewController {
     let rideManager = AMapNaviRideManager()
     //实例化一个Dash用于调用记录方法
     let DashVC = DashBoardViewController()
+    //管理info
+    var ifInfoGot = true
 
     @IBOutlet weak var BackBtn: UIButton!
     @IBOutlet weak var NaviBtn: UIButton!
+    @IBOutlet weak var RodeInfoView: UIView!
+    @IBOutlet weak var TimeLabel: UILabel!
+    @IBOutlet weak var DistanceLabel: UILabel!
     
     @IBAction func StartNavi(_ sender: Any) {
         initRideView()
@@ -49,7 +54,7 @@ class RoadPlanViewController: UIViewController {
         mapView.touchPOIEnabled = true
         self.view.addSubview(mapView)
         
-        mapView.addSubview(NaviBtn)
+        mapView.addSubview(RodeInfoView)
         mapView.addSubview(BackBtn)
         
         //路线规划
@@ -57,7 +62,11 @@ class RoadPlanViewController: UIViewController {
         let endPoi = AMapNaviPoint.location(withLatitude: CGFloat(endPointCoordinate.latitude), longitude: CGFloat(endPointCoordinate.longitude))
         if endPoi != nil {rideManager.calculateRideRoute(withStart: startPoi, end: endPoi!)}
         
-        print(rideManager.calculateRideRoute(withStart: startPoi, end: endPoi!))
+        if rideManager.calculateRideRoute(withStart: startPoi, end: endPoi!) == false{
+            ifInfoGot = false
+            self.TimeLabel.text = ""
+            self.DistanceLabel.text = "点击导航"
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -90,15 +99,13 @@ class RoadPlanViewController: UIViewController {
         rideManager.addDataRepresentative(rideView)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func loadRoadInfoView(road: AMapNaviRoute){
+        TimeLabel.text = String(format: "%.1f", road.routeTime / 60)  + " min"
+        DistanceLabel.text = String(format: "%.1f", road.routeLength / 1000)  + " km"
+        RodeInfoView.addSubview(TimeLabel)
+        RodeInfoView.addSubview(DistanceLabel)
+        RodeInfoView.addSubview(NaviBtn)
     }
-    */
 
 }
 
@@ -122,6 +129,14 @@ extension RoadPlanViewController: AMapNaviRideManagerDelegate, MAMapViewDelegate
         endPin.coordinate = endPointCoordinate
         mapView.addAnnotation(endPin)
         
+        //加载路线视图
+        if let road = rideManager.naviRoute,
+            ifInfoGot == true{
+            loadRoadInfoView(road: road)
+        }else{
+            //路线规划报错
+        }
+        
         //调整显示范围
         mapView.region.center = CLLocationCoordinate2D(latitude: Double((rideManager.naviRoute?.routeCenterPoint.latitude)!), longitude: Double((rideManager.naviRoute?.routeCenterPoint.longitude)!))
         let spanLatitude = Double((rideManager.naviRoute?.routeBounds.northEast.latitude)!) - Double((rideManager.naviRoute?.routeBounds.southWest.latitude)!)
@@ -136,6 +151,7 @@ extension RoadPlanViewController: AMapNaviRideManagerDelegate, MAMapViewDelegate
     //路线规划失败
     func rideManager(_ rideManager: AMapNaviRideManager, onCalculateRouteFailure error: Error) {
         NSLog("error:{\(error.localizedDescription)}")
+        
         //弹警告窗
     }
     
@@ -144,8 +160,7 @@ extension RoadPlanViewController: AMapNaviRideManagerDelegate, MAMapViewDelegate
         if overlay.isKind(of: MAPolyline.self) {
             let renderer: MAPolylineRenderer = MAPolylineRenderer(overlay: overlay)
             renderer.lineWidth = 6.0
-            renderer.strokeColor = UIColor.blue
-            
+            renderer.strokeColor = UIColor.colorFromHex(hexString: "#6B38F6")
             return renderer
         }
         return nil
