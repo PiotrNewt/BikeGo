@@ -5,7 +5,7 @@
 ![Swift 4.0+](https://img.shields.io/badge/Swift-4.0%2B-orange.svg)
 [![License](https://img.shields.io/cocoapods/l/Hero.svg?style=flat)](https://github.com/lkzhao/Hero/blob/master/LICENSE?raw=true)
 
-English | [简体中文](https://github.com/Mclarenyang/BikeDemo/blob/Layout/README_CHI.md)
+English | [简体中文](./README_CHI.md)
 
 ## 1. Introduction
 ### 1.1 Final Result🤳
